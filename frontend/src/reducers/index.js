@@ -1,3 +1,4 @@
+import { ADD_POST, ADD_COMMENT } from '../actions';
 import { combineReducers } from 'redux';
 
 const initialPostState = {
@@ -19,14 +20,14 @@ const initialCommentState = {
 	author: null, 			// string
 	category: [], 			// should be one of the categories provided by server
 	voteScore: 1, 			// net votes post has received (default: 1)
-	deleted: false 			// flag not to show post in front end
+	deleted: false, 		// flag not to show post in front end
 	parentDeleted: false	// parent can be deleted but this comment not
 };
 
 function post(state=initialPostState, action) {
 	switch (action.type) {
 		case ADD_POST:
-			return { ... state };
+			return state;
 		default:
 			return state;
 	}
@@ -35,7 +36,7 @@ function post(state=initialPostState, action) {
 function comment(state=initialCommentState, action) {
 	switch (action.type) {
 		case ADD_COMMENT:
-			return { ...state };
+			return state;
 		default:
 			return state;
 	}

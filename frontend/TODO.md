@@ -9,7 +9,7 @@
 	- [ ] relations between components
 	- [ ] state that will live in each component
 - [ ] decide on a directory structure
-	- [ ] by category vs by feature
+	- [ ] by categ2ory vs by feature
 	- [ ] consider number of components, their complexity and their dependencies
 - [ ] update README to reflect decisions from the planning stage
 
@@ -29,3 +29,4 @@
 
 ## Beyond MVP
 - [ ] implement distinct user objects/models
+- [ ] custom favicon
