@@ -3,6 +3,10 @@
 ## Planning
 - [ ] sketch out data flow through the app
 	- [X] review project specifications for data and view/UI components
+	- [X] test getting posts and categories from API
+	- [ ] test creating a post and a category through the API
+	- [ ] test updating a post and a category through the API
+	- [ ] test deleting a post and a category through the API 
 	- [ ] shape of the store, accounting for normalization
 	- [ ] store actions and reducers
 	- [ ] store middleware, thunk, ...
