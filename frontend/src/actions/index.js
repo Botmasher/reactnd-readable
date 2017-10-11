@@ -9,9 +9,7 @@ export function addPost({ id, timestamp, title, body, author, category }) {
 		title,
 		body,
 		author,
-		category,
-		voteScore: 1,
-		deleted: false
+		category
 	}
 }
 
@@ -23,9 +21,7 @@ export function addComment({ id, parentId, timestamp, body, author, category }) 
 		timestamp,
 		body,
 		author,
-		category,
-		voteScore: 1,
-		deleted: false
+		category
 	}
 }
 

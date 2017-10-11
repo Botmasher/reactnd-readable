@@ -9,18 +9,24 @@ From Udacity: This content and comment structure is common across a large number
 ## Notes
 This document should be filled out during project planning. Currently included below is the project specification from Udacity.
 
-# Specification
+### Potential pitfalls
+- Another student (@zarian) was marked off for not using `/:category/:post_id` to grab the post details, while in the local API it says to use `GET /posts/:id    Get the details of a single post.` Is the first the client API while the latter is the server API?
+- Keep rendering components and container components apart so that components connected to store are separate from rendering logic (@hbk)
+- Grommet wonderful for component UI (@david responding to @sobbuh)
+- Go all the way to [publishing your own component library](https://hackernoon.com/building-a-react-component-library-part-1-d8a1e248fe6c)
 
-## Data
+## Specification
+
+### Data
 There are three types of objects stored on the server:
 
-## Categories
+### Categories
 - Posts
 - Comments
 - Categories
 The server supports a small, fixed number of categories that users can put posts into. Categories are simple objects containing a name and a URL path (usually the same string). The server does not have methods for creating/modifying/deleting these categories. If you wish to add to the categories for your app, simply add your desired object to the Array in `categories.js` in the provided server.
 
-## Posts
+### Posts
 Posts are the building blocks of your application. Posts include:
 
 Attribute | Type     | Description
@@ -34,7 +40,7 @@ category  | String   | Should be one of the categories provided by the server
 voteScore | Integer  | Net votes the post has received (default: 1)
 deleted   | Boolean  | Flag if post has been 'deleted' (inaccessible by the front end), (default: false)
 
-## Comments
+### Comments
 Comments are attached to parent posts. They include:
 
 Attribute | Type     | Description
@@ -52,19 +58,19 @@ This application is anonymous, with no authentication or authorization. There ar
 
 The server is very light weight. It performs zero data validation to enforce the above data types. Make sure you are using the correct types when sending requests to the server.
 
-## Views
+### Views
 Your application should have, at a minimum, four views:
 
-### Default (Root)
+#### Default (Root)
 - should list all available categories, which should link to a category view for that category
 - should list all of the posts ordered by voteScore (highest score first)
 - should have a control for changing the sort method for the list, including at minimum, order by voteScore and order by timestamp
 - should have a control for adding a new post
 
-### Category View
+#### Category View
 - identical to the default view, but filtered to only include posts with the selected category
 
-### Post Detail View
+#### Post Detail View
 - should show the details of a post, including: Title, Body, Author, timestamp (in user readable format), and vote score
 - should list all of the comments for that post, ordered by voteScore (highest first)
 - should have controls to edit or delete the post
@@ -72,14 +78,14 @@ Your application should have, at a minimum, four views:
 - implement comment form however you want (inline, modal, etc.)
 - comments should also have controls for editing or deleting
 
-### Create/Edit View
+#### Create/Edit View
 - should have a form to create new post or edit existing posts
 - when editing, existing data should be populated in the form
 
-## Post/Comment UI
+### Post/Comment UI
 Posts and comments, in all views where they are displayed, should display their current score and should have controls to increment or decrement the voteScore for the object. Posts should display the number of comments associated with the post.
 
-## Specific Requirements
+### Specific Requirements
 Use React to build your application UI. Remember that composition is key. It’s rarely a mistake to break a component into smaller pieces. Look for opportunities to reuse your components. We recommend using create-react-app to bootstrap your project, but it is not required for this project.
 
 While the focus (and specification) of this project is based on functionality, rather than styling, please ensure that your app is presentable and easy to navigate.
