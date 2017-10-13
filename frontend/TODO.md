@@ -3,11 +3,19 @@
 ## Planning
 - [ ] sketch out data flow through the app
 	- [X] review project specifications for data and view/UI components
-	- [X] test getting posts and categories from API
-	- [ ] test creating a post and a category through the API
-	- [ ] test updating a post and a category through the API
-	- [ ] test deleting a post and a category through the API 
-	- [ ] shape of the store, accounting for normalization
+	- [X] confidently CRUD posts through the API
+		- [X] test getting posts and categories from API
+		- [X] test creating a post through the API
+		- [X] test updating a post through the API
+		- [X] test voting on a post through the API
+		- [X] test deleting a post through the API 
+	- [ ] confidently CRUD comments through the API
+		- [ ] test getting comments from the API
+		- [ ] test creating a comment through the API
+		- [ ] test updating a comment through the API
+		- [ ] test voting on a comment through the API
+		- [ ] test deleting a comment through the API
+	- [ ] lay out the shape the store, accounting for normalization
 	- [ ] store actions and reducers
 	- [ ] store middleware, thunk, ...
 	- [ ] relations between components
@@ -58,6 +66,7 @@
 
 ## Beyond MVP
 - [ ] implement distinct user objects/models for logging in and permissions
+- [ ] ability to create categories
 - [ ] add sorting for comments as well within Post Detail view
 - [ ] custom favicon
 - [ ] search posts and comments
