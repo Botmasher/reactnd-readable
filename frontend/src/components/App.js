@@ -1,11 +1,9 @@
 import React from 'react';
-import TestAPI from './TestAPI'
+import TestAPI from './TestAPI';
 
 function App(props) {
 	return (
-		<div>
-			<TestAPI />
-		</div>
+		<TestAPI />
 	);
 }
 
