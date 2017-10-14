@@ -9,12 +9,12 @@
 		- [X] test updating a post through the API
 		- [X] test voting on a post through the API
 		- [X] test deleting a post through the API 
-	- [ ] confidently CRUD comments through the API
-		- [ ] test getting comments from the API
-		- [ ] test creating a comment through the API
-		- [ ] test updating a comment through the API
-		- [ ] test voting on a comment through the API
-		- [ ] test deleting a comment through the API
+	- [X] confidently CRUD comments through the API
+		- [X] test getting comments from the API
+		- [X] test creating a comment through the API
+		- [X] test updating a comment through the API
+		- [X] test voting on a comment through the API
+		- [X] test deleting a comment through the API
 	- [ ] lay out the shape the store, accounting for normalization
 	- [ ] store actions and reducers
 	- [ ] store middleware, thunk, ...

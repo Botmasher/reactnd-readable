@@ -19,17 +19,14 @@ This document should be filled out during project planning. Currently included b
 The top-level shape of the store for reducers:
 `{
 	posts: [],
-	comments: [],
-	categories: []
+	comments: []
 }`
 
-The existing API returns for **categories** have the following structure:
+Categories are not duplicated in the store. Although they can be read through a dedicated API endpoint, for the frontend they can be obtained by reducing over posts and comments. The existing API returns for **categories** have the following structure:
 `{
 	name: '',
 	path: ''
 }`
-
-The Specification  
 
 ### Possible ideas and pitfalls
 - Another student (@zarian) was marked off for not using `/:category/:post_id` to grab the post details, while in the local API it says to use `GET /posts/:id    Get the details of a single post.` Is the first the client API while the latter is the server API?

@@ -38,7 +38,7 @@ function TestAPICategories(props) {
 	console.log(categoryPosts);
 
 	return(
-		<div>Testing API all categories & all post fetches...</div>
+		<div>Testing API with <em>all categories</em> and <em>all post</em> fetches...</div>
 	);
 }
 

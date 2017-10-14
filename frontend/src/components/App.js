@@ -3,7 +3,7 @@ import TestAPI from './TestAPI';
 
 function App(props) {
 	return (
-		<TestAPI />
+		<TestAPI all={true} posts={false} comments={true} />
 	);
 }
 

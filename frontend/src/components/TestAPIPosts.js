@@ -2,12 +2,11 @@ import React from 'react';
 
 function TestAPIPosts (props) {
 
-	const {api_address, headers, pleaseDelete} = props;
+	const {api_address, headers, uuid, pleaseDelete} = props;
 
 	// test adding and updating a post
-	const uuid='something_unique_123';
 	if (!pleaseDelete) {
-		const singlePost={
+		const newPost={
 			id: uuid,
 			timestamp: Date.now(),
 			title: 'My first React post',
@@ -16,7 +15,7 @@ function TestAPIPosts (props) {
 			category: 'react'
 		};
 		// create post
-		fetch(`${api_address}/posts`, {method: 'POST', body: JSON.stringify(singlePost), headers})
+		fetch(`${api_address}/posts`, {method: 'POST', body: JSON.stringify(newPost), headers})
 		.then(response => console.log(`Post posted! Dispatch updated post action to update store.`))
 		// update post
 		.then(() => {
@@ -45,7 +44,7 @@ function TestAPIPosts (props) {
 	}
 
 	return(
-		<div>Testing creating/updating/deleting post through API...</div>
+		<div>Testing creating/updating/deleting a <strong>post</strong> through the API...</div>
 	);
 }
 
