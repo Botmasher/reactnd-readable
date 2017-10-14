@@ -27,6 +27,32 @@ Categories are not duplicated in the store. Although they can be read through a 
 	name: '',
 	path: ''
 }`
+Case: what if category exists in categories on server and exists on no post or comment?
+
+Each post in the `posts` array has the following structure:
+`{
+	id: '', 				// unique string identifier
+	timestamp: Date.now(), 	// default Unix time track data
+	title: '', 				// string to display as the post title
+	body: '', 				// string to display as the post body
+	author: '', 			// string to display as the author of post title and body
+	category: '', 			// must be one of the categories provided by server
+	voteScore: 1, 			// net votes post has received (default: 1)
+	deleted: false 			// flag for deleted post
+}`
+
+Each comment in the `comments` array has the following structure:
+`{
+	id: '', 				// unique string identifier
+	parentId: '', 			// matches id of an existing post
+	timestamp: Date.now(), 	// default Unix time track data
+	body: '', 				// string to display as the comment body
+	author: '', 			// string to display as the author of comment body
+	category: '', 			// matches parent category
+	voteScore: 1,			// net votes comment has received (default: 1)
+	deleted: false, 		// flag for deleted comment
+	parentDeleted: false 	// flag for deleted parent post
+}`
 
 ### Possible ideas and pitfalls
 - Another student (@zarian) was marked off for not using `/:category/:post_id` to grab the post details, while in the local API it says to use `GET /posts/:id    Get the details of a single post.` Is the first the client API while the latter is the server API?
