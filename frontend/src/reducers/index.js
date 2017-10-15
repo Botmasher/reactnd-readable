@@ -25,9 +25,18 @@ const initialCommentState = {
 };
 
 function post(state=initialPostState, action) {
-	switch (action.type) {
+	const {type, id, timestamp, title, body, author, category} = action;
+	switch (type) {
 		case ADD_POST:
-			return state;
+			return ({
+				...state,
+				id,
+				timestamp,
+				title,
+				body,
+				author,
+				category
+			});
 		default:
 			return state;
 	}

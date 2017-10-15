@@ -15,9 +15,17 @@
 		- [X] test updating a comment through the API
 		- [X] test voting on a comment through the API
 		- [X] test deleting a comment through the API
-	- [ ] lay out the shape the store, accounting for normalization
-	- [ ] store actions and reducers
-	- [ ] store middleware, thunk, ...
+	- [X] lay out the shape the store, accounting for normalization
+	- [ ] plan store reducers
+		- [ ] sketch what a post reducer should do when adding
+		- [ ] sketch what a post reducer should do when editing
+		- [ ] sketch what a post reducer should do when deleting
+	- [ ] plan store actions
+		- [ ] sketch what a post reducer should do when adding
+		- [ ] sketch what a post reducer should do when editing
+		- [ ] sketch what a post reducer should do when deleting
+	- [ ] fill out reducers to account for all actions
+	- [ ] plan store middleware, thunk, ...
 	- [ ] relations between components
 	- [ ] state that will live in each component
 - [ ] what are the events that should CRUD data, e.g. adding post, updating score
