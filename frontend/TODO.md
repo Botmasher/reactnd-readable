@@ -16,14 +16,19 @@
 		- [X] test voting on a comment through the API
 		- [X] test deleting a comment through the API
 	- [X] lay out the shape the store, accounting for normalization
-	- [ ] plan store reducers
-		- [ ] sketch what a post reducer should do when adding
-		- [ ] sketch what a post reducer should do when editing
-		- [ ] sketch what a post reducer should do when deleting
+	- [X] plan store reducers
+		- [X] sketch what a post reducer should do when adding
+		- [X] sketch what a post reducer should do when editing
+		- [X] sketch what a post reducer should do when voting
+		- [X] sketch what a post reducer should do when deleting
+		- [X] sketch what a comment reducer should do when adding
+		- [X] sketch what a comment reducer should do when editing
+		- [X] sketch what a comment reducer should do when voting
+		- [X] sketch what a comment reducer should do when deleting
 	- [ ] plan store actions
-		- [ ] sketch what a post reducer should do when adding
-		- [ ] sketch what a post reducer should do when editing
-		- [ ] sketch what a post reducer should do when deleting
+		- [ ] sketch actions for post
+		- [ ] sketch actions for comment
+		- [ ] sketch actions for category
 	- [ ] fill out reducers to account for all actions
 	- [ ] plan store middleware, thunk, ...
 	- [ ] relations between components
@@ -42,6 +47,9 @@
 	- [ ] check and test against what's in the API
 	- [ ] implement actions
 	- [ ] implement reducers
+- [ ] default state and initial state
+	- [ ] configure initial state for each reducer
+	- [ ] configure default state for createStore
 - [ ] check that Redux dataflow works correctly
 	- [ ] each of the events that should CRUD data from Planning above
 	- [ ] include displaying posts sorted by 

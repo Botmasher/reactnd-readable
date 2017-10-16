@@ -25,17 +25,26 @@ const initialCommentState = {
 };
 
 function post(state=initialPostState, action) {
-	const {type, id, timestamp, title, body, author, category} = action;
+	const {type, post} = action;
 	switch (type) {
 		case ADD_POST:
 			return ({
 				...state,
-				id,
-				timestamp,
-				title,
-				body,
-				author,
-				category
+				post
+			});
+		case EDIT_POST:
+			return ({
+				...state.filter(p => p.id!==post.id),
+				post
+			});
+		case VOTE_POST:
+			return ({
+				...state.filter(p => p.id!==post.id),
+				post
+			});
+		case DELETE_POST:
+			return ({
+				...state.filter(p => p.id!==post.id)
 			});
 		default:
 			return state;
@@ -43,9 +52,27 @@ function post(state=initialPostState, action) {
 }
 
 function comment(state=initialCommentState, action) {
+	const {type, comment} = action;
 	switch (action.type) {
 		case ADD_COMMENT:
-			return state;
+			return ({
+				...state,
+				comment
+			});
+		case EDIT_COMMENT:
+			return ({
+				...state.comments.filter(c => c.id!==comment.id),
+				comment
+			});
+		case VOTE_COMMENT:
+			return ({
+				...state.comments.filter(c => c.id!==comment.id),
+				comment
+			});
+		case DELETE_COMMENT:
+			return ({
+				...state.comments.filter(c => c.id!==comment.id)
+			});
 		default:
 			return state;
 	}
