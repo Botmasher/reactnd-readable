@@ -12,8 +12,10 @@ This document should be filled out during project planning. Currently included b
 ### Data structure
 - user can CRUD own comment
 - user can CRUD own post
-- user can U any comment's voteScore
-- user can U any post's voteScore
+- user can R any post not flagged as deleted
+- user can R any comment where comment not flagged as deleted and parent post not flagged as deleted
+- user can U any comment's voteScore where comment not flagged as deleted and parent post not flagged as deleted
+- user can U any post's voteScore where post not flagged as deleted
 
 #### Shape of the store
 The top-level shape of the store for reducers:
@@ -64,11 +66,11 @@ Each comment in the `comments` array has the following structure:
 
 ### Data
 There are three types of objects stored on the server:
-
-### Categories
+- Categories
 - Posts
 - Comments
-- Categories
+
+### Categories
 The server supports a small, fixed number of categories that users can put posts into. Categories are simple objects containing a name and a URL path (usually the same string). The server does not have methods for creating/modifying/deleting these categories. If you wish to add to the categories for your app, simply add your desired object to the Array in `categories.js` in the provided server.
 
 ### Posts
@@ -129,6 +131,9 @@ Your application should have, at a minimum, four views:
 
 ### Post/Comment UI
 Posts and comments, in all views where they are displayed, should display their current score and should have controls to increment or decrement the voteScore for the object. Posts should display the number of comments associated with the post.
+
+### Backend
+The API server is available for local development and testing. For more information on endpoints, usage and required parameters, see the [documentation](https://github.com/Botmasher/reactnd-readable/blob/master/api-server/README.md) in the `./api-server` subdirectory.
 
 ### Specific Requirements
 Use React to build your application UI. Remember that composition is key. It’s rarely a mistake to break a component into smaller pieces. Look for opportunities to reuse your components. We recommend using create-react-app to bootstrap your project, but it is not required for this project.

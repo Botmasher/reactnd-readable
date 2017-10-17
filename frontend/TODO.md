@@ -29,6 +29,7 @@
 		- [ ] sketch actions for post
 		- [ ] sketch actions for comment
 		- [ ] sketch actions for category
+	- [ ] test that you can store
 	- [ ] fill out reducers to account for all actions
 	- [ ] plan store middleware, thunk, ...
 	- [ ] relations between components
