@@ -29,9 +29,13 @@
 		- [ ] sketch actions for post
 		- [ ] sketch actions for comment
 		- [ ] sketch actions for category
-	- [ ] test that you can store
+	- [ ] test that you can store and access store
+	- [ ] plan [selectors](https://github.com/reactjs/reselect) to build on state
+	- [ ] plan [ ]
 	- [ ] fill out reducers to account for all actions
-	- [ ] plan store middleware, thunk, ...
+	- [ ] plan store middleware
+		- [ ] thunk
+		- [ ] , ... ?
 	- [ ] relations between components
 	- [ ] state that will live in each component
 - [ ] what are the events that should CRUD data, e.g. adding post, updating score
@@ -79,10 +83,13 @@
 - [X] Set up your IDE including syntax highlighting [for JS and JSX](https://packagecontrol.io/packages/Babel)
 - [ ] Consider [React test utilities](https://reactjs.org/docs/test-utils.html)
 - [ ] Plan to write [Redux tests](http://redux.js.org/docs/recipes/WritingTests.html)
+- [ ] Test your selectors, actions, reducers [together](https://github.com/reactjs/redux/issues/1171)
+	- [ ] the [ducks approach](https://github.com/reactjs/reselect#motivation-for-memoized-selectors)
 - [ ] Hot loading and time traveling
 
 ## Beyond MVP
 - [ ] implement distinct user objects/models for logging in and permissions
+	- [ ] Consider 
 - [ ] ability to create categories
 - [ ] add sorting for comments as well within Post Detail view
 - [ ] custom favicon
