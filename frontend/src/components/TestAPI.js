@@ -14,6 +14,11 @@ function TestAPI(props) {
 
 	return(
 		<div>
+			<ul>
+				{props.displayThesePosts.map(post => (
+					<li key={post.id}>{post.title}</li>
+				))}
+			</ul>
 			{props.all && (
 				<TestAPICategories api_address={api_address} headers={headers} />
 			)}

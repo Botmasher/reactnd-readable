@@ -25,12 +25,27 @@
 		- [X] sketch what a comment reducer should do when editing
 		- [X] sketch what a comment reducer should do when voting
 		- [X] sketch what a comment reducer should do when deleting
-	- [ ] plan store actions
-		- [ ] sketch actions for post
-		- [ ] sketch actions for comment
-		- [ ] sketch actions for category
+	- [X] plan store actions
+		- [X] sketch actions for post
+		- [X] sketch actions for comment
+		- [X] sketch actions for category
+	- [ ] write util to fetch and update API data
+		- [X] save in ./src/utils
+		- [X] store headers and address in single location
+		- [ ] basic func that allows setting method and body headers fields
+		- [ ] set up middleware for async actions
+		- [ ] build other funcs on top
+		- [ ] test using it to load data in the main app
 	- [ ] test that you can store and access store
+		- [ ] App component: create sample data submission
+		- [ ] App component: dispatch action with correct payload
+		- [ ] actions: fill out actions to make API calls
+		- [ ] actions: fill out actions to format and pass along payload
+		- [ ] log: check the store state after reducer resolves
+		- [ ] actions: update and fix issues as you test
+		- [ ] reducers: update and fix issues as you test
 	- [ ] plan [selectors](https://github.com/reactjs/reselect) to build on state
+	- [ ] plan [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
 	- [ ] fill out reducers to account for all actions
 	- [ ] plan store middleware
 		- [ ] thunk
@@ -47,8 +62,6 @@
 ## Core Tasks
 - [X] install and save Redux
 - [X] create a Redux store in index.js
-- [ ] install and save Router
-- [ ] ? lodash for immutability
 - [ ] update the Redux store to match the sketch above
 	- [ ] check and test against what's in the API
 	- [ ] implement actions

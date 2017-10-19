@@ -6,6 +6,18 @@ This is my final project for the Udacity Redux course as part of the React Nanod
 ## Motivation
 From Udacity: This content and comment structure is common across a large number of websites and applications, from news sites to blogs to aggregators like Hacker News and Reddit. By building this project, you will gain an understanding of how Redux can function in a standard type of application.
 
+## Getting Started
+For the backend: open `./api-server` and start the server with `node server.js`
+
+For the frontend: open `./frontend` and start the app with `npm start`
+
+This project was built in React with Redux and has the following dependencies:
+- Node and npm
+- React
+- Redux: `redux` and `react-redux`
+- Router: `react-router-dom`
+- Middleware: `redux-thunk`
+
 ## Notes
 This document should be filled out during project planning. Currently included below is the project specification from Udacity.
 

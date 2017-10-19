@@ -1,4 +1,5 @@
 import {
+	RECEIVE_POSTS,
 	ADD_POST,
 	ADD_COMMENT,
 	EDIT_POST,
@@ -34,26 +35,29 @@ const initialCommentState = {
 };
 
 function posts(state=initialPostState, action) {
-	const {type, post} = action;
-	switch (type) {
+	switch (action.type) {
+		case RECEIVE_POSTS:
+			return ([
+				...action.posts
+			]);
 		case ADD_POST:
 			return ({
 				...state,
-				post
+				action.post
 			});
 		case EDIT_POST:
 			return ({
-				...state.filter(p => p.id!==post.id),
-				post
+				...state.filter(p => p.id!==action.post.id),
+				action.post
 			});
 		case VOTE_POST:
 			return ({
-				...state.filter(p => p.id!==post.id),
-				post
+				...state.filter(p => p.id!==action.post.id),
+				action.post
 			});
 		case DELETE_POST:
 			return ({
-				...state.filter(p => p.id!==post.id)
+				...state.filter(p => p.id!==action.post.id)
 			});
 		default:
 			return state;
