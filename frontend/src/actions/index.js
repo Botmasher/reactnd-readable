@@ -1,6 +1,5 @@
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
-
 /*
 	API endpoint 			Description									Associated Action
 	------------			----------- 								----------------- 
@@ -26,11 +25,11 @@ export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
-export function addPost({ id, timestamp, title, body, author, category }) {
+export function addPost({ id, title, body, author, category }) {
 	return {
 		type: ADD_COMMENT,
 		id,
-		timestamp,
+		timestamp: Date.now(),
 		title,
 		body,
 		author,
@@ -38,23 +37,23 @@ export function addPost({ id, timestamp, title, body, author, category }) {
 	}
 }
 
-export function addComment({ id, parentId, timestamp, body, author, category }) {
+export function addComment({ id, parentId, body, author, category }) {
 	return {
 		type: ADD_COMMENT,
 		id,
 		parentId,
-		timestamp,
+		timestamp: Date.now(),
 		body,
 		author,
 		category
 	}
 }
 
-export function editPost({ id, timestamp, parentId }) {
+export function editPost({ id, title, body, author, category }) {
 	return {
 		type: EDIT_POST,
 		id,
-		timestamp,
+		timestamp: Date.now(),
 		title,
 		body,
 		author,
@@ -62,3 +61,54 @@ export function editPost({ id, timestamp, parentId }) {
 	}
 }
 
+export function editComment({ id, parentId, body, author, category }) {
+	return {
+		type: EDIT_COMMENT,
+		id,
+		parentId,
+		timestamp: Date.now(),
+		body,
+		author,
+		category
+	}
+}
+
+export function votePost({ id, title, body, author, category, voteScore }) {
+	return {
+		type: VOTE_POST,
+		id,
+		timestamp: Date.now(),
+		title,
+		body,
+		author,
+		category
+		voteScore
+	}
+}
+
+export function voteComment({ id, parentId, body, author, category, voteScore }) {
+	return {
+		type: VOTE_COMMENT,
+		id,
+		parentId,
+		timestamp: Date.now(),
+		body,
+		author,
+		category,
+		voteScore
+	}
+}
+
+export function deletePost({ id }) {
+	return {
+		type: DELETE_POST,
+		id
+	}
+}
+
+export function deleteComment({ id }) {
+	return {
+		type: DELETE_COMMENT,
+		id
+	}
+}

@@ -1,4 +1,13 @@
-import { ADD_POST, ADD_COMMENT } from '../actions';
+import {
+	ADD_POST,
+	ADD_COMMENT,
+	EDIT_POST,
+	EDIT_COMMENT,
+	DELETE_POST,
+	DELETE_COMMENT,
+	VOTE_POST,
+	VOTE_COMMENT
+} from '../actions';
 import { combineReducers } from 'redux';
 
 const initialPostState = {
@@ -24,7 +33,7 @@ const initialCommentState = {
 	parentDeleted: false	// parent can be deleted but this comment not
 };
 
-function post(state=initialPostState, action) {
+function posts(state=initialPostState, action) {
 	const {type, post} = action;
 	switch (type) {
 		case ADD_POST:
@@ -51,9 +60,9 @@ function post(state=initialPostState, action) {
 	}
 }
 
-function comment(state=initialCommentState, action) {
+function comments(state=initialCommentState, action) {
 	const {type, comment} = action;
-	switch (action.type) {
+	switch (type) {
 		case ADD_COMMENT:
 			return ({
 				...state,
@@ -78,4 +87,4 @@ function comment(state=initialCommentState, action) {
 	}
 }
 
-export default combineReducers({ post, comment });
+export default combineReducers({ posts, comments });

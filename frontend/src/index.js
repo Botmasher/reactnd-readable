@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import rootReducer from './reducers';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 
 // Test data for store only not from API
@@ -47,6 +48,6 @@ const store = createStore(
 );
 
 ReactDOM.render(
-	<Provider store={store}><App /></Provider>, 
+	<BrowserRouter><Provider store={store}><App /></Provider></BrowserRouter>, 
 	document.getElementById('root')
 );

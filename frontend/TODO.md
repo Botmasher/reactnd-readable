@@ -31,7 +31,6 @@
 		- [ ] sketch actions for category
 	- [ ] test that you can store and access store
 	- [ ] plan [selectors](https://github.com/reactjs/reselect) to build on state
-	- [ ] plan [ ]
 	- [ ] fill out reducers to account for all actions
 	- [ ] plan store middleware
 		- [ ] thunk
@@ -48,6 +47,8 @@
 ## Core Tasks
 - [X] install and save Redux
 - [X] create a Redux store in index.js
+- [ ] install and save Router
+- [ ] ? lodash for immutability
 - [ ] update the Redux store to match the sketch above
 	- [ ] check and test against what's in the API
 	- [ ] implement actions
