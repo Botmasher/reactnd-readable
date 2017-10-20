@@ -42,21 +42,37 @@ function requestPosts(category=null) {
 }
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export function receivePosts(posts, category=null) {
+function receivePosts(posts, category=null) {
 	return ({
 		type: RECEIVE_POSTS,
 		posts
 	});
 }
 
-export const readPosts = () => {
+export function readPosts() {
 	return function(dispatch) {
 		dispatch(requestPosts());
 		return API.getPosts()
-			.then((data) => {
-				dispatch(receivePosts(data));
-			});
+			.then(data => dispatch(receivePosts(data)));
 	};
+}
+
+export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
+function requestComments() {
+	return {type: REQUEST_COMMENTS};
+}
+
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+function receiveComments(comments) {
+	return {type: RECEIVE_COMMENTS, comments}
+}
+
+export function readComments(postId) {
+	return function(dispatch) {
+		dispatch(requestComments());
+		return API.getComments(postId)
+			.then(data => dispatch(receiveComments(data)));
+	}
 }
 
 export function addPost({ id, title, body, author, category }) {

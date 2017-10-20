@@ -4,12 +4,6 @@ import TestAPI from './TestAPI';
 import { readPosts } from '../actions'
 import { Route } from 'react-router-dom';
 
-// methods for hitting the backend
-import * as API from '../utils/';
-
-// aciton creators
-import { addPost, editPost, votePost, removePost } from '../actions';
-
 class App extends React.Component {
 
 	constructor(props) {
@@ -21,7 +15,7 @@ class App extends React.Component {
 	}
 
 	render() {
-		//console.log(this.props);
+		console.log(this.props);
 		return (
 			<div>
 				<TestAPI displayThesePosts={this.props.posts} all={false} posts={false} comments={false} />

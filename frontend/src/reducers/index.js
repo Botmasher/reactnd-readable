@@ -36,22 +36,18 @@ const initialCommentState = {
 };
 
 function posts(state=initialPostState, action) {
-	console.log(action.posts);
 	switch (action.type) {
 		case RECEIVE_POSTS:
-			return ({
-				...state,
-				posts: [...action.posts]
-			});
+			return ([
+				...action.posts
+			]);
 		case REQUEST_POSTS:
-			return ({
-				...state
-			});
+			return [...state];
 		case ADD_POST:
-			return ({
+			return ([
 				...state,
-				posts: [...state.posts, action.post]
-			});
+				action.post
+			]);
 		case EDIT_POST:
 			return ([
 				...state.filter(p => p.id!==action.post.id),
