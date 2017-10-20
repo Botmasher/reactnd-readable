@@ -32,24 +32,25 @@
 	- [ ] write util to fetch and update API data
 		- [X] save in ./src/utils
 		- [X] store headers and address in single location
-		- [ ] basic func that allows setting method and body headers fields
-		- [ ] set up middleware for async actions
-		- [ ] build other funcs on top
-		- [ ] test using it to load data in the main app
-	- [ ] test that you can store and access store
-		- [ ] App component: create sample data submission
-		- [ ] App component: dispatch action with correct payload
-		- [ ] actions: fill out actions to make API calls
-		- [ ] actions: fill out actions to format and pass along payload
-		- [ ] log: check the store state after reducer resolves
-		- [ ] actions: update and fix issues as you test
-		- [ ] reducers: update and fix issues as you test
+		- [X] basic fetch func that allows setting method and body headers fields
+		- [X] test using funcs to load data in the main app
+		- [X] build vote funcs on top
+		- [ ] build add funcs on top
+		- [ ] build edit funcs on top
+		- [ ] build delete funcs on top
+		- [ ] build out async actions to leverage each function
+	- [X] set up middleware for async actions
+	- [X] test ability to store and access data
+		- [X] App component: dispatch actions with correct payload
+		- [X] actions: fill out actions to make API calls
+		- [X] actions: fill out actions to format and pass along payload
+		- [X] log: check the store state after reducer resolves
+		- [X] actions: update and fix issues as you test
+		- [X] reducers: update and fix issues as you test
 	- [ ] plan [selectors](https://github.com/reactjs/reselect) to build on state
 	- [ ] plan [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
 	- [ ] fill out reducers to account for all actions
-	- [ ] plan store middleware
-		- [ ] thunk
-		- [ ] , ... ?
+	- [ ] plan store middleware beyond thunk
 	- [ ] relations between components
 	- [ ] state that will live in each component
 - [ ] what are the events that should CRUD data, e.g. adding post, updating score
@@ -108,3 +109,4 @@
 - [ ] add sorting for comments as well within Post Detail view
 - [ ] custom favicon
 - [ ] search posts and comments
+	- [ ] search all comments on all posts vs current API fetching comments for one post

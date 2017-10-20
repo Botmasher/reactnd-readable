@@ -19,18 +19,18 @@ import * as API from '../utils';
 	DELETE /comments/:id 	- delete one comment 						DELETE_COMMENT
  */
 export const READ_CATEGORIES = 'READ_CATEGORIES';
-export const READ_POSTS = 'READ_POSTS';
+//export const READ_POSTS = 'READ_POSTS';
 export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
 export const READ_POST = 'READ_POST';
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const EDIT_POST = 'EDIT_POST';
-export const VOTE_POST = 'VOTE_POST'
+//export const VOTE_POST = 'VOTE_POST'
 export const DELETE_POST = 'DELETE_POST';
-export const READ_COMMENTS = 'READ_COMMENTS';
+//export const READ_COMMENTS = 'READ_COMMENTS';
 export const READ_COMMENT = 'READ_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
-export const VOTE_COMMENT = 'VOTE_COMMENT';
+//export const VOTE_COMMENT = 'VOTE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 //export const ADD_CATEGORY = 'ADD_CATEGORY'
 //export const EDIT_CATEGORY = 'EDIT_CATEGORY';
@@ -41,19 +41,16 @@ function requestPosts(category=null) {
 	return {type: REQUEST_POSTS};
 }
 
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-function receivePosts(posts, category=null) {
-	return ({
-		type: RECEIVE_POSTS,
-		posts
-	});
+export const READ_POSTS = 'READ_POSTS';
+function receiveReadPosts(posts, category=null) {
+	return {type: READ_POSTS, posts};
 }
 
 export function readPosts() {
 	return function(dispatch) {
 		dispatch(requestPosts());
 		return API.getPosts()
-			.then(data => dispatch(receivePosts(data)));
+			.then(data => dispatch(receiveReadPosts(data)));
 	}
 }
 
@@ -62,18 +59,19 @@ function requestComments() {
 	return {type: REQUEST_COMMENTS};
 }
 
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
-function receiveComments(comments) {
-	return {type: RECEIVE_COMMENTS, comments}
+export const READ_COMMENTS = 'READ_COMMENTS';
+function receiveReadComments(comments) {
+	return {type: READ_COMMENTS, comments}
 }
 
 export function readComments(postId) {
 	return function(dispatch) {
 		dispatch(requestComments());
 		return API.getComments(postId)
-			.then(data => dispatch(receiveComments(data)));
+			.then(data => dispatch(receiveReadComments(data)));
 	}
 }
+
 
 export function addPost({ id, title, body, author, category }) {
 	return {
@@ -123,29 +121,30 @@ export function editComment({ id, parentId, body, author, category }) {
 	}
 }
 
-export function votePost({ id, title, body, author, category, voteScore }) {
-	return {
-		type: VOTE_POST,
-		id,
-		timestamp: Date.now(),
-		title,
-		body,
-		author,
-		category,
-		voteScore
+export const VOTE_POST = 'VOTE_POST';
+function receiveVotePost(post) {
+	return {type: VOTE_POST, post};
+}
+
+export function votePost(postId, up) {
+	return function(dispatch) {
+		dispatch(requestPosts());
+		return API.votePost(postId, up)
+			.then(data => dispatch(receiveVotePost(data)));
 	}
 }
 
-export function voteComment({ id, parentId, body, author, category, voteScore }) {
-	return {
-		type: VOTE_COMMENT,
-		id,
-		parentId,
-		timestamp: Date.now(),
-		body,
-		author,
-		category,
-		voteScore
+export const VOTE_COMMENT = 'VOTE_COMMENT';
+function receiveVoteComment(comment) {
+	console.log(comment);
+	return {type: VOTE_COMMENT, comment};
+}
+
+export function voteComment(commentId, up) {
+	return function(dispatch) {
+		dispatch(requestComments());
+		return API.voteComment(commentId, up)
+			.then(data => dispatch(receiveVoteComment(data)));
 	}
 }
 

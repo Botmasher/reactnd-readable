@@ -26,7 +26,7 @@ function TestAPI(props) {
 				<TestAPIPosts api_address={api_address} headers={headers} uuid={uuid} pleaseDelete={false} />
 			)}
 			{props.comments && (
-				<TestAPIComments api_address={api_address} headers={headers} uuid={uuid} id={456} pleaseDelete={true} />
+				<TestAPIComments api_address={api_address} headers={headers} uuid={uuid} id={456} pleaseDelete={false} />
 			)}
 		</div>
 	);

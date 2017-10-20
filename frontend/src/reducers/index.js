@@ -1,8 +1,8 @@
 import {
 	REQUEST_POSTS,
-	RECEIVE_POSTS,
 	REQUEST_COMMENTS,
-	RECEIVE_COMMENTS,
+	READ_POSTS,
+	READ_COMMENTS,
 	ADD_POST,
 	ADD_COMMENT,
 	EDIT_POST,
@@ -39,13 +39,12 @@ const initialCommentState = {
 
 function posts(state=initialPostState, action) {
 	switch (action.type) {
-		case RECEIVE_POSTS:
+		case REQUEST_POSTS:
+			return state;
+		case READ_POSTS:
 			return ([
-				...state,
 				...action.posts
 			]);
-		case REQUEST_POSTS:
-			return [...state];
 		case ADD_POST:
 			return ([
 				...state,
@@ -72,31 +71,30 @@ function posts(state=initialPostState, action) {
 
 function comments(state=initialCommentState, action) {
 	switch (action.type) {
-		case RECEIVE_COMMENTS:
-			return ([
-				...state,
-				action.comments
-			]);
 		case REQUEST_COMMENTS:
-			return [...state];
+			return state;
+		case READ_COMMENTS:
+			return ([
+				...action.comments
+			]);
 		case ADD_COMMENT:
 			return ([
 				...state,
-				action.comments
+				...action.comment
 			]);
 		case EDIT_COMMENT:
 			return ([
-				...state.comments.filter(c => c.id!==action.comment.id),
+				...state.filter(c => c.id!==action.comment.id),
 				action.comment
 			]);
 		case VOTE_COMMENT:
 			return ([
-				...state.comments.filter(c => c.id!==action.comment.id),
+				...state.filter(c => c.id!==action.comment.id),
 				action.comment
 			]);
 		case DELETE_COMMENT:
 			return ([
-				...state.comments.filter(c => c.id!==action.comment.id)
+				...state.filter(c => c.id!==action.comment.id)
 			]);
 		default:
 			return state;
