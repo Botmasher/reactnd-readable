@@ -38,33 +38,23 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 function requestPosts(category=null) {
-	if (category) {
-		return {
-			type: REQUEST_POSTS,
-			category
-		};
-	} 
-	return { type: REQUEST_POSTS };
+	return {type: REQUEST_POSTS};
 }
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export function receivePosts(posts, category=null) {
-	if (category) {
-		return {
-			type: RECEIVE_POSTS,
-			category,
-			posts
-		};
-	}
-	return { type: RECEIVE_POSTS, posts };
+	return ({
+		type: RECEIVE_POSTS,
+		posts
+	});
 }
 
-export function readPosts() {
+export const readPosts = () => {
 	return function(dispatch) {
 		dispatch(requestPosts());
 		return API.getPosts()
 			.then((data) => {
-				receivePosts(data);
+				dispatch(receivePosts(data));
 			});
 	};
 }

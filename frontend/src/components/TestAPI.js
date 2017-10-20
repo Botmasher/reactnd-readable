@@ -15,7 +15,7 @@ function TestAPI(props) {
 	return(
 		<div>
 			<ul>
-				{props.displayThesePosts.map(post => (
+				{props.displayThesePosts && props.displayThesePosts.map(post => (
 					<li key={post.id}>{post.title}</li>
 				))}
 			</ul>
