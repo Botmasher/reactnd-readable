@@ -1,24 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
-import { readPosts } from '../actions'
+import { readPosts, readComments } from '../actions'
 import { Route } from 'react-router-dom';
 
 class App extends React.Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		this.props.readPosts();
+		this.props.readComments('8xf0y6ziyjabvozdd253nd');
 	}
 
 	render() {
 		console.log(this.props);
 		return (
 			<div>
-				<TestAPI displayThesePosts={this.props.posts} all={false} posts={false} comments={false} />
+				<Route render={() => (
+					<TestAPI displayThesePosts={this.props.posts} all={false} posts={false} comments={false} />
+				)} />
 			</div>
 		);
 	}
@@ -30,7 +29,8 @@ function mapStateToProps({ posts, comments }) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		readPosts: () => dispatch(readPosts())
+		readPosts: () => dispatch(readPosts()),
+		readComments: (postId) => dispatch(readComments(postId))
 	};
 }
 

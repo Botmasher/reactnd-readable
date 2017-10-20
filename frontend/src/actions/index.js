@@ -54,7 +54,7 @@ export function readPosts() {
 		dispatch(requestPosts());
 		return API.getPosts()
 			.then(data => dispatch(receivePosts(data)));
-	};
+	}
 }
 
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';

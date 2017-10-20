@@ -7,8 +7,9 @@ const headers={
 };
 
 const endpoints={
-	categories: 'categories/',
-	posts: 'posts/',
+	categories: 'categories',
+	posts: 'posts',
+	comments: 'comments'
 }
 
 function get(endpoint, method='GET', body=null) {
@@ -26,4 +27,8 @@ export function getPosts() {
 
 export function getCategoryPosts(category) {
 	return get(`${category}/${endpoints.posts}`);
+}
+
+export function getComments(postId) {
+	return get(`${endpoints.posts}/${postId}/${endpoints.comments}`);
 }
