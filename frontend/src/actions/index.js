@@ -1,4 +1,5 @@
 import * as API from '../utils';
+import uuid from 'uuid/v4';
 
 /*
 	API endpoint 			Description									Associated Action
@@ -22,8 +23,8 @@ export const READ_CATEGORIES = 'READ_CATEGORIES';
 //export const READ_POSTS = 'READ_POSTS';
 export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
 export const READ_POST = 'READ_POST';
-export const ADD_POST = 'ADD_POST';
-export const ADD_COMMENT = 'ADD_COMMENT';
+//export const ADD_POST = 'ADD_POST';
+//export const ADD_COMMENT = 'ADD_COMMENT';
 export const EDIT_POST = 'EDIT_POST';
 //export const VOTE_POST = 'VOTE_POST'
 export const DELETE_POST = 'DELETE_POST';
@@ -37,21 +38,8 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 //export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
-function requestPosts(category=null) {
+function requestPosts() {
 	return {type: REQUEST_POSTS};
-}
-
-export const READ_POSTS = 'READ_POSTS';
-function receiveReadPosts(posts, category=null) {
-	return {type: READ_POSTS, posts};
-}
-
-export function readPosts() {
-	return function(dispatch) {
-		dispatch(requestPosts());
-		return API.getPosts()
-			.then(data => dispatch(receiveReadPosts(data)));
-	}
 }
 
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
@@ -59,42 +47,69 @@ function requestComments() {
 	return {type: REQUEST_COMMENTS};
 }
 
-export const READ_COMMENTS = 'READ_COMMENTS';
-function receiveReadComments(comments) {
-	return {type: READ_COMMENTS, comments}
+export const READ_POSTS = 'READ_POSTS';
+function receiveReadPosts(posts) {
+	return {type: READ_POSTS, posts};
+}
+export function readPosts() {
+	return function(dispatch) {
+		dispatch(requestPosts());
+		return API.getPosts()
+			.then(data => dispatch(receiveReadPosts(data)));
+	};
 }
 
+export const READ_COMMENTS = 'READ_COMMENTS';
+function receiveReadComments(comments) {
+	return {type: READ_COMMENTS, comments};
+}
 export function readComments(postId) {
 	return function(dispatch) {
 		dispatch(requestComments());
 		return API.getComments(postId)
 			.then(data => dispatch(receiveReadComments(data)));
-	}
+	};
 }
 
 
-export function addPost({ id, title, body, author, category }) {
-	return {
-		type: ADD_COMMENT,
-		id,
+export const ADD_POST = 'ADD_POST';
+function receiveAddPost(post) {
+	return {type: ADD_POST, post};
+}
+export function addPost({ title, body, author, category }) {
+	const post = {
+		id: uuid(),
 		timestamp: Date.now(),
 		title,
 		body,
 		author,
 		category
-	}
+	};
+	return function(dispatch) {
+		dispatch(requestPosts());
+		return API.addPost(post)
+			.then(data => dispatch(receiveAddPost(data)));
+	};
 }
 
-export function addComment({ id, parentId, body, author, category }) {
-	return {
-		type: ADD_COMMENT,
-		id,
+export const ADD_COMMENT = 'ADD_COMMENT';
+function receiveAddComment(comment) {
+	return {type: ADD_COMMENT, comment};
+}
+export function addComment({ parentId, body, author, category }) {
+	const comment = {
+		id: uuid(),
 		parentId,
 		timestamp: Date.now(),
 		body,
 		author,
 		category
-	}
+	};
+	return function(dispatch) {
+		dispatch(requestComments());
+		return API.addComment(comment)
+			.then(data => dispatch(receiveAddComment(data)));
+	};
 }
 
 export function editPost({ id, title, body, author, category }) {
@@ -106,7 +121,7 @@ export function editPost({ id, title, body, author, category }) {
 		body,
 		author,
 		category
-	}
+	};
 }
 
 export function editComment({ id, parentId, body, author, category }) {
@@ -118,20 +133,19 @@ export function editComment({ id, parentId, body, author, category }) {
 		body,
 		author,
 		category
-	}
+	};
 }
 
 export const VOTE_POST = 'VOTE_POST';
 function receiveVotePost(post) {
 	return {type: VOTE_POST, post};
 }
-
 export function votePost(postId, up) {
 	return function(dispatch) {
 		dispatch(requestPosts());
 		return API.votePost(postId, up)
 			.then(data => dispatch(receiveVotePost(data)));
-	}
+	};
 }
 
 export const VOTE_COMMENT = 'VOTE_COMMENT';
@@ -139,25 +153,24 @@ function receiveVoteComment(comment) {
 	console.log(comment);
 	return {type: VOTE_COMMENT, comment};
 }
-
 export function voteComment(commentId, up) {
 	return function(dispatch) {
 		dispatch(requestComments());
 		return API.voteComment(commentId, up)
 			.then(data => dispatch(receiveVoteComment(data)));
-	}
+	};
 }
 
 export function deletePost({ id }) {
 	return {
 		type: DELETE_POST,
 		id
-	}
+	};
 }
 
 export function deleteComment({ id }) {
 	return {
 		type: DELETE_COMMENT,
 		id
-	}
+	};
 }

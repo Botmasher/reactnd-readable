@@ -47,6 +47,7 @@
 		- [X] log: check the store state after reducer resolves
 		- [X] actions: update and fix issues as you test
 		- [X] reducers: update and fix issues as you test
+	- [ ] ? mimic store shape in API: posts.js {'postId':{postObject},} pairs instead of arrays
 	- [ ] plan [selectors](https://github.com/reactjs/reselect) to build on state
 	- [ ] plan [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
 	- [ ] fill out reducers to account for all actions
