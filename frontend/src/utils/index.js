@@ -80,6 +80,6 @@ export function voteComment(commentId, up=true) {
 }
 
 // Delete
-export function deletePost(postId) {}
+export const deletePost = (postId) => get(`${endpoints.post}/${postId}`, 'DELETE');
 
-export function deleteComment(commentId) {}
+export const deleteComment = (commentId) => get(`${endpoints.comments}/${commentId}`, 'DELETE');

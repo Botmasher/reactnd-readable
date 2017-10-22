@@ -1,10 +1,12 @@
 import {
-	REQUEST_POSTS,
-	REQUEST_COMMENTS,
+	REQUEST_POSTS, 			// async
+	REQUEST_COMMENTS, 	// async
 	READ_POSTS,
 	READ_COMMENTS,
 	ADD_POST,
 	ADD_COMMENT,
+	READ_POST,
+	READ_COMMENT,
 	EDIT_POST,
 	EDIT_COMMENT,
 	DELETE_POST,
@@ -80,7 +82,7 @@ function comments(state=initialCommentState, action) {
 		case ADD_COMMENT:
 			return ([
 				...state,
-				...action.comment
+				action.comment
 			]);
 		case EDIT_COMMENT:
 			return ([

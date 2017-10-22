@@ -2,22 +2,22 @@ import * as API from '../utils';
 import uuid from 'uuid/v4';
 
 /*
-	API endpoint 			Description									Associated Action
-	------------			----------- 								----------------- 
-	GET /categories 		- read all categories 						READ_CATEGORIES
-	GET /:category/posts 	- read all posts for a category 			READ_POSTS
-	GET /posts 				- read all posts 							READ_CATEGORY_POSTS
-	POST /posts 			- add one post 								ADD_POST
-	GET /posts/:id 			- read one post (all of its details) 		READ_POST
-	POST /posts/:id 		- vote one post 							VOTE_POST
-	PUT /posts/:id 			- edit one post 							EDIT_POST
-	DELETE /posts/:id 		- delete one post 							DELETE_POST
-	GET /posts/:id/comments - read all comments on one post 	 		READ_COMMENTS		
-	POST /comments 			- add one comment to one post 				ADD_COMMENT
-	GET /comments/:id 		- read one comment (all of its details) 	READ_COMMENT
-	POST /comments/:id 		- vote one comment 							VOTE_COMMENT
-	PUT /comments/:id 		- edit one comment 							EDIT_COMMENT
-	DELETE /comments/:id 	- delete one comment 						DELETE_COMMENT
+	API endpoint 						Description												Associated Action
+	------------						----------- 											----------------- 
+	GET /categories 				- read all categories 						READ_CATEGORIES
+	GET /:category/posts 		- read all posts for a category 	READ_POSTS
+	GET /posts 							- read all posts 									READ_CATEGORY_POSTS
+	POST /posts 						- add one post 										ADD_POST
+	GET /posts/:id 					- read one post (all details) 		READ_POST
+	POST /posts/:id 				- vote one post 									VOTE_POST
+	PUT /posts/:id 					- edit one post 									EDIT_POST
+	DELETE /posts/:id 			- delete one post 								DELETE_POST
+	GET /posts/:id/comments - read all comments on one post 	READ_COMMENTS		
+	POST /comments 					- add one comment to one post 		ADD_COMMENT
+	GET /comments/:id 			- read one comment (all details) 	READ_COMMENT
+	POST /comments/:id 			- vote one comment 								VOTE_COMMENT
+	PUT /comments/:id 			- edit one comment 								EDIT_COMMENT
+	DELETE /comments/:id 		- delete one comment 							DELETE_COMMENT
  */
 export const READ_CATEGORIES = 'READ_CATEGORIES';
 //export const READ_POSTS = 'READ_POSTS';
@@ -25,14 +25,14 @@ export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
 export const READ_POST = 'READ_POST';
 //export const ADD_POST = 'ADD_POST';
 //export const ADD_COMMENT = 'ADD_COMMENT';
-export const EDIT_POST = 'EDIT_POST';
+//export const EDIT_POST = 'EDIT_POST';
 //export const VOTE_POST = 'VOTE_POST'
-export const DELETE_POST = 'DELETE_POST';
+//export const DELETE_POST = 'DELETE_POST';
 //export const READ_COMMENTS = 'READ_COMMENTS';
 export const READ_COMMENT = 'READ_COMMENT';
-export const EDIT_COMMENT = 'EDIT_COMMENT';
+//export const EDIT_COMMENT = 'EDIT_COMMENT';
 //export const VOTE_COMMENT = 'VOTE_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
+//export const DELETE_COMMENT = 'DELETE_COMMENT';
 //export const ADD_CATEGORY = 'ADD_CATEGORY'
 //export const EDIT_CATEGORY = 'EDIT_CATEGORY';
 //export const DELETE_CATEGORY = 'DELETE_CATEGORY';
@@ -96,14 +96,13 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 function receiveAddComment(comment) {
 	return {type: ADD_COMMENT, comment};
 }
-export function addComment({ parentId, body, author, category }) {
+export function addComment({ parentId, body, author }) {
 	const comment = {
 		id: uuid(),
 		parentId,
 		timestamp: Date.now(),
 		body,
-		author,
-		category
+		author
 	};
 	return function(dispatch) {
 		dispatch(requestComments());
@@ -112,27 +111,48 @@ export function addComment({ parentId, body, author, category }) {
 	};
 }
 
-export function editPost({ id, title, body, author, category }) {
-	return {
-		type: EDIT_POST,
+export const EDIT_POST = 'EDIT_POST';
+function receiveEditPost(post) {
+	return {type: EDIT_POST, post};
+}
+export function editPost({ id, title, body, author, category, voteScore, deleted }) {
+	const post = {
 		id,
 		timestamp: Date.now(),
 		title,
 		body,
 		author,
-		category
+		category,
+		voteScore,
+		deleted
+	};
+	return function(dispatch) {
+		dispatch(requestPosts());
+		return API.editPost(post)
+			.then(data => dispatch(receiveEditPost(data)));
 	};
 }
 
-export function editComment({ id, parentId, body, author, category }) {
-	return {
-		type: EDIT_COMMENT,
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+function receiveEditComment(comment) {
+	return {type: EDIT_COMMENT, comment};
+}
+export function editComment({ id, parentId, body, author, category, voteScore, deleted, parentDeleted }) {
+	const comment = {
 		id,
 		parentId,
 		timestamp: Date.now(),
 		body,
 		author,
-		category
+		category,
+		voteScore,
+		deleted,
+		parentDeleted
+	};
+	return function(dispatch) {
+		dispatch(requestComments());
+		return API.editComment(comment)
+			.then(data => dispatch(receiveEditComment(data)));
 	};
 }
 
@@ -161,16 +181,26 @@ export function voteComment(commentId, up) {
 	};
 }
 
-export function deletePost({ id }) {
-	return {
-		type: DELETE_POST,
-		id
+export const DELETE_POST = 'DELETE_POST';
+function receiveDeletePost(post) {
+	return {type: DELETE_POST, post};
+}
+export function deletePost(postId) {
+	return function(dispatch) {
+		dispatch(requestPosts());
+		return API.deletePost(postId)
+			.then(data => dispatch(receiveDeletePost(data)));
 	};
 }
 
-export function deleteComment({ id }) {
-	return {
-		type: DELETE_COMMENT,
-		id
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+function receiveDeleteComment(comment) {
+	return {type: DELETE_COMMENT, comment};
+}
+export function deleteComment(commentId) {
+	return function(dispatch) {
+		dispatch(requestComments());
+		return API.deleteComment(commentId)
+			.then(data => dispatch(receiveDeleteComment(data)));
 	};
 }

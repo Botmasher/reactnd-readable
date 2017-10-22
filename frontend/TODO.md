@@ -35,10 +35,12 @@
 		- [X] basic fetch func that allows setting method and body headers fields
 		- [X] test using funcs to load data in the main app
 		- [X] build vote funcs on top
-		- [ ] build add funcs on top
+		- [X] build add funcs on top
+		- [ ] build read single entry funcs on top
 		- [ ] build edit funcs on top
-		- [ ] build delete funcs on top
+		- [ ] build delete funcs on top - TEST CURR ARROW
 		- [ ] build out async actions to leverage each function
+	- [ ] DRY up curried async action creators
 	- [X] set up middleware for async actions
 	- [X] test ability to store and access data
 		- [X] App component: dispatch actions with correct payload
@@ -111,3 +113,6 @@
 - [ ] custom favicon
 - [ ] search posts and comments
 	- [ ] search all comments on all posts vs current API fetching comments for one post
+- [ ] edited comments display notice that they've been edited
+	- [ ] keep original timestamp
+	- [ ] label and timestamp the edit
