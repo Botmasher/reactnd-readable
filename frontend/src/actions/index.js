@@ -19,23 +19,19 @@ import uuid from 'uuid/v4';
 	PUT /comments/:id 			- edit one comment 								EDIT_COMMENT
 	DELETE /comments/:id 		- delete one comment 							DELETE_COMMENT
  */
-export const READ_CATEGORIES = 'READ_CATEGORIES';
-//export const READ_POSTS = 'READ_POSTS';
-export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
-export const READ_POST = 'READ_POST';
-//export const ADD_POST = 'ADD_POST';
-//export const ADD_COMMENT = 'ADD_COMMENT';
-//export const EDIT_POST = 'EDIT_POST';
-//export const VOTE_POST = 'VOTE_POST'
-//export const DELETE_POST = 'DELETE_POST';
-//export const READ_COMMENTS = 'READ_COMMENTS';
-export const READ_COMMENT = 'READ_COMMENT';
-//export const EDIT_COMMENT = 'EDIT_COMMENT';
-//export const VOTE_COMMENT = 'VOTE_COMMENT';
-//export const DELETE_COMMENT = 'DELETE_COMMENT';
+
+// Unused - why dispatch if already in store?
+//export const READ_CATEGORIES = 'READ_CATEGORIES';
+//export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
+//export const READ_POST = 'READ_POST';
+//export const READ_COMMENT = 'READ_COMMENT';
+
+// TODO - dynamic categories
 //export const ADD_CATEGORY = 'ADD_CATEGORY'
 //export const EDIT_CATEGORY = 'EDIT_CATEGORY';
 //export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+
+// Async meanwhile action creators
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 function requestPosts() {
@@ -46,6 +42,8 @@ export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 function requestComments() {
 	return {type: REQUEST_COMMENTS};
 }
+
+// Read and store all
 
 export const READ_POSTS = 'READ_POSTS';
 function receiveReadPosts(posts) {
@@ -71,6 +69,7 @@ export function readComments(postId) {
 	};
 }
 
+// Create
 
 export const ADD_POST = 'ADD_POST';
 function receiveAddPost(post) {
@@ -110,6 +109,8 @@ export function addComment({ parentId, body, author }) {
 			.then(data => dispatch(receiveAddComment(data)));
 	};
 }
+
+// Update
 
 export const EDIT_POST = 'EDIT_POST';
 function receiveEditPost(post) {
@@ -181,26 +182,28 @@ export function voteComment(commentId, up) {
 	};
 }
 
+// Delete
+
 export const DELETE_POST = 'DELETE_POST';
-function receiveDeletePost(post) {
-	return {type: DELETE_POST, post};
+function receiveDeletePost(postId) {
+	return {type: DELETE_POST, postId};
 }
 export function deletePost(postId) {
 	return function(dispatch) {
 		dispatch(requestPosts());
 		return API.deletePost(postId)
-			.then(data => dispatch(receiveDeletePost(data)));
+			.then(() => dispatch(receiveDeletePost(postId)));
 	};
 }
 
 export const DELETE_COMMENT = 'DELETE_COMMENT';
-function receiveDeleteComment(comment) {
-	return {type: DELETE_COMMENT, comment};
+function receiveDeleteComment(commentId) {
+	return {type: DELETE_COMMENT, commentId};
 }
 export function deleteComment(commentId) {
 	return function(dispatch) {
 		dispatch(requestComments());
 		return API.deleteComment(commentId)
-			.then(data => dispatch(receiveDeleteComment(data)));
+			.then(() => dispatch(receiveDeleteComment(commentId)));
 	};
 }

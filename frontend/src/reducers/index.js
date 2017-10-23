@@ -5,8 +5,6 @@ import {
 	READ_COMMENTS,
 	ADD_POST,
 	ADD_COMMENT,
-	READ_POST,
-	READ_COMMENT,
 	EDIT_POST,
 	EDIT_COMMENT,
 	DELETE_POST,
@@ -64,7 +62,7 @@ function posts(state=initialPostState, action) {
 			]);
 		case DELETE_POST:
 			return ([
-				...state.filter(p => p.id!==action.post.id)
+				...state.filter(p => p.id!==action.postId)
 			]);
 		default:
 			return state;
@@ -96,7 +94,7 @@ function comments(state=initialCommentState, action) {
 			]);
 		case DELETE_COMMENT:
 			return ([
-				...state.filter(c => c.id!==action.comment.id)
+				...state.filter(c => c.id!==action.commentId)
 			]);
 		default:
 			return state;

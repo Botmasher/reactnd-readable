@@ -29,17 +29,17 @@
 		- [X] sketch actions for post
 		- [X] sketch actions for comment
 		- [X] sketch actions for category
-	- [ ] write util to fetch and update API data
+	- [X] write util to fetch and update API data
 		- [X] save in ./src/utils
 		- [X] store headers and address in single location
 		- [X] basic fetch func that allows setting method and body headers fields
 		- [X] test using funcs to load data in the main app
 		- [X] build vote funcs on top
 		- [X] build add funcs on top
-		- [ ] build read single entry funcs on top
-		- [ ] build edit funcs on top
-		- [ ] build delete funcs on top - TEST CURR ARROW
-		- [ ] build out async actions to leverage each function
+		- [X] build read one entry funcs on top
+		- [X] build edit funcs on top
+		- [X] build delete funcs on top - TEST CURR ARROW
+		- [X] build out async actions to leverage each function
 	- [ ] DRY up curried async action creators
 	- [X] set up middleware for async actions
 	- [X] test ability to store and access data
@@ -106,13 +106,16 @@
 - [ ] Hot loading and time traveling
 
 ## Beyond MVP
-- [ ] implement distinct user objects/models for logging in and permissions
-	- [ ] Consider 
-- [ ] ability to create categories
+- [ ] implement distinct user objects/models for logging in and permissions 
+- [ ] ability to manage categories
+	- [ ] currently obtained from posts
+	- [ ] currently "added" when a post submits a new category string
+	- [ ] currently "deleted" when none have it
+	- [ ] currently "updated" when all posts with a category string change that string
 - [ ] add sorting for comments as well within Post Detail view
 - [ ] custom favicon
-- [ ] search posts and comments
-	- [ ] search all comments on all posts vs current API fetching comments for one post
 - [ ] edited comments display notice that they've been edited
 	- [ ] keep original timestamp
-	- [ ] label and timestamp the edit
+	- [ ] label and timestamp the edit (requires backend changes - wait until graded)
+- [ ] search posts and comments
+	- [ ] search all comments on all posts vs current API fetching comments for one post

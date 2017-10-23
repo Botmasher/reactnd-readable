@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
-import { readPosts, readComments, votePost, voteComment, addPost, addComment, editPost, editComment } from '../actions'
+import { readPosts, readComments, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
 import { Route } from 'react-router-dom';
 
 class App extends React.Component {
@@ -14,24 +14,54 @@ class App extends React.Component {
 	};
 
 	submitTestAddPost = () => {
-		this.props.addPost({title: 'A sample title', body: 'A sample test post body that is longer', author: 'Spaspuchis', category: 'react'});	
+		this.props.addPost({title: 'A sample title', body: 'A sample test post body that is longer', author: 'Spaspuchis', category: 'newcat'});
 	};
 	submitTestAddComment = () => {
 		this.props.addComment({parentId: '8xf0y6ziyjabvozdd253nd', body: 'One sample test comment body!', author: 'Spaspuchis'});	
 	};
 
-	// Edit - fetch full item first then submit all data (API.post.edit loops over props and replaces each)
+	submitTestReadOnePost = () => {
+		console.log(this.props.posts.filter(p => p.id==='8xf0y6ziyjabvozdd253nd')[0]);
+	};
+	submitTestReadOneComment = () => {
+		console.log(this.props.comments.filter(c => c.id==='894tuq4ut84ut8v4t8wun89g')[0]);
+	};
+	submitTestReadCategoryPosts = () => {
+		console.log(this.props.posts.filter(p => p.category==='react'));
+	};
+	submitTestReadCategories = () => {
+		this.props.posts.reduce((categories, post) => {
+			if (categories.includes(post.category)) return categories;
+			return [...categories, post.category];
+		}, []).map(x => console.log(x));
+	};
+
+	// ATTENTION: fetch full item first then submit all data (API.post.edit loops over props and replaces each)
 	submitTestEditPost = () => {
-		// TODO read a single post
-		
-		// then edit it
-		this.props.editPost();
+		this.props.editPost({
+			...(this.props.posts.filter(post => post.id==='8xf0y6ziyjabvozdd253nd')[0]),
+			title: 'Udacity is the best place to learn React',
+			body: 'That is at least what people USED to say before I edited this.',
+		});
 	};
 	submitTestEditComment = () => {
-		// TODO read a single comment
+		this.props.editComment({
+			...(this.props.comments.filter(comment => comment.id==='894tuq4ut84ut8v4t8wun89g')[0]),
+			body: 'Hi! What was fresh comment is now EDITED!'
+		});
+	};
 
-		// then edit it
-		this.props.editComment();
+	submitTestDeletePost = () => {
+		const latestPost = this.props.posts.reduce((latest, post) => (
+			post.timestamp > latest.timestamp ? post : latest
+		), {timestamp: 0});
+		this.props.deletePost(latestPost.id);
+	};
+	submitTestDeleteComment = () => {
+		const latestComment = this.props.comments.reduce((latest, comment) => (
+			comment.timestamp > latest.timestamp ? comment : latest
+		), {timestamp: 0});
+		this.props.deleteComment(latestComment.id);
 	};
 
 	componentDidMount() {
@@ -45,8 +75,18 @@ class App extends React.Component {
 			<Route render={() => (
 				<div>
 					<TestAPI displayThesePosts={this.props.posts} all={false} posts={false} comments={false} />
-					<button onClick={this.submitTestAddComment}>Test adding comment</button>
-					<button onClick={this.submitTestEditComment}>Test editing comment</button>
+					<button onClick={this.submitTestAddPost}>Test add post</button>
+					<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
+					<button onClick={this.submitTestAddComment}>Test add comment</button>
+					<button onClick={this.submitTestDeleteComment}>Test delete comment</button>
+					<br/>
+					<button onClick={this.submitTestEditPost}>Test edit post</button>
+					<button onClick={this.submitTestEditComment}>Test edit comment</button>
+					<br/>
+					<button onClick={this.submitTestReadOnePost}>Test log post</button>
+					<button onClick={this.submitTestReadOneComment}>Test log comment</button>
+					<br/>
+					<button onClick={this.submitTestReadCategories}>Log all categories</button>
 				</div>
 			)} />
 		);
@@ -65,8 +105,10 @@ function mapDispatchToProps(dispatch) {
 		voteComment: (commentId, up) => dispatch(voteComment(commentId, up)),
 		addPost: (post) => dispatch(addPost(post)),
 		addComment: (comment) => dispatch(addComment(comment)),
-		editPost: (post) => null,
-		editComment: (comment) => null
+		editPost: (post) => dispatch(editPost(post)),
+		editComment: (comment) => dispatch(editComment(comment)),
+		deletePost: (postId) => dispatch(deletePost(postId)),
+		deleteComment: (commentId) => dispatch(deleteComment(commentId))
 	};
 }
 

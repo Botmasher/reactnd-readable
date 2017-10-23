@@ -10,7 +10,7 @@ const endpoints={
 	categories: 'categories',
 	posts: 'posts',
 	comments: 'comments'
-}
+};
 
 /*
 	API endpoint 							Description															Associated Action
@@ -64,9 +64,9 @@ export function addComment(comment) {
 }
 
 // Update
-export function editPost(postId) {}
+export const editPost = (post) => get(`${endpoints.posts}/${post.id}`, 'PUT', post);
 
-export function editComment(commentId) {}
+export const editComment = (comment) => get(`${endpoints.comments}/${comment.id}`, 'PUT', comment);
 
 // Score
 export function votePost(postId, up=true) {
@@ -80,6 +80,6 @@ export function voteComment(commentId, up=true) {
 }
 
 // Delete
-export const deletePost = (postId) => get(`${endpoints.post}/${postId}`, 'DELETE');
+export const deletePost = (postId) => get(`${endpoints.posts}/${postId}`, 'DELETE');
 
 export const deleteComment = (commentId) => get(`${endpoints.comments}/${commentId}`, 'DELETE');
