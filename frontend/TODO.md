@@ -49,11 +49,13 @@
 		- [X] log: check the store state after reducer resolves
 		- [X] actions: update and fix issues as you test
 		- [X] reducers: update and fix issues as you test
-	- [ ] ? mimic store shape in API: posts.js {'postId':{postObject},} pairs instead of arrays
+	- [X] fill out reducers to account for all actions
+	- [X] mimic store shape in API: posts.js {'postId':{postObject},} pairs instead of arrays
 	- [ ] plan [selectors](https://github.com/reactjs/reselect) to build on state
 	- [ ] plan [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
-	- [ ] fill out reducers to account for all actions
 	- [ ] plan store middleware beyond thunk
+- [ ] plan out UI
+	- [ ] inventory of components
 	- [ ] relations between components
 	- [ ] state that will live in each component
 - [ ] what are the events that should CRUD data, e.g. adding post, updating score
@@ -107,6 +109,7 @@
 
 ## Issues
 - [ ] Editing a nonexistent post or comment adds an error object as post or comment to the store slice
+- [ ] How much state to store 
 
 ## Beyond MVP
 - [ ] implement distinct user objects/models for logging in and permissions 

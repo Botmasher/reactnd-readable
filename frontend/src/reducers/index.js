@@ -36,65 +36,75 @@ const initialCommentState = {
 	parentDeleted: false	// parent can be deleted but this comment not
 };
 
-function posts(state=initialPostState, action) {
+function posts(state={}, action) {
 	switch (action.type) {
 		case ASYNC_REQUEST:
 			return state;
 		case READ_POSTS:
-			return ([
-				...action.posts
-			]);
-		case ADD_POST:
-			return ([
+			return ({
 				...state,
-				action.post
-			]);
+				...(action.posts.reduce((allPosts, post) => (
+					{...allPosts, [post.id]: post}
+				), {}))
+			});
+		case ADD_POST:
+			return ({
+				...state,
+				[action.post.id]: action.post
+			});
 		case EDIT_POST:
-			return ([
-				...state.filter(p => p.id!==action.post.id),
-				action.post
-			]);
+			return ({
+				...state,
+				[action.post.id]: action.post
+			});
 		case VOTE_POST:
-			return ([
-				...state.filter(p => p.id!==action.post.id),
-				action.post
-			]);
+			return ({
+				...state,
+				[action.post.id]: action.post
+			});
 		case DELETE_POST:
-			return ([
-				...state.filter(p => p.id!==action.post.id)
-			]);
+			return ({
+				...(Object.keys(state).reduce((allPosts, postId) => (
+					postId !== action.post.id ? {...allPosts, [postId]: state[postId]} : allPosts
+				), {}))
+			});
 		default:
 			return state;
 	}
 }
 
-function comments(state=initialCommentState, action) {
+function comments(state={}, action) {
 	switch (action.type) {
 		case ASYNC_REQUEST:
 			return state;
 		case READ_COMMENTS:
-			return ([
-				...action.comments
-			]);
-		case ADD_COMMENT:
-			return ([
+			return ({
 				...state,
-				action.comment
-			]);
+				...(action.comments.reduce((allComments, comment) => (
+					{...allComments, [comment.id]: comment}
+				), {}))
+			});
+		case ADD_COMMENT:
+			return ({
+				...state,
+				[action.comment.id]: action.comment
+			});
 		case EDIT_COMMENT:
-			return ([
-				...state.filter(c => c.id!==action.comment.id),
-				action.comment
-			]);
+			return ({
+				...state,
+				[action.comment.id]: action.comment
+			});
 		case VOTE_COMMENT:
-			return ([
-				...state.filter(c => c.id!==action.comment.id),
-				action.comment
-			]);
+			return ({
+				...state,
+				[action.comment.id]: action.comment
+			});
 		case DELETE_COMMENT:
-			return ([
-				...state.filter(c => c.id!==action.comment.id)
-			]);
+			return ({
+				...(Object.keys(state).reduce((allComments, commentId) => (
+					commentId !== action.comment.id ? {...allComments, [commentId]: state[commentId]} : allComments
+				), {}))
+			});
 		default:
 			return state;
 	}

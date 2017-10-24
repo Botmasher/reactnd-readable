@@ -21,16 +21,17 @@ class App extends React.Component {
 	};
 
 	submitTestReadOnePost = () => {
-		console.log(this.props.posts.filter(p => p.id==='8xf0y6ziyjabvozdd253nd')[0]);
+		console.log(this.props.posts['8xf0y6ziyjabvozdd253nd']);
 	};
 	submitTestReadOneComment = () => {
-		console.log(this.props.comments.filter(c => c.id==='894tuq4ut84ut8v4t8wun89g')[0]);
+		console.log(this.props.comments['894tuq4ut84ut8v4t8wun89g']);
 	};
 	submitTestReadCategoryPosts = () => {
-		console.log(this.props.posts.filter(p => p.category==='react'));
+		console.log(Object.values(this.props.posts).filter(post => post.category==='react'));
+
 	};
 	submitTestReadCategories = () => {
-		this.props.posts.reduce((categories, post) => {
+		Object.values(this.props.posts).reduce((categories, post) => {
 			if (categories.includes(post.category)) return categories;
 			return [...categories, post.category];
 		}, []).map(x => console.log(x));
@@ -39,26 +40,26 @@ class App extends React.Component {
 	// ATTENTION: fetch full item first then submit all data (API.post.edit loops over props and replaces each)
 	submitTestEditPost = () => {
 		this.props.editPost({
-			...(this.props.posts.filter(post => post.id==='8xf0y6ziyjabvozdd253nd')[0]),
+			...this.props.posts['8xf0y6ziyjabvozdd253nd'],
 			title: 'Udacity is the best place to learn React',
 			body: 'That is at least what people USED to say before I edited this.',
 		});
 	};
 	submitTestEditComment = () => {
 		this.props.editComment({
-			...(this.props.comments.filter(comment => comment.id==='894tuq4ut84ut8v4t8wun89g')[0]),
+			...this.props.comments['894tuq4ut84ut8v4t8wun89g'],
 			body: 'Hi! What was fresh comment is now EDITED!'
 		});
 	};
 
 	submitTestDeletePost = () => {
-		const latestPost = this.props.posts.reduce((latest, post) => (
+		const latestPost = Object.values(this.props.posts).reduce((latest, post) => (
 			post.timestamp > latest.timestamp ? post : latest
 		), {timestamp: 0});
 		this.props.deletePost(latestPost.id);
 	};
 	submitTestDeleteComment = () => {
-		const latestComment = this.props.comments.reduce((latest, comment) => (
+		const latestComment = Object.values(this.props.comments).reduce((latest, comment) => (
 			comment.timestamp > latest.timestamp ? comment : latest
 		), {timestamp: 0});
 		this.props.deleteComment(latestComment.id);
@@ -70,11 +71,12 @@ class App extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
+		console.log(this.props.posts);
+		console.log(this.props.comments);
 		return (
 			<Route render={() => (
 				<div>
-					<TestAPI displayThesePosts={this.props.posts} all={false} posts={false} comments={false} />
+					<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
 					<button onClick={this.submitTestAddPost}>Test add post</button>
 					<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
 					<button onClick={this.submitTestAddComment}>Test add comment</button>

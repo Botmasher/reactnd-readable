@@ -9,8 +9,8 @@ import rootReducer from '../reducers';
 // 	- ? category (for comments)
 // 	- parentDeleted
 const seedData = {
-	posts: [
-		{
+	posts: {
+		'reduxTestPost1': {
 			id: 'reduxTestPost1',
 			timestamp: Date.now(),
 			title: 'First Redux test post',
@@ -20,9 +20,9 @@ const seedData = {
 			voteScore: 1,
 			deleted: false
 		},
-	],
-	comments: [
-		{
+	},
+	comments: {
+		'reduxTestComment1': {
 			id: 'reduxTestComment1',
 			parentId: 'reduxTestPost1',
 			timestamp: Date.now(),
@@ -33,14 +33,14 @@ const seedData = {
 			deleted: false,
 			parentDeleted: false
 		},
-	]
+	}
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = () => createStore(
 	rootReducer,
-	seedData,
+	//seedData,
 	composeEnhancers(applyMiddleware(thunk))
 );
 
