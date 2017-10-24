@@ -32,20 +32,25 @@ This document should be filled out during project planning. Currently included b
 
 #### Shape of the store
 The top-level shape of the store for reducers:
-```{
+```
+{
 	posts: [],
 	comments: []
-}```
+}
+```
 
 Categories are not duplicated in the store. Although they can be read through a dedicated API endpoint, for the frontend they can be obtained by reducing over posts and comments. The existing API returns for **categories** have the following structure:
-```{
+```
+{
 	name: '',
 	path: ''
-}```
+}
+```
 Case: what if category exists in categories on server and exists on no post or comment?
 
 Each post in the `posts` array has the following structure:
-```{
+```
+{
 	id: '', 				// unique string identifier
 	timestamp: Date.now(), 	// default Unix time track data
 	title: '', 				// string to display as the post title
@@ -54,10 +59,12 @@ Each post in the `posts` array has the following structure:
 	category: '', 			// must be one of the categories provided by server
 	voteScore: 1, 			// net votes post has received (default: 1)
 	deleted: false 			// flag for deleted post
-}```
+}
+```
 
 Each comment in the `comments` array has the following structure:
-```{
+```
+{
 	id: '', 				// unique string identifier
 	parentId: '', 			// matches id of an existing post
 	timestamp: Date.now(), 	// default Unix time track data
@@ -67,7 +74,8 @@ Each comment in the `comments` array has the following structure:
 	voteScore: 1,			// net votes comment has received (default: 1)
 	deleted: false, 		// flag for deleted comment
 	parentDeleted: false 	// flag for deleted parent post
-}```
+}
+```
 
 ### Possible ideas and pitfalls
 - Another student (@zarian) was marked off for not using `/:category/:post_id` to grab the post details, while in the local API it says to use `GET /posts/:id    Get the details of a single post.` Is the first the client API while the latter is the server API?

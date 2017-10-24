@@ -1,6 +1,5 @@
 import {
-	REQUEST_POSTS, 			// async
-	REQUEST_COMMENTS, 	// async
+	ASYNC_REQUEST,
 	READ_POSTS,
 	READ_COMMENTS,
 	ADD_POST,
@@ -39,7 +38,7 @@ const initialCommentState = {
 
 function posts(state=initialPostState, action) {
 	switch (action.type) {
-		case REQUEST_POSTS:
+		case ASYNC_REQUEST:
 			return state;
 		case READ_POSTS:
 			return ([
@@ -62,7 +61,7 @@ function posts(state=initialPostState, action) {
 			]);
 		case DELETE_POST:
 			return ([
-				...state.filter(p => p.id!==action.postId)
+				...state.filter(p => p.id!==action.post.id)
 			]);
 		default:
 			return state;
@@ -71,7 +70,7 @@ function posts(state=initialPostState, action) {
 
 function comments(state=initialCommentState, action) {
 	switch (action.type) {
-		case REQUEST_COMMENTS:
+		case ASYNC_REQUEST:
 			return state;
 		case READ_COMMENTS:
 			return ([
@@ -94,7 +93,7 @@ function comments(state=initialCommentState, action) {
 			]);
 		case DELETE_COMMENT:
 			return ([
-				...state.filter(c => c.id!==action.commentId)
+				...state.filter(c => c.id!==action.comment.id)
 			]);
 		default:
 			return state;

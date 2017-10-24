@@ -31,30 +31,29 @@ import uuid from 'uuid/v4';
 //export const EDIT_CATEGORY = 'EDIT_CATEGORY';
 //export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
-// Async meanwhile action creators
+// Async request response
 
-export const REQUEST_POSTS = 'REQUEST_POSTS';
-function requestPosts() {
-	return {type: REQUEST_POSTS};
+export const ASYNC_REQUEST = 'ASYNC_REQUEST';
+function asyncRequest() {
+	return {type: ASYNC_REQUEST};
 }
 
-export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
-function requestComments() {
-	return {type: REQUEST_COMMENTS};
+function asyncRequestReceive(apiCall, receiveCall) {
+	return function(dispatch) {
+		dispatch(asyncRequest());
+		return apiCall.method(...apiCall.params)
+			.then(data => dispatch(receiveCall(data)));
+	};
 }
 
-// Read and store all
+// Read and store
 
 export const READ_POSTS = 'READ_POSTS';
 function receiveReadPosts(posts) {
 	return {type: READ_POSTS, posts};
 }
 export function readPosts() {
-	return function(dispatch) {
-		dispatch(requestPosts());
-		return API.getPosts()
-			.then(data => dispatch(receiveReadPosts(data)));
-	};
+	return asyncRequestReceive({method: API.getPosts, params: []}, receiveReadPosts);
 }
 
 export const READ_COMMENTS = 'READ_COMMENTS';
@@ -62,11 +61,7 @@ function receiveReadComments(comments) {
 	return {type: READ_COMMENTS, comments};
 }
 export function readComments(postId) {
-	return function(dispatch) {
-		dispatch(requestComments());
-		return API.getComments(postId)
-			.then(data => dispatch(receiveReadComments(data)));
-	};
+	return asyncRequestReceive({method: API.getComments, params: arguments}, receiveReadComments);
 }
 
 // Create
@@ -75,39 +70,18 @@ export const ADD_POST = 'ADD_POST';
 function receiveAddPost(post) {
 	return {type: ADD_POST, post};
 }
-export function addPost({ title, body, author, category }) {
-	const post = {
-		id: uuid(),
-		timestamp: Date.now(),
-		title,
-		body,
-		author,
-		category
-	};
-	return function(dispatch) {
-		dispatch(requestPosts());
-		return API.addPost(post)
-			.then(data => dispatch(receiveAddPost(data)));
-	};
+export function addPost(details) {
+	const post = { ...details, id: uuid(), timestamp: Date.now() };
+	return asyncRequestReceive({method: API.addPost, params: [post]}, receiveAddPost);
 }
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 function receiveAddComment(comment) {
 	return {type: ADD_COMMENT, comment};
 }
-export function addComment({ parentId, body, author }) {
-	const comment = {
-		id: uuid(),
-		parentId,
-		timestamp: Date.now(),
-		body,
-		author
-	};
-	return function(dispatch) {
-		dispatch(requestComments());
-		return API.addComment(comment)
-			.then(data => dispatch(receiveAddComment(data)));
-	};
+export function addComment(details) {
+	const comment = { ...details, id: uuid(), timestamp: Date.now() };
+	return asyncRequestReceive({method: API.addComment, params: [comment]}, receiveAddComment);
 }
 
 // Update
@@ -116,45 +90,18 @@ export const EDIT_POST = 'EDIT_POST';
 function receiveEditPost(post) {
 	return {type: EDIT_POST, post};
 }
-export function editPost({ id, title, body, author, category, voteScore, deleted }) {
-	const post = {
-		id,
-		timestamp: Date.now(),
-		title,
-		body,
-		author,
-		category,
-		voteScore,
-		deleted
-	};
-	return function(dispatch) {
-		dispatch(requestPosts());
-		return API.editPost(post)
-			.then(data => dispatch(receiveEditPost(data)));
-	};
+export function editPost(details) {
+	const post = { ...details, timestamp: Date.now() };
+	return asyncRequestReceive({method: API.editPost, params: [post]}, receiveEditPost);
 }
 
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 function receiveEditComment(comment) {
 	return {type: EDIT_COMMENT, comment};
 }
-export function editComment({ id, parentId, body, author, category, voteScore, deleted, parentDeleted }) {
-	const comment = {
-		id,
-		parentId,
-		timestamp: Date.now(),
-		body,
-		author,
-		category,
-		voteScore,
-		deleted,
-		parentDeleted
-	};
-	return function(dispatch) {
-		dispatch(requestComments());
-		return API.editComment(comment)
-			.then(data => dispatch(receiveEditComment(data)));
-	};
+export function editComment(details) {
+	const comment = { ...details, timestamp: Date.now() };
+	return asyncRequestReceive({method: API.editComment, params: [comment]}, receiveEditComment);
 }
 
 export const VOTE_POST = 'VOTE_POST';
@@ -162,48 +109,31 @@ function receiveVotePost(post) {
 	return {type: VOTE_POST, post};
 }
 export function votePost(postId, up) {
-	return function(dispatch) {
-		dispatch(requestPosts());
-		return API.votePost(postId, up)
-			.then(data => dispatch(receiveVotePost(data)));
-	};
+	return asyncRequestReceive({method: API.votePost, params: arguments}, receiveVotePost);
 }
 
 export const VOTE_COMMENT = 'VOTE_COMMENT';
 function receiveVoteComment(comment) {
-	console.log(comment);
 	return {type: VOTE_COMMENT, comment};
 }
 export function voteComment(commentId, up) {
-	return function(dispatch) {
-		dispatch(requestComments());
-		return API.voteComment(commentId, up)
-			.then(data => dispatch(receiveVoteComment(data)));
-	};
+	return asyncRequestReceive({method: API.voteComment, params: arguments}, receiveVoteComment);
 }
 
 // Delete
 
 export const DELETE_POST = 'DELETE_POST';
-function receiveDeletePost(postId) {
-	return {type: DELETE_POST, postId};
+function receiveDeletePost(post) {
+	return {type: DELETE_POST, post};
 }
 export function deletePost(postId) {
-	return function(dispatch) {
-		dispatch(requestPosts());
-		return API.deletePost(postId)
-			.then(() => dispatch(receiveDeletePost(postId)));
-	};
+	return asyncRequestReceive({method: API.deletePost, params: arguments}, receiveDeletePost);
 }
 
 export const DELETE_COMMENT = 'DELETE_COMMENT';
-function receiveDeleteComment(commentId) {
-	return {type: DELETE_COMMENT, commentId};
+function receiveDeleteComment(comment) {
+	return {type: DELETE_COMMENT, comment};
 }
 export function deleteComment(commentId) {
-	return function(dispatch) {
-		dispatch(requestComments());
-		return API.deleteComment(commentId)
-			.then(() => dispatch(receiveDeleteComment(commentId)));
-	};
+	return asyncRequestReceive({method: API.deleteComment, params: arguments}, receiveDeleteComment);
 }

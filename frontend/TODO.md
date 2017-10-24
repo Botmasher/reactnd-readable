@@ -40,7 +40,7 @@
 		- [X] build edit funcs on top
 		- [X] build delete funcs on top - TEST CURR ARROW
 		- [X] build out async actions to leverage each function
-	- [ ] DRY up curried async action creators
+	- [X] DRY up async action creators
 	- [X] set up middleware for async actions
 	- [X] test ability to store and access data
 		- [X] App component: dispatch actions with correct payload
@@ -104,6 +104,9 @@
 - [ ] Test your selectors, actions, reducers [together](https://github.com/reactjs/redux/issues/1171)
 	- [ ] the [ducks approach](https://github.com/reactjs/reselect#motivation-for-memoized-selectors)
 - [ ] Hot loading and time traveling
+
+## Issues
+- [ ] Editing a nonexistent post or comment adds an error object as post or comment to the store slice
 
 ## Beyond MVP
 - [ ] implement distinct user objects/models for logging in and permissions 
