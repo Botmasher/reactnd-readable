@@ -2,6 +2,7 @@ import {
 	ASYNC_REQUEST,
 	READ_POSTS,
 	READ_COMMENTS,
+	READ_CATEGORY_POSTS,
 	ADD_POST,
 	ADD_COMMENT,
 	EDIT_POST,
@@ -41,6 +42,13 @@ function posts(state={}, action) {
 		case ASYNC_REQUEST:
 			return state;
 		case READ_POSTS:
+			return ({
+				...state,
+				...(action.posts.reduce((allPosts, post) => (
+					{...allPosts, [post.id]: post}
+				), {}))
+			});
+		case READ_CATEGORY_POSTS:
 			return ({
 				...state,
 				...(action.posts.reduce((allPosts, post) => (

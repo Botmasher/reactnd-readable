@@ -51,7 +51,7 @@
 		- [X] reducers: update and fix issues as you test
 	- [X] fill out reducers to account for all actions
 	- [X] mimic store shape in API: posts.js {'postId':{postObject},} pairs instead of arrays
-	- [ ] plan [selectors](https://github.com/reactjs/reselect) to build on state
+	- [X] plan [selectors](https://github.com/reactjs/reselect) to build on state
 	- [ ] plan [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
 	- [ ] plan store middleware beyond thunk
 - [ ] plan out UI
@@ -109,10 +109,13 @@
 
 ## Issues
 - [ ] Editing a nonexistent post or comment adds an error object as post or comment to the store slice
-- [ ] How much state to store 
+- [ ] How much state to load into store as user navigates app?
 
 ## Beyond MVP
-- [ ] implement distinct user objects/models for logging in and permissions 
+- [ ] implement distinct user objects/models for logging in and permissions
+- [ ] test and optimize for growth in data, cases where iterating over huge numbers of posts and comments
+	- [ ] how well does the shape of your store account for big data fetching, mapping, filtering, reducing?
+	- [ ] how to increase performance?
 - [ ] ability to manage categories
 	- [ ] currently obtained from posts
 	- [ ] currently "added" when a post submits a new category string

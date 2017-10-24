@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
-import { readPosts, readComments, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
+import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
 import { Route } from 'react-router-dom';
+import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts } from '../selectors';
 
 class App extends React.Component {
 
@@ -14,7 +15,7 @@ class App extends React.Component {
 	};
 
 	submitTestAddPost = () => {
-		this.props.addPost({title: 'A sample title', body: 'A sample test post body that is longer', author: 'Spaspuchis', category: 'newcat'});
+		this.props.addPost({title: 'A sample title', body: 'A sample test post body that is longer', author: 'Spaspuchis', category: 'react'});
 	};
 	submitTestAddComment = () => {
 		this.props.addComment({parentId: '8xf0y6ziyjabvozdd253nd', body: 'One sample test comment body!', author: 'Spaspuchis'});	
@@ -27,14 +28,16 @@ class App extends React.Component {
 		console.log(this.props.comments['894tuq4ut84ut8v4t8wun89g']);
 	};
 	submitTestReadCategoryPosts = () => {
-		console.log(Object.values(this.props.posts).filter(post => post.category==='react'));
-
+		// fetch them from backend
+		this.props.readCategoryPosts('react');
+		// if already fetched read them from the selector
+		console.log(this.props.selectCategoryPosts({posts: this.props.posts, category: 'react'}));
+	};
+	submitTestReadAllCommentsOnPost = () => {
+		console.log(this.props.selectCurrentComments({post: this.props.posts['8xf0y6ziyjabvozdd253nd'], comments: this.props.comments}));
 	};
 	submitTestReadCategories = () => {
-		Object.values(this.props.posts).reduce((categories, post) => {
-			if (categories.includes(post.category)) return categories;
-			return [...categories, post.category];
-		}, []).map(x => console.log(x));
+		console.log(this.props.selectCurrentCategories({posts: this.props.posts}));
 	};
 
 	// ATTENTION: fetch full item first then submit all data (API.post.edit loops over props and replaces each)
@@ -89,6 +92,8 @@ class App extends React.Component {
 					<button onClick={this.submitTestReadOneComment}>Test log comment</button>
 					<br/>
 					<button onClick={this.submitTestReadCategories}>Log all categories</button>
+					<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
+					<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
 				</div>
 			)} />
 		);
@@ -96,13 +101,23 @@ class App extends React.Component {
 }
 
 function mapStateToProps({ posts, comments }) {
-	return { posts, comments };
+	return {
+		// store
+		posts,
+		comments,
+		// selectors
+		selectCurrentCategories: selectCurrentCategories,
+		selectCurrentComments: selectCurrentComments,
+		selectCategoryPosts: selectCategoryPosts
+	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+		// action creators
 		readPosts: () => dispatch(readPosts()),
 		readComments: (postId) => dispatch(readComments(postId)),
+		readCategoryPosts: (category) => dispatch(readCategoryPosts(category)),
 		votePost: (postId, up) => dispatch(votePost(postId, up)),
 		voteComment: (commentId, up) => dispatch(voteComment(commentId, up)),
 		addPost: (post) => dispatch(addPost(post)),
@@ -110,7 +125,7 @@ function mapDispatchToProps(dispatch) {
 		editPost: (post) => dispatch(editPost(post)),
 		editComment: (comment) => dispatch(editComment(comment)),
 		deletePost: (postId) => dispatch(deletePost(postId)),
-		deleteComment: (commentId) => dispatch(deleteComment(commentId))
+		deleteComment: (commentId) => dispatch(deleteComment(commentId)),
 	};
 }
 

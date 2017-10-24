@@ -17,6 +17,7 @@ This project was built in React with Redux and has the following dependencies:
 - Redux: `redux` and `react-redux`
 - Router: `react-router-dom`
 - Middleware: `redux-thunk`
+- Selectors: `reselect`
 - UUID generator: `uuid`
 
 ## Notes

@@ -22,7 +22,6 @@ import uuid from 'uuid/v4';
 
 // Unused - why dispatch if already in store?
 //export const READ_CATEGORIES = 'READ_CATEGORIES';
-//export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
 //export const READ_POST = 'READ_POST';
 //export const READ_COMMENT = 'READ_COMMENT';
 
@@ -62,6 +61,14 @@ function receiveReadComments(comments) {
 }
 export function readComments(postId) {
 	return asyncRequestReceive({method: API.getComments, params: arguments}, receiveReadComments);
+}
+
+export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
+function receiveReadCategoryPosts(posts) {
+	return {type: READ_CATEGORY_POSTS, posts};
+}
+export function readCategoryPosts(category) {
+	return asyncRequestReceive({method: API.getCategoryPosts, params: arguments}, receiveReadCategoryPosts);
 }
 
 // Create
