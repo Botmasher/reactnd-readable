@@ -1,7 +1,7 @@
 # Readable TODO list
 
 ## Planning
-- [ ] sketch out data flow through the app
+- [X] sketch out data flow through the app
 	- [X] review project specifications for data and view/UI components
 	- [X] confidently CRUD posts through the API
 		- [X] test getting posts and categories from API
@@ -52,10 +52,8 @@
 	- [X] fill out reducers to account for all actions
 	- [X] mimic store shape in API: posts.js {'postId':{postObject},} pairs instead of arrays
 	- [X] plan [selectors](https://github.com/reactjs/reselect) to build on state
-	- [ ] plan [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
-	- [ ] plan store middleware beyond thunk
 - [ ] plan out UI
-	- [ ] inventory of components
+	- [X] inventory of view components
 	- [ ] relations between components
 	- [ ] state that will live in each component
 - [ ] what are the events that should CRUD data, e.g. adding post, updating score
@@ -112,17 +110,18 @@
 - [ ] How much state to load into store as user navigates app?
 
 ## Beyond MVP
+- [ ] custom favicon
 - [ ] implement distinct user objects/models for logging in and permissions
-- [ ] test and optimize for growth in data, cases where iterating over huge numbers of posts and comments
-	- [ ] how well does the shape of your store account for big data fetching, mapping, filtering, reducing?
-	- [ ] how to increase performance?
 - [ ] ability to manage categories
 	- [ ] currently obtained from posts
 	- [ ] currently "added" when a post submits a new category string
 	- [ ] currently "deleted" when none have it
 	- [ ] currently "updated" when all posts with a category string change that string
 - [ ] add sorting for comments as well within Post Detail view
-- [ ] custom favicon
+- [ ] consider [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
+- [ ] test and optimize for growth in data, cases where iterating over huge numbers of posts and comments
+	- [ ] how well does the shape of your store account for big data fetching, mapping, filtering, reducing?
+	- [ ] how to increase performance?
 - [ ] edited comments display notice that they've been edited
 	- [ ] keep original timestamp
 	- [ ] label and timestamp the edit (requires backend changes - wait until graded)
