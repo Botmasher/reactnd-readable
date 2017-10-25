@@ -80,6 +80,8 @@ class App extends React.Component {
 			<Route render={() => (
 				<div>
 					<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
+					
+					TESTS:<br/>
 					<button onClick={this.submitTestAddPost}>Test add post</button>
 					<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
 					<button onClick={this.submitTestAddComment}>Test add comment</button>
@@ -94,6 +96,15 @@ class App extends React.Component {
 					<button onClick={this.submitTestReadCategories}>Log all categories</button>
 					<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
 					<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
+
+
+					ABOUT:
+					Type: 	container, passes to Category or PostDetail or CommentDetail or CreateEdit
+					State: 	redux store
+					Props: 	through react-redux connect, reselect selectors
+					Links: 	none
+					Routes: to specific Category (posts), PostDetail (post), CommentDetail (comment) or CreateEdit (post/comment)
+									- TODO also CategoryList (categories)
 				</div>
 			)} />
 		);

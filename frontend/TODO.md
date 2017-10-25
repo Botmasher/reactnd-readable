@@ -52,15 +52,12 @@
 	- [X] fill out reducers to account for all actions
 	- [X] mimic store shape in API: posts.js {'postId':{postObject},} pairs instead of arrays
 	- [X] plan [selectors](https://github.com/reactjs/reselect) to build on state
-- [ ] plan out UI
+- [X] plan out UI
+	- [X] directory structure: by category vs by feature (consider component complexity and dependency)
 	- [X] inventory of view components
-	- [ ] relations between components
-	- [ ] state that will live in each component
-- [ ] what are the events that should CRUD data, e.g. adding post, updating score
-	- [ ] include displaying sorted by: category, timestamp, title, author, voteScore
-- [ ] decide on a directory structure
-	- [ ] by category vs by feature
-	- [ ] consider number of components, their complexity and their dependencies
+	- [X] relations between components
+	- [X] props and state that will live in each component
+	- [X] consider events that should CRUD data, e.g. adding post, updating score
 - [ ] update README to reflect decisions from the planning stage
 
 ## Core Tasks
@@ -88,7 +85,8 @@
 	- [ ] use component state to handle form input fields and controlled components
 	- [ ] otherwise use your reducers to control the rest of your data
 	- [ ] mapPropsToState and mapDispatchToState
-- [ ] break subcomponents into smaller pieces
+- [ ] break components into smaller pieces
+	- [ ] identify needed [container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) and [split](https://gist.github.com/chantastic/fc9e3853464dffdb1e3c) from presentation components
 	- [ ] comments with controls as displayed in Post Detail view
 	- [ ] post as displayed in Root view, Category view and Post Detail view
 - [ ] style the app to be "presentable and easy to navigate"
@@ -112,7 +110,8 @@
 ## Beyond MVP
 - [ ] custom favicon
 - [ ] implement distinct user objects/models for logging in and permissions
-- [ ] ability to manage categories
+- [ ] make better use of categories
+	- [ ] categories ui (category list and links) and container to browse, sort, manage categories
 	- [ ] currently obtained from posts
 	- [ ] currently "added" when a post submits a new category string
 	- [ ] currently "deleted" when none have it
@@ -122,6 +121,7 @@
 - [ ] test and optimize for growth in data, cases where iterating over huge numbers of posts and comments
 	- [ ] how well does the shape of your store account for big data fetching, mapping, filtering, reducing?
 	- [ ] how to increase performance?
+	- [ ] sorting and other calculations done on large API responses handled through backend endpoint
 - [ ] edited comments display notice that they've been edited
 	- [ ] keep original timestamp
 	- [ ] label and timestamp the edit (requires backend changes - wait until graded)
