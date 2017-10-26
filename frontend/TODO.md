@@ -58,21 +58,18 @@
 	- [X] relations between components
 	- [X] props and state that will live in each component
 	- [X] consider events that should CRUD data, e.g. adding post, updating score
-- [ ] update README to reflect decisions from the planning stage
+- [X] update README to reflect decisions from the planning stage
 
 ## Core Tasks
 - [X] install and save Redux
 - [X] create a Redux store in index.js
-- [ ] update the Redux store to match the sketch above
-	- [ ] check and test against what's in the API
-	- [ ] implement actions
-	- [ ] implement reducers
-- [ ] default state and initial state
-	- [ ] configure initial state for each reducer
-	- [ ] configure default state for createStore
+- [X] update the Redux store to match the sketch above
+	- [X] check and test against what's in the API
+	- [X] implement actions
+	- [X] implement reducers
 - [ ] check that Redux dataflow works correctly
-	- [ ] each of the events that should CRUD data from Planning above
-	- [ ] include displaying posts sorted by 
+	- [X] each of the events that should CRUD data from Planning above
+	- [ ] include displaying posts sorted by timestamp, voteScore (at a minimum)
 - [ ] build out basic components for each of the four views in README.md Specifications
 	- [ ] Root view
 	- [ ] Category view
