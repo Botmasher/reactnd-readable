@@ -67,9 +67,9 @@
 	- [X] check and test against what's in the API
 	- [X] implement actions
 	- [X] implement reducers
-- [ ] check that Redux dataflow works correctly
+- [X] check that Redux dataflow works correctly
 	- [X] each of the events that should CRUD data from Planning above
-	- [ ] include displaying posts sorted by timestamp, voteScore (at a minimum)
+	- [X] include displaying posts sorted by timestamp, voteScore (at a minimum)
 - [ ] build out basic components for each of the four views in README.md Specifications
 	- [ ] Root view
 	- [ ] Category view
@@ -91,8 +91,8 @@
 ## Testing
 - [X] install React devtools
 - [X] install Redux devtools
-	- [ ] include extension in index.js createStore
-	- [ ] compose to use Thunk or async middleware enhancer
+	- [X] include extension in index.js createStore
+	- [X] compose to use Thunk async middleware enhancer
 - [X] Set up your IDE including syntax highlighting [for JS and JSX](https://packagecontrol.io/packages/Babel)
 - [ ] Consider [React test utilities](https://reactjs.org/docs/test-utils.html)
 - [ ] Plan to write [Redux tests](http://redux.js.org/docs/recipes/WritingTests.html)

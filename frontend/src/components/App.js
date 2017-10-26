@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
 import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
 import { Route } from 'react-router-dom';
-import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts } from '../selectors';
+import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts, selectPostsSortedNum, selectPostsSortedAlpha } from '../selectors';
 
 class App extends React.Component {
 
@@ -38,6 +38,10 @@ class App extends React.Component {
 	};
 	submitTestReadCategories = () => {
 		console.log(this.props.selectCurrentCategories({posts: this.props.posts}));
+	};
+
+	submitTestSortPosts = () => {
+		console.log(this.props.selectPostsSortedAlpha({posts: this.props.posts, property: 'body', ascending: true}));
 	};
 
 	// ATTENTION: fetch full item first then submit all data (API.post.edit loops over props and replaces each)
@@ -96,6 +100,8 @@ class App extends React.Component {
 					<button onClick={this.submitTestReadCategories}>Log all categories</button>
 					<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
 					<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
+					<br/>
+					<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
 
 
 					ABOUT:
@@ -119,7 +125,9 @@ function mapStateToProps({ posts, comments }) {
 		// selectors
 		selectCurrentCategories: selectCurrentCategories,
 		selectCurrentComments: selectCurrentComments,
-		selectCategoryPosts: selectCategoryPosts
+		selectCategoryPosts: selectCategoryPosts,
+		selectPostsSortedNum: selectPostsSortedNum,
+		selectPostsSortedAlpha: selectPostsSortedAlpha
 	};
 }
 
