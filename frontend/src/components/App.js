@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
-import Category from './Category';
+import CategoryContainer from './CategoryContainer';
+import PostDetailContainer from './PostDetailContainer';
 import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
 import { Switch, Route } from 'react-router-dom';
 import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts, selectPostsSortedNum, selectPostsSortedAlpha } from '../selectors';
@@ -73,63 +74,57 @@ class App extends React.Component {
 		this.props.deleteComment(latestComment.id);
 	};
 
-	componentDidMount() {
-		this.props.readPosts(); 	// all posts
-		this.props.readComments('8xf0y6ziyjabvozdd253nd'); 	// comments for a single post
-	}
+	//componentDidMount() {
+	//	this.props.readPosts(); 	// all posts
+	//	this.props.readComments('8xf0y6ziyjabvozdd253nd'); 	// comments for a single post
+	//}
 
 	render() {
 		console.log(this.props.posts);
 		console.log(this.props.comments);
 		return (
-			<Route render={() => (
-				<div>
+			<div>
 
-					<Switch>
-						
-						<Route path="/category/react" render={() => (
-							<Category category="react" posts={Object.values(this.props.posts)} />
-						)} />
+				<Switch>
+					
+					<Route exact path="/posts/:id" component={PostDetailContainer} />
 
-						<Route path={`posts/`} render={() => (
-							<Category category="react" posts={Object.values(this.props.posts)} />
-						)} />
+					<Route exact path="/category/:category" component={CategoryContainer} />
 
-						<Route exact path="/" render={() => (
-							<div>
-								<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
-								TESTS:
-								<button onClick={this.submitTestAddPost}>Test add post</button>
-								<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
-								<button onClick={this.submitTestAddComment}>Test add comment</button>
-								<button onClick={this.submitTestDeleteComment}>Test delete comment</button>
-								<br/>
-								<button onClick={this.submitTestEditPost}>Test edit post</button>
-								<button onClick={this.submitTestEditComment}>Test edit comment</button>
-								<br/>
-								<button onClick={this.submitTestReadOnePost}>Test log post</button>
-								<button onClick={this.submitTestReadOneComment}>Test log comment</button>
-								<br/>
-								<button onClick={this.submitTestReadCategories}>Log all categories</button>
-								<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
-								<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
-								<br/>
-								<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
+					<Route exact path="/" render={() => (
+						<div>
+							<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
+							TESTS:
+							<button onClick={this.submitTestAddPost}>Test add post</button>
+							<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
+							<button onClick={this.submitTestAddComment}>Test add comment</button>
+							<button onClick={this.submitTestDeleteComment}>Test delete comment</button>
+							<br/>
+							<button onClick={this.submitTestEditPost}>Test edit post</button>
+							<button onClick={this.submitTestEditComment}>Test edit comment</button>
+							<br/>
+							<button onClick={this.submitTestReadOnePost}>Test log post</button>
+							<button onClick={this.submitTestReadOneComment}>Test log comment</button>
+							<br/>
+							<button onClick={this.submitTestReadCategories}>Log all categories</button>
+							<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
+							<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
+							<br/>
+							<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
 
-								ABOUT:
-								Type: 	container, passes to Category or PostDetail or CommentDetail or CreateEdit
-								State: 	redux store
-								Props: 	through react-redux connect, reselect selectors
-								Links: 	none
-								Routes: to specific Category (posts), PostDetail (post), CommentDetail (comment) or CreateEdit (post/comment)
-												TODO also CategoryList (categories)
-							</div>
-						)} />
+							ABOUT:
+							Type: 	container, passes to Category or PostDetail or CommentDetail or CreateEdit
+							State: 	redux store
+							Props: 	through react-redux connect, reselect selectors
+							Links: 	none
+							Routes: to specific Category (posts), PostDetail (post), CommentDetail (comment) or CreateEdit (post/comment)
+											TODO also CategoryList (categories)
+						</div>
+					)} />
 
-					</Switch>
+				</Switch>
 
-				</div>
-			)} />
+			</div>
 		);
 	}
 }

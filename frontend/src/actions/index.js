@@ -20,12 +20,11 @@ import uuid from 'uuid/v4';
 	DELETE /comments/:id 		- delete one comment 							DELETE_COMMENT
  */
 
-// Unused - why dispatch if already in store?
-//export const READ_CATEGORIES = 'READ_CATEGORIES';
-//export const READ_POST = 'READ_POST';
+// Unused so far
 //export const READ_COMMENT = 'READ_COMMENT';
 
 // TODO - dynamic categories
+//export const READ_CATEGORIES = 'READ_CATEGORIES';
 //export const ADD_CATEGORY = 'ADD_CATEGORY'
 //export const EDIT_CATEGORY = 'EDIT_CATEGORY';
 //export const DELETE_CATEGORY = 'DELETE_CATEGORY';
@@ -53,6 +52,14 @@ function receiveReadPosts(posts) {
 }
 export function readPosts() {
 	return asyncRequestReceive({method: API.getPosts, params: []}, receiveReadPosts);
+}
+
+export const READ_POST = 'READ_POST';
+function receiveReadPost(post) {
+	return {type: READ_POST, post};
+}
+export function readPost(postId) {
+	return asyncRequestReceive({method: API.getPost, params: arguments}, receiveReadPost);
 }
 
 export const READ_COMMENTS = 'READ_COMMENTS';

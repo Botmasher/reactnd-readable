@@ -1,6 +1,7 @@
 import {
 	ASYNC_REQUEST,
 	READ_POSTS,
+	READ_POST,
 	READ_COMMENTS,
 	READ_CATEGORY_POSTS,
 	ADD_POST,
@@ -24,6 +25,11 @@ function posts(state={}, action) {
 				...(action.posts.reduce((allPosts, post) => (
 					{...allPosts, [post.id]: post}
 				), {}))
+			});
+		case READ_POST:
+			return ({
+				...state,
+				[action.post.id]: action.post
 			});
 		case READ_CATEGORY_POSTS:
 			return ({

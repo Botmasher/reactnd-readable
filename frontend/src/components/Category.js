@@ -7,7 +7,7 @@ function Category(props) {
 		<h1>Posts in {props.category}</h1>
 		<ul>
 		{props.posts.map(post => (
-				<li key={post.id}><Link to={`/post/${post.id}/`}>{post.title}</Link></li>
+				<li key={post.id}><Link to={`/posts/${post.id}/`}>{post.title}</Link></li>
 		))}
 		</ul>
 

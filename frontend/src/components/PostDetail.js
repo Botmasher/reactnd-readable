@@ -3,6 +3,11 @@ import React from 'react';
 function PostDetail(props) {
 	return (
 		<div>
+			<h1>{props.post && props.post.title}</h1>
+			<p>{props.post && props.post.body}</p>
+
+			<button onClick={() => props.toggleComments()}>Toggle comments</button>
+		
 			Post Detail View
 			<ul>
 				<li>should show the details of a post, including: Title, Body, Author, timestamp (in user readable format), and vote score</li>

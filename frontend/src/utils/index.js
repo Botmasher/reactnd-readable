@@ -46,6 +46,10 @@ export function getPosts() {
 	return get(endpoints.posts);
 }
 
+export function getPost(postId) {
+	return get(`${endpoints.posts}/${postId}`);
+}
+
 export function getCategoryPosts(category) {
 	return get(`${category}/${endpoints.posts}`);
 }
