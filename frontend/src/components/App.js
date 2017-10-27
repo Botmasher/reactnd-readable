@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
+import Category from './Category';
 import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts, selectPostsSortedNum, selectPostsSortedAlpha } from '../selectors';
 
 class App extends React.Component {
@@ -83,34 +84,50 @@ class App extends React.Component {
 		return (
 			<Route render={() => (
 				<div>
-					<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
-					
-					TESTS:<br/>
-					<button onClick={this.submitTestAddPost}>Test add post</button>
-					<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
-					<button onClick={this.submitTestAddComment}>Test add comment</button>
-					<button onClick={this.submitTestDeleteComment}>Test delete comment</button>
-					<br/>
-					<button onClick={this.submitTestEditPost}>Test edit post</button>
-					<button onClick={this.submitTestEditComment}>Test edit comment</button>
-					<br/>
-					<button onClick={this.submitTestReadOnePost}>Test log post</button>
-					<button onClick={this.submitTestReadOneComment}>Test log comment</button>
-					<br/>
-					<button onClick={this.submitTestReadCategories}>Log all categories</button>
-					<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
-					<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
-					<br/>
-					<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
 
+					<Switch>
+						
+						<Route path="/category/react" render={() => (
+							<Category category="react" posts={Object.values(this.props.posts)} />
+						)} />
 
-					ABOUT:
-					Type: 	container, passes to Category or PostDetail or CommentDetail or CreateEdit
-					State: 	redux store
-					Props: 	through react-redux connect, reselect selectors
-					Links: 	none
-					Routes: to specific Category (posts), PostDetail (post), CommentDetail (comment) or CreateEdit (post/comment)
-									- TODO also CategoryList (categories)
+						<Route path={`posts/`} render={() => (
+							<Category category="react" posts={Object.values(this.props.posts)} />
+						)} />
+
+						<Route exact path="/" render={() => (
+							<div>
+								<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
+								TESTS:
+								<button onClick={this.submitTestAddPost}>Test add post</button>
+								<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
+								<button onClick={this.submitTestAddComment}>Test add comment</button>
+								<button onClick={this.submitTestDeleteComment}>Test delete comment</button>
+								<br/>
+								<button onClick={this.submitTestEditPost}>Test edit post</button>
+								<button onClick={this.submitTestEditComment}>Test edit comment</button>
+								<br/>
+								<button onClick={this.submitTestReadOnePost}>Test log post</button>
+								<button onClick={this.submitTestReadOneComment}>Test log comment</button>
+								<br/>
+								<button onClick={this.submitTestReadCategories}>Log all categories</button>
+								<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
+								<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
+								<br/>
+								<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
+
+								ABOUT:
+								Type: 	container, passes to Category or PostDetail or CommentDetail or CreateEdit
+								State: 	redux store
+								Props: 	through react-redux connect, reselect selectors
+								Links: 	none
+								Routes: to specific Category (posts), PostDetail (post), CommentDetail (comment) or CreateEdit (post/comment)
+												TODO also CategoryList (categories)
+							</div>
+						)} />
+
+					</Switch>
+
 				</div>
 			)} />
 		);

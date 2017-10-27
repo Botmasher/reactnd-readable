@@ -1,8 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Category(props) {
 	return (
 		<div>
+		<h1>Posts in {props.category}</h1>
+		<ul>
+		{props.posts.map(post => (
+				<li key={post.id}><Link to={`/post/${post.id}/`}>{post.title}</Link></li>
+		))}
+		</ul>
+
 		Category View - identical to the default view, but 
 		filtered to only include posts with the selected category.
 		

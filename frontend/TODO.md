@@ -75,6 +75,8 @@
 	- [ ] Category view
 	- [ ] Post Detail view
 	- [ ] Create/Edit view
+- [ ] Routing between components
+	- [ ] get post, comment, category id through URL?
 - [ ] build out basic components for post and comment UI
 	- [ ] Post UI
 	- [ ] Comment UI
