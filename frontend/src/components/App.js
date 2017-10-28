@@ -74,11 +74,6 @@ class App extends React.Component {
 		this.props.deleteComment(latestComment.id);
 	};
 
-	//componentDidMount() {
-	//	this.props.readPosts(); 	// all posts
-	//	this.props.readComments('8xf0y6ziyjabvozdd253nd'); 	// comments for a single post
-	//}
-
 	render() {
 		console.log(this.props.posts);
 		console.log(this.props.comments);
@@ -89,7 +84,7 @@ class App extends React.Component {
 					
 					<Route exact path="/posts/:id" component={PostDetailContainer} />
 
-					<Route exact path="/category/:category" component={CategoryContainer} />
+					<Route exact path="/:category" component={CategoryContainer} />
 
 					<Route exact path="/" render={() => (
 						<div>
