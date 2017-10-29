@@ -84,6 +84,8 @@ class App extends React.Component {
 					
 					<Route exact path="/posts/:id" component={PostDetailContainer} />
 
+					<Route exact path="/posts" component={CategoryContainer} />
+
 					<Route exact path="/:category" component={CategoryContainer} />
 
 					<Route exact path="/" render={() => (
