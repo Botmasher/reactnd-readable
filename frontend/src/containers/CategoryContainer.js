@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Default from './Default';
+import Category from '../components/Category';
 import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
-import { readPosts, addPost } from '../actions';
+import { readCategoryPosts, addPost } from '../actions';
 
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
@@ -11,7 +11,7 @@ function sortPosts(optionValue) {
 	);
 }
 
-class DefaultContainer extends React.Component {
+class CategoryContainer extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -23,7 +23,7 @@ class DefaultContainer extends React.Component {
 	};
 
 	componentDidMount() {
-		this.props.readPosts();
+		this.props.readCategoryPosts(this.props.match.params.category);
 	}
 
 	render() {
@@ -55,7 +55,7 @@ function mapStateToProps({ posts, comments }) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		readPosts: () => dispatch(readPosts()),
+		readCategoryPosts: (category) => dispatch(readCategoryPosts(category)),
 		addPost: (post) => dispatch(addPost(post))
 	};
 }

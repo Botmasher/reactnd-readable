@@ -111,6 +111,7 @@
 
 ## Beyond MVP
 - [ ] custom favicon
+- [ ] localization including dates
 - [ ] implement distinct user objects/models for logging in and permissions
 - [ ] make better use of categories
 	- [ ] categories ui (category list and links) and container to browse, sort, manage categories

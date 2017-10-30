@@ -11,6 +11,9 @@ function Category(props) {
 				: <h2>no posts in {props.category}</h2>
 			}
 
+			<p>Category title: {props.category}</p>
+			<p>Links to change category: HOME react redux</p>
+
 			<select onChange={(e) => props.sortPosts(e.target.value)}>
 				<option value="timestamp-desc">newest to oldest</option>
 				<option value="timestamp-asc">oldest to newest</option>
@@ -20,24 +23,12 @@ function Category(props) {
 				<option value="title-desc">by title (Z-A)</option>
 			</select>
 
+			<p>Posts in this category:</p>
 			<ul>
 				{props.posts.map(post => (
 					<li key={post.id}><Link to={`/posts/${post.id}/`}>{post.title}</Link></li>
 				))}
 			</ul>
-			Category View - identical to the default view, but 
-			filtered to only include posts with the selected category.
-			
-			Type: 	presentation, receive data from App component
-			
-			Props:  - category title/info
-							- posts in this category
-							- handler to change category (or just links?)
-							- handler to change sorting
-
-			State: 	- sort criterion and sort order (use props / selector instead?)
-
-			Selectors: 	- all of the titles and maybe authors for currently viewed posts
 
 			Link: 	- to other categories/home
 							- to individual post

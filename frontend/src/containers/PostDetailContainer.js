@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PostDetail from './PostDetail';
-import Comments from './Comments';
+import PostDetail from '../components/PostDetail';
+import Comments from '../components/Comments';
 import { selectCurrentComments } from '../selectors';
 import { readPost, readComments } from '../actions';
 

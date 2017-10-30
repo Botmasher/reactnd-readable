@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Category from './Category';
+import Default from '../components/Default';
 import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
-import { readCategoryPosts, addPost } from '../actions';
+import { readPosts, addPost } from '../actions';
 
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
@@ -11,7 +11,7 @@ function sortPosts(optionValue) {
 	);
 }
 
-class CategoryContainer extends React.Component {
+class DefaultContainer extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -23,17 +23,16 @@ class CategoryContainer extends React.Component {
 	};
 
 	componentDidMount() {
-		this.props.readCategoryPosts(this.props.match.params.category);
+		this.props.readPosts();
 	}
 
 	render() {
 		return (
-			<Category
-				category={this.props.match.params.category}
+			<Default
 				posts={
-					!this.state.sort.property
+					!this.state.sort.property || this.state.sort.property==='default'
 						? Object.values(this.props.posts)
-						: this.state.sort.property==='title' || this.state.sort.property==='body'
+						: this.state.sort.property==='title' || this.state.sort.property==='author'
 							? this.props.selectPostsSortedAlpha({posts: this.props.posts, ...this.state.sort})
 							: this.props.selectPostsSortedNum({posts: this.props.posts, ...this.state.sort})
 				}
@@ -56,9 +55,8 @@ function mapStateToProps({ posts, comments }) {
 function mapDispatchToProps(dispatch) {
 	return {
 		readPosts: () => dispatch(readPosts()),
-		readCategoryPosts: (category) => dispatch(readCategoryPosts(category)),
 		addPost: (post) => dispatch(addPost(post))
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultContainer);

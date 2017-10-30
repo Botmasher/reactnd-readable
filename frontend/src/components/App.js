@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
-import CategoryContainer from './CategoryContainer';
-import PostDetailContainer from './PostDetailContainer';
+import CategoryContainer from '../containers/CategoryContainer';
+import PostDetailContainer from '../containers/PostDetailContainer';
+import DefaultContainer from '../containers/DefaultContainer';
 import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
 import { Switch, Route } from 'react-router-dom';
 import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts, selectPostsSortedNum, selectPostsSortedAlpha } from '../selectors';
@@ -84,12 +85,6 @@ class App extends React.Component {
 					
 					<Route exact path="/posts/:id" component={PostDetailContainer} />
 
-					<Route exact path="/posts" component={CategoryContainer} />
-
-					<Route exact path="/:category" component={CategoryContainer} />
-
-					<Route exact path="/" component={DefaultContainer} />
-
 					<Route exact path="/test" render={() => (
 						<div>
 							<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
@@ -120,6 +115,10 @@ class App extends React.Component {
 											TODO also CategoryList (categories)
 						</div>
 					)} />
+
+					<Route exact path="/:category" component={CategoryContainer} />
+
+					<Route exact path="/" component={DefaultContainer} />
 
 				</Switch>
 
