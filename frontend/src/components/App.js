@@ -88,7 +88,9 @@ class App extends React.Component {
 
 					<Route exact path="/:category" component={CategoryContainer} />
 
-					<Route exact path="/" render={() => (
+					<Route exact path="/" component={DefaultContainer} />
+
+					<Route exact path="/test" render={() => (
 						<div>
 							<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
 							TESTS:
