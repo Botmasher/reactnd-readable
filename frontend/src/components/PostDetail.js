@@ -42,6 +42,8 @@ function PostDetail(props) {
 								- delete post?
 								- add comment (modal?)
 
+				Add a comment.
+
 			</ul>
 		</div>
 	);

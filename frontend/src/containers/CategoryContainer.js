@@ -4,6 +4,10 @@ import Category from '../components/Category';
 import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
 import { readCategoryPosts, addPost } from '../actions';
 
+// create a PostsListing container merging CategoryContainer and DefaultContainer
+	// - simil: sortPosts, have sort state, render posts
+	// - diffs: componentDidMount fetches all posts vs category posts, Category vs Default components rendered
+
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
 	return (state) => (

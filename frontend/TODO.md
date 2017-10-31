@@ -77,9 +77,10 @@
 	- [ ] Create/Edit view
 - [ ] Prop types
 - [ ] Routing between components
-	- [ ] decisions about handling [url params](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#containersvisibletodolistjs) and passing [link state](https://stackoverflow.com/questions/41466055/how-do-i-pass-state-through-react-router) (category, post id)
+	- [X] withRouter around app connect so router links fire when clicked
+	- [X] decisions about handling [url params](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#containersvisibletodolistjs) and passing [link state](https://stackoverflow.com/questions/41466055/how-do-i-pass-state-through-react-router) (category, post id)
 	- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
-	- [ ] get post, comment, category id through URL?
+	- [ ] get post, comment, category id through URL
 - [ ] build out basic components for post and comment UI
 	- [ ] Post UI
 	- [ ] Comment UI

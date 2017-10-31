@@ -4,9 +4,11 @@ import TestAPI from './TestAPI';
 import CategoryContainer from '../containers/CategoryContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
 import DefaultContainer from '../containers/DefaultContainer';
+import PageHeader from './PageHeader';
 import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts, selectPostsSortedNum, selectPostsSortedAlpha } from '../selectors';
+import '../App.css';
 
 class App extends React.Component {
 
@@ -80,6 +82,8 @@ class App extends React.Component {
 		console.log(this.props.comments);
 		return (
 			<div>
+
+				<PageHeader />
 
 				<Switch>
 					
@@ -158,4 +162,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
