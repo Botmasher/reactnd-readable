@@ -12,6 +12,8 @@ function Default(props) {
 				: <h2>no posts yet</h2>
 			}
 
+			+ Add a post
+
 			<SortPosts sortPosts={props.sortPosts} />
 
 			<PostsList posts={props.posts} />

@@ -1,12 +1,39 @@
 
 /* logo and header */
-.page-header h1,ul,li {
+.page-header h1, .page-header ul, .page-header li {
   display: inline;
   margin: 0 30px 0 0;
 }
 
 .page-header ul {
   animation: header-enter 1s ease-in-out;
+}
+
+/* Create-Edit post form */
+input[type=text], textarea {
+	width: 50%;
+	padding: 5px;
+	margin: 5px 0;
+	display: block;
+	border-radius: 3px;
+}
+
+textarea {
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	background-color: blue;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+	padding: 7px;
+	margin: 5px 0;
+}
+
+.input-category {
+	width: 50px;
 }
 
 @keyframes header-enter {

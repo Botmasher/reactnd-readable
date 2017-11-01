@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
 import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
-import { readCategoryPosts, addPost } from '../actions';
+import { readCategoryPosts } from '../actions';
 
 // create a PostsListing container merging CategoryContainer and DefaultContainer
 	// - simil: sortPosts, have sort state, render posts
@@ -59,8 +59,7 @@ function mapStateToProps({ posts, comments }) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		readCategoryPosts: (category) => dispatch(readCategoryPosts(category)),
-		addPost: (post) => dispatch(addPost(post))
+		readCategoryPosts: (category) => dispatch(readCategoryPosts(category))
 	};
 }
 

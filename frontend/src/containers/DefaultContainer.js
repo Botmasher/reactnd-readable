@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Default from '../components/Default';
 import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
-import { readPosts, addPost } from '../actions';
+import { readPosts } from '../actions';
 
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
@@ -54,8 +54,7 @@ function mapStateToProps({ posts, comments }) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		readPosts: () => dispatch(readPosts()),
-		addPost: (post) => dispatch(addPost(post))
+		readPosts: () => dispatch(readPosts())
 	};
 }
 

@@ -4,6 +4,7 @@ import TestAPI from './TestAPI';
 import CategoryContainer from '../containers/CategoryContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
 import DefaultContainer from '../containers/DefaultContainer';
+import CreateEditContainer from '../containers/CreateEditContainer';
 import PageHeader from './PageHeader';
 import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
 import { Switch, Route, withRouter } from 'react-router-dom';
@@ -87,6 +88,12 @@ class App extends React.Component {
 
 				<Switch>
 					
+					<Route exact path="/posts/create/:category" component={CreateEditContainer} />
+
+					<Route exact path="/posts/create/" component={CreateEditContainer} />
+
+					<Route exact path="/posts/edit/:id" component={CreateEditContainer} />
+
 					<Route exact path="/posts/:id" component={PostDetailContainer} />
 
 					<Route exact path="/test" render={() => (

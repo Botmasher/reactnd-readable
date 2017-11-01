@@ -71,9 +71,9 @@
 	- [X] each of the events that should CRUD data from Planning above
 	- [X] include displaying posts sorted by timestamp, voteScore (at a minimum)
 - [ ] build out basic components for each of the four views in README.md Specifications
-	- [ ] Root view
-	- [ ] Category view
-	- [ ] Post Detail view
+	- [X] Root view
+	- [X] Category view
+	- [X] Post Detail view
 	- [ ] Create/Edit view
 - [ ] Prop types
 - [ ] Routing between components
@@ -86,11 +86,12 @@
 	- [ ] Comment UI
 - [ ] wire up views to display data correctly
 	- [ ] use component state to handle form input fields and controlled components
-	- [ ] otherwise use your reducers to control the rest of your data
-	- [ ] mapPropsToState and mapDispatchToState
+	- [X] otherwise use your reducers to control the rest of your data
+	- [X] mapPropsToState and mapDispatchToState
 - [ ] break components into smaller pieces
-	- [ ] identify needed [container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) and [split](https://gist.github.com/chantastic/fc9e3853464dffdb1e3c) from presentation components
-	- [ ] comments with controls as displayed in Post Detail view
+	- [X] identify needed [container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) and [split](https://gist.github.com/chantastic/fc9e3853464dffdb1e3c) from presentation components
+	- [X] break out sort menu and posts listing
+	- [X] comments with controls as displayed in Post Detail view
 	- [ ] post as displayed in Root view, Category view and Post Detail view
 - [ ] style the app to be "presentable and easy to navigate"
 
