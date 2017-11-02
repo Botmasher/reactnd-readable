@@ -14,6 +14,7 @@ class CreateEdit extends React.Component {
 	render() {
 		return (
 			<div>
+				<div className="input-message"><p>{this.props.message}</p></div>
 				<form onSubmit={(event) => this.props.handleSubmit(event, this.state, this.props.history)}>
 					<label htmlFor="title">Title</label>
 					<input

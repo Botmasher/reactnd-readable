@@ -6,6 +6,11 @@ import { Route } from 'react-router-dom';
 
 class CreateEditContainer extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.state={message:''};
+	}
+
 	handleSubmit = (event, formState, history) => {
 		event.preventDefault();
 		
@@ -23,30 +28,24 @@ class CreateEditContainer extends React.Component {
 		const isBlank = Object.values(newPost).filter(value => value !== '').length === 0;
 		const isMissingInfo = Object.values(newPost).filter(value => value === '').length > 0;
 
-		console.log(newPost);
+		console.log(isMissingInfo);
 
 		// "filled out" post: merged oldPost and newPost data gave all values nonempty strings
+			// if something's not filled out pass that back to form to display error
+			// if everything's not filled out ???
+			// if everything's filled out and !creating -> editPost(postId, data)
+			// if everything's filled out and creating -> addPost(data)
 
-		// if something's not filled out pass that back to form to display error
-		// if everything's not filled out ???
-		// if everything's filled out and !creating -> editPost(postId, data)
-		// if everything's filled out and creating -> addPost(data)
-
-		// modify create and update actions+utils so that history is passed in and new url is pushed
-			// - either way go to the new/modded post
 		// ?modify delete actions+utils so that history is passed in and new url is pushed?
 			// - go to the category page
 
-		if (!creating) {
+		if (isBlank || isMissingInfo) {
+			this.setState({message: 'Please fill out all entries.'});
+		} else if (!creating) {
 			return this.props.editPost({ ...newPost, id: this.props.match.params.id }, history);
-		} else if (isBlank || isMissingInfo) {
-			// deal with blanks
 		} else {
 			return this.props.addPost(newPost, history);
 		}
-
-		// if you get BLANK STATE back then everything is
-			// ? need to setup a post method in utils and adjust actions????
 	};
 
 	componentDidMount () {
@@ -63,7 +62,13 @@ class CreateEditContainer extends React.Component {
 		const currentCategory = currentPost ? currentPost.category : this.props.match.params.category;
 		return (
 			<Route render={({history}) => (
-				<CreateEdit history={history} post={currentPost} category={currentCategory} handleSubmit={this.handleSubmit} />
+				<CreateEdit
+					message={this.state.message}
+					history={history}
+					post={currentPost}
+					category={currentCategory}
+					handleSubmit={this.handleSubmit}
+				/>
 			)}/>
 		);
 	}

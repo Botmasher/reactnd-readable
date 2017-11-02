@@ -9,7 +9,13 @@
   animation: header-enter 1s ease-in-out;
 }
 
+@keyframes header-enter {
+  from { margin-left: 200px; }
+  to { margin-left: 0px; }
+}
+
 /* Create-Edit post form */
+
 input[type=text], textarea {
 	width: 50%;
 	padding: 5px;
@@ -36,7 +42,11 @@ input[type=submit] {
 	width: 50px;
 }
 
-@keyframes header-enter {
-  from { margin-left: 200px; }
-  to { margin-left: 0px; }
+.input-message {
+	width: 500px;
+	margin: 8px 0;
+	text-align: center;
+	background-color: #ff9191;
+	border-radius: 3px;
+	border: 1px solid red;
 }
