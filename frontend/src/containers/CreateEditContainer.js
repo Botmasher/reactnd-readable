@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CreateEdit from '../components/CreateEdit';
-import { readPost, addPost } from '../actions';
+import { readPost, addPost, editPost } from '../actions';
 import { Route } from 'react-router-dom';
 
 class CreateEditContainer extends React.Component {
 
-	handleSubmit = (event, newPostState, history) => {
+	handleSubmit = (event, formState, history) => {
 		event.preventDefault();
 		
-		const newPost = {...newPostState};
+		const newPost = {...formState};
 
 		// fill in unchanged edited post info from store
 		Object.keys(newPost).map(postProperty => {
@@ -19,20 +19,30 @@ class CreateEditContainer extends React.Component {
 			;
 		});
 
-		const isCreated = !this.props.posts[this.props.match.params.id];
-		const isBlank = Object.values(newPostState).filter(value => value !== '').length === 0;
-		const isMissingInfo = Object.values(newPostState).filter(value => value === '').length > 0;
+		const creating = !this.props.posts[this.props.match.params.id];
+		const isBlank = Object.values(newPost).filter(value => value !== '').length === 0;
+		const isMissingInfo = Object.values(newPost).filter(value => value === '').length > 0;
 
 		console.log(newPost);
 
-		if (isCreated) {
-			this.props.addPost(postState);
-		//	const postId = // the return value from that operation!
-		//	history.push(`/posts/${postId}`);
-		} else if (isBlank) {
-			// nothing to do
+		// "filled out" post: merged oldPost and newPost data gave all values nonempty strings
+
+		// if something's not filled out pass that back to form to display error
+		// if everything's not filled out ???
+		// if everything's filled out and !creating -> editPost(postId, data)
+		// if everything's filled out and creating -> addPost(data)
+
+		// modify create and update actions+utils so that history is passed in and new url is pushed
+			// - either way go to the new/modded post
+		// ?modify delete actions+utils so that history is passed in and new url is pushed?
+			// - go to the category page
+
+		if (!creating) {
+			return this.props.editPost({ ...newPost, id: this.props.match.params.id }, history);
+		} else if (isBlank || isMissingInfo) {
+			// deal with blanks
 		} else {
-			// this.props.editPost(this.props.match.params.id, postState);
+			return this.props.addPost(newPost, history);
 		}
 
 		// if you get BLANK STATE back then everything is
@@ -54,7 +64,7 @@ class CreateEditContainer extends React.Component {
 		return (
 			<Route render={({history}) => (
 				<CreateEdit history={history} post={currentPost} category={currentCategory} handleSubmit={this.handleSubmit} />
-			)}>
+			)}/>
 		);
 	}
 }
@@ -67,7 +77,8 @@ function mapStateToProps({ posts, comments }) {
 function mapDispatchToProps(dispatch) {
 	return {
 		readPost: (postId) => dispatch(readPost(postId)),
-		addPost: () => dispatch(addPost())
+		addPost: (details, history) => dispatch(addPost(details, history)),
+		editPost: (details, history) => dispatch(editPost(details, history))
 	};
 }
 

@@ -36,11 +36,13 @@ function asyncRequest() {
 	return {type: ASYNC_REQUEST};
 }
 
-function asyncRequestReceive(apiCall, receiveCall) {
+function asyncRequestReceive(apiCall, receiveCall, history=null) {
 	return function(dispatch) {
 		dispatch(asyncRequest());
 		return apiCall.method(...apiCall.params)
-			.then(data => dispatch(receiveCall(data)));
+			.then((data) => {
+				history ? dispatch(receiveCall(data, history)) : dispatch(receiveCall(data));
+			});
 	};
 }
 
@@ -81,12 +83,13 @@ export function readCategoryPosts(category) {
 // Create
 
 export const ADD_POST = 'ADD_POST';
-function receiveAddPost(post) {
+function receiveAddPost(post, history) {
+	history.push(`/posts/${post.id}`);
 	return {type: ADD_POST, post};
 }
-export function addPost(details) {
+export function addPost(details, history) {
 	const post = { ...details, id: uuid(), timestamp: Date.now() };
-	return asyncRequestReceive({method: API.addPost, params: [post]}, receiveAddPost);
+	return asyncRequestReceive({method: API.addPost, params: [post]}, receiveAddPost, history);
 }
 
 export const ADD_COMMENT = 'ADD_COMMENT';
@@ -101,12 +104,13 @@ export function addComment(details) {
 // Update
 
 export const EDIT_POST = 'EDIT_POST';
-function receiveEditPost(post) {
+function receiveEditPost(post, history) {
+	history.push(`/posts/${post.id}`);
 	return {type: EDIT_POST, post};
 }
-export function editPost(details) {
+export function editPost(details, history) {
 	const post = { ...details, timestamp: Date.now() };
-	return asyncRequestReceive({method: API.editPost, params: [post]}, receiveEditPost);
+	return asyncRequestReceive({method: API.editPost, params: [post]}, receiveEditPost, history);
 }
 
 export const EDIT_COMMENT = 'EDIT_COMMENT';

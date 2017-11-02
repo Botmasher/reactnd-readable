@@ -12,10 +12,9 @@ class CreateEdit extends React.Component {
 	};
 
 	render() {
-		console.log(this.state);
 		return (
 			<div>
-				<form onSubmit={(event) => this.props.handleSubmit(event, this.state, history)}>
+				<form onSubmit={(event) => this.props.handleSubmit(event, this.state, this.props.history)}>
 					<label htmlFor="title">Title</label>
 					<input
 						type="text"
