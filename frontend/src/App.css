@@ -1,8 +1,16 @@
 
 /* logo and header */
+.page-header {
+	background-color: #e3c9ff;
+}
+
 .page-header h1, .page-header ul, .page-header li {
   display: inline;
   margin: 0 30px 0 0;
+}
+
+.page-header h1 {
+  font-size: 30px;
 }
 
 .page-header ul {
@@ -12,6 +20,17 @@
 @keyframes header-enter {
   from { margin-left: 200px; }
   to { margin-left: 0px; }
+}
+
+/* Post detail */
+
+h1 {
+	font-size: 24px;
+}
+
+.post-edit-delete a {
+	font-size: 12px;
+	margin-left: 15px;
 }
 
 /* Create-Edit post form */
@@ -29,13 +48,18 @@ textarea {
 }
 
 input[type=submit] {
-	background-color: blue;
+	background-color: purple;
+	border-radius: 3px;
 	color: white;
 	border: none;
 	cursor: pointer;
 	font-size: 15px;
 	padding: 7px;
 	margin: 5px 0;
+}
+
+.input-cancel {
+	margin-left: 10px;
 }
 
 .input-category {

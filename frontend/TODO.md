@@ -94,6 +94,8 @@
 	- [X] comments with controls as displayed in Post Detail view
 	- [ ] post as displayed in Root view, Category view and Post Detail view
 - [ ] style the app to be "presentable and easy to navigate"
+- [ ] switch catch 404 routes
+- [ ] store route strings separately
 
 ## Testing
 - [X] install React devtools

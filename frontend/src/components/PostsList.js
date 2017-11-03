@@ -12,7 +12,7 @@ function PostsList(props) {
 			<ul>
 				{props.posts.map(post => (
 					<li key={post.id}>
-						<Link to={`/posts/${post.id}`}>{post.title}</Link> Like Dislike {post.voteScore}
+						<Link to={`/post/${post.id}`}>{post.title}</Link> Like Dislike {post.voteScore}
 						<br/>by {post.author} on {formatDate(post.timestamp)}
 					</li>
 				))}

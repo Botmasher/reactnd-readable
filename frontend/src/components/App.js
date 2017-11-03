@@ -88,13 +88,11 @@ class App extends React.Component {
 
 				<Switch>
 					
-					<Route exact path="/posts/create/:category" component={CreateEditContainer} />
+					<Route exact path="/post/create/:category?" component={CreateEditContainer} />
 
-					<Route exact path="/posts/create/" component={CreateEditContainer} />
+					<Route exact path="/post/:id/edit" component={CreateEditContainer} />
 
-					<Route exact path="/posts/edit/:id" component={CreateEditContainer} />
-
-					<Route exact path="/posts/:id" component={PostDetailContainer} />
+					<Route exact path="/post/:id" component={PostDetailContainer} />
 
 					<Route exact path="/test" render={() => (
 						<div>

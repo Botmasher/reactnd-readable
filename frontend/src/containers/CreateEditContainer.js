@@ -14,35 +14,37 @@ class CreateEditContainer extends React.Component {
 	handleSubmit = (event, formState, history) => {
 		event.preventDefault();
 		
-		const newPost = {...formState};
-
+		const postId = this.props.match.params.id;
+		const categoryId = this.props.match.params.category;
+		const editedPost = postId ? this.props.posts[postId] : null;
+	
 		// fill in unchanged edited post info from store
-		Object.keys(newPost).map(postProperty => {
-			newPost[postProperty] = !newPost[postProperty] && this.props.match.params.id
-				? this.props.posts[this.props.match.params.id][postProperty]
-				: newPost[postProperty]
-			;
-		});
+		const newPost = editedPost
+			? {
+					...formState,
+					title: formState.title ? formState.title : editedPost.title,
+					body: formState.body ? formState.body : editedPost.body,
+					author: formState.author ? formState.author : editedPost.author,
+					category: formState.category ? formState.category : editedPost.category,
+					id: postId
+				}
+			: { 
+					...formState,
+					category: categoryId && !formState.category ? categoryId : formState.category
+				};
 
-		const creating = !this.props.posts[this.props.match.params.id];
+		const creating = !editedPost;
 		const isBlank = Object.values(newPost).filter(value => value !== '').length === 0;
 		const isMissingInfo = Object.values(newPost).filter(value => value === '').length > 0;
+		const isUnchanged = !creating && Object.keys(newPost).filter(key => newPost[key] !== editedPost[key]).length === 0;
 
-		console.log(isMissingInfo);
-
-		// "filled out" post: merged oldPost and newPost data gave all values nonempty strings
-			// if something's not filled out pass that back to form to display error
-			// if everything's not filled out ???
-			// if everything's filled out and !creating -> editPost(postId, data)
-			// if everything's filled out and creating -> addPost(data)
-
-		// ?modify delete actions+utils so that history is passed in and new url is pushed?
-			// - go to the category page
-
-		if (isBlank || isMissingInfo) {
-			this.setState({message: 'Please fill out all entries.'});
+		if (isUnchanged) {
+			console.log("unchanged!");
+			return this.setState({message: 'No changes made to post.'});
+		} else if (isBlank || isMissingInfo) {
+			return this.setState({message: 'Please fill out all entries.'});
 		} else if (!creating) {
-			return this.props.editPost({ ...newPost, id: this.props.match.params.id }, history);
+			return this.props.editPost(newPost, history);
 		} else {
 			return this.props.addPost(newPost, history);
 		}
@@ -53,8 +55,6 @@ class CreateEditContainer extends React.Component {
 		if (postId) {
 			this.props.readPost(postId);	
 		}
-		// NOPE just bring in data from URL: /create/:category/, /create/ edit/
-		// - dispatch action .addPost(post), but how to send to the right page after?
 	}
 
 	render() {

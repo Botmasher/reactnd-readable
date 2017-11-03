@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class CreateEdit extends React.Component {
 	
@@ -14,7 +15,9 @@ class CreateEdit extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className="input-message"><p>{this.props.message}</p></div>
+				{this.props.message && (
+					<div className="input-message"><p>{this.props.message}</p></div>
+				)}
 				<form onSubmit={(event) => this.props.handleSubmit(event, this.state, this.props.history)}>
 					<label htmlFor="title">Title</label>
 					<input
@@ -49,26 +52,11 @@ class CreateEdit extends React.Component {
 						onChange={this.changeValue}
 					/>
 					<input type="submit" value="Submit" />
+					<Link
+						className="input-cancel"
+						to={this.props.post ? `/post/${this.props.post.id}` : this.props.category ? `/${this.props.category}` : `/`}
+					>cancel</Link>
 				</form>
-				Create/Edit View
-				<ul>
-					<li>should have a form to create new post or edit existing posts</li>
-					<li>when editing, existing data should be populated in the form</li>
-
-					Can work for both post and comment?
-
-					Type: 	presentation, form, receive data from PostDetail component
-
-					Props: 	- existing data for post to edit
-									- handler for submitting data
-
-					State: 	- controlled component
-
-					Seletors: 	- none
-
-					Links: 	- home or just category
-									- back up to PostDetail (or just show this on submit?)
-				</ul>
 			</div>
 		);
 	}

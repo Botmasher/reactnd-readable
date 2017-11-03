@@ -1,8 +1,7 @@
 import React from 'react';
 import PostsList from './PostsList';
 import SortPosts from './SortPosts';
-
-// TODO functionality to add a post
+import { Link } from 'react-router-dom';
 
 function Category(props) {
 	return (
@@ -13,6 +12,8 @@ function Category(props) {
 			}
 
 			<p>Category title: {props.category}</p>
+
+			<p><Link to={`/post/create/${props.category}`}>+ add post</Link></p>
 
 			<SortPosts sortPosts={props.sortPosts} />
 

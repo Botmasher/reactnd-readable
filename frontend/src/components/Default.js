@@ -1,6 +1,7 @@
 import React from 'react';
 import PostsList from './PostsList';
 import SortPosts from './SortPosts';
+import { Link } from 'react-router-dom';
 
 // TODO functionality to add a post
 
@@ -12,7 +13,7 @@ function Default(props) {
 				: <h2>no posts yet</h2>
 			}
 
-			+ Add a post
+			<p><Link to="/post/create">+ Add post</Link></p>
 
 			<SortPosts sortPosts={props.sortPosts} />
 

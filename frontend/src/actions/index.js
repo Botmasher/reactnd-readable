@@ -84,7 +84,7 @@ export function readCategoryPosts(category) {
 
 export const ADD_POST = 'ADD_POST';
 function receiveAddPost(post, history) {
-	history.push(`/posts/${post.id}`);
+	history.push(`/post/${post.id}`);
 	return {type: ADD_POST, post};
 }
 export function addPost(details, history) {
@@ -105,7 +105,7 @@ export function addComment(details) {
 
 export const EDIT_POST = 'EDIT_POST';
 function receiveEditPost(post, history) {
-	history.push(`/posts/${post.id}`);
+	history.push(`/post/${post.id}`);
 	return {type: EDIT_POST, post};
 }
 export function editPost(details, history) {
@@ -141,11 +141,12 @@ export function voteComment(commentId, up) {
 // Delete
 
 export const DELETE_POST = 'DELETE_POST';
-function receiveDeletePost(post) {
+function receiveDeletePost(post, history) {
+	history.push(`/${post.category}`);
 	return {type: DELETE_POST, post};
 }
-export function deletePost(postId) {
-	return asyncRequestReceive({method: API.deletePost, params: arguments}, receiveDeletePost);
+export function deletePost(postId, history) {
+	return asyncRequestReceive({method: API.deletePost, params: arguments}, receiveDeletePost, history);
 }
 
 export const DELETE_COMMENT = 'DELETE_COMMENT';
