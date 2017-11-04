@@ -39,33 +39,10 @@ function PostDetail(props) {
 				<li>implement comment form however you want (inline, modal, etc.)</li>
 				<li>comments should also have controls for editing or deleting</li>
 
-				Type: 	presentation, receive data from Category commponent
-
-				Split: 	CommentDetail
-
-				Props: 	- one post object
-								- all of the comment objects with parentId matching post object id
-								- handler for editing the post
-								- handler for deleting the post
-								- handler for voting on the post
-								- handler for adding a new comment
+				Props: 	- handler for adding a new comment
 								- handler for voting on comment
 								- handler for editing a comment
 								- handler for deleting a comment
-
-				State: 	- toggle comment input
-
-				Selectors: 	- currently viewed comments
-										- sorting for comments?
-
-				Links: 	- home
-								- category
-								- edit post?
-								- delete post?
-								- add comment (modal?)
-
-				Add a comment.
-
 			</ul>
 		</div>
 	);

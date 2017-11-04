@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostDetail from '../components/PostDetail';
-import Comments from '../components/Comments';
+import CommentsContainer from '../containers/CommentsContainer';
 import { selectCurrentComments } from '../selectors';
 import { readPost, readComments, deletePost, votePost } from '../actions';
 import { Route } from 'react-router-dom';
@@ -14,7 +14,7 @@ class PostDetailContainer extends React.Component {
 	}
 
 	toggleComments = () => {
-		this.setState({showComments: true});
+		this.setState((prevState) => ({showComments: !prevState.showComments}));
 	};
 
 	toggleConfirmDelete = (event) => {
@@ -40,6 +40,7 @@ class PostDetailContainer extends React.Component {
 
 	render() {
 		const post = this.props.posts[this.props.match.params.id];
+		const comments = post ? this.props.selectCurrentComments({comments: this.props.comments, post: post}) : undefined;
 		const showComments = this.state.showComments;
 		return (
 			<Route render={({history}) => (
@@ -55,7 +56,7 @@ class PostDetailContainer extends React.Component {
 					/>
 					<div>
 						{showComments && (
-							<Comments comments={this.props.selectCurrentComments({comments: this.props.comments, post: post})} />
+							<CommentsContainer comments={comments} parentId={post.id} />
 						)}
 					</div>
 				</div>

@@ -89,6 +89,7 @@
 - [ ] build out supporting components for post and comment UI
 	- [X] Post UI
 	- [ ] Comment UI
+	- [ ] rework voting so it's only done once per post/comment
 - [ ] wire up views to display data correctly
 	- [X] use component state to handle form input fields and controlled components for posts
 	- [ ] use component state to handle form input fields and controlled components for comments
@@ -121,6 +122,7 @@
 
 ## Beyond MVP
 - [ ] custom favicon
+- [ ] pagination for posts and comments lists
 - [ ] localization including dates
 - [ ] implement distinct user objects/models for logging in and permissions
 - [ ] make better use of categories
