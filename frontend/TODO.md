@@ -70,22 +70,28 @@
 - [X] check that Redux dataflow works correctly
 	- [X] each of the events that should CRUD data from Planning above
 	- [X] include displaying posts sorted by timestamp, voteScore (at a minimum)
-- [ ] build out basic components for each of the four views in README.md Specifications
+- [X] build out basic components for each of the four views in README.md Specifications
 	- [X] Root view
 	- [X] Category view
 	- [X] Post Detail view
-	- [ ] Create/Edit view
+	- [X] Create/Edit view
+- [ ] Comments UI
+	- [X] list comments
+	- [ ] handle create
+	- [ ] handle update
+	- [ ] handle delete
 - [ ] Prop types
 - [ ] Routing between components
 	- [X] withRouter around app connect so router links fire when clicked
 	- [X] decisions about handling [url params](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#containersvisibletodolistjs) and passing [link state](https://stackoverflow.com/questions/41466055/how-do-i-pass-state-through-react-router) (category, post id)
 	- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
 	- [ ] get post, comment, category id through URL
-- [ ] build out basic components for post and comment UI
-	- [ ] Post UI
+- [ ] build out supporting components for post and comment UI
+	- [X] Post UI
 	- [ ] Comment UI
 - [ ] wire up views to display data correctly
-	- [ ] use component state to handle form input fields and controlled components
+	- [X] use component state to handle form input fields and controlled components for posts
+	- [ ] use component state to handle form input fields and controlled components for comments
 	- [X] otherwise use your reducers to control the rest of your data
 	- [X] mapPropsToState and mapDispatchToState
 - [ ] break components into smaller pieces

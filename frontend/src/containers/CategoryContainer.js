@@ -4,10 +4,6 @@ import Category from '../components/Category';
 import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
 import { readCategoryPosts } from '../actions';
 
-// create a PostsListing container merging CategoryContainer and DefaultContainer
-	// - simil: sortPosts, have sort state, render posts
-	// - diffs: componentDidMount fetches all posts vs category posts, Category vs Default components rendered
-
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
 	return (state) => (
@@ -31,15 +27,17 @@ class CategoryContainer extends React.Component {
 	}
 
 	render() {
+		const category = this.props.match.params.category;
+		const posts = this.props.selectCategoryPosts({posts: this.props.posts, category});
 		return (
 			<Category
-				category={this.props.match.params.category}
+				category={category}
 				posts={
 					!this.state.sort.property
-						? Object.values(this.props.posts)
+						? Object.values(posts)
 						: this.state.sort.property==='title' || this.state.sort.property==='body'
-							? this.props.selectPostsSortedAlpha({posts: this.props.posts, ...this.state.sort})
-							: this.props.selectPostsSortedNum({posts: this.props.posts, ...this.state.sort})
+							? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
+							: this.props.selectPostsSortedNum({posts, ...this.state.sort})
 				}
 				sortPosts={this.handleSortPosts}
 			/>
