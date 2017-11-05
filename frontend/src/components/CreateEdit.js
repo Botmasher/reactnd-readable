@@ -5,14 +5,18 @@ class CreateEdit extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.state={category: '', title: '', body: '', author: ''};
+		this.state={category: '', title: '', body: '', author: '', changed: []};
 	}
 
 	changeValue = (event) => {
-		this.setState({[event.target.name]: event.target.value});
+		console.log(event.target);
+		this.setState({
+			[event.target.name]: event.target.value,
+			changed: [...this.state.changed, event.target.name]
+		});
 	};
 
-	render() {
+	render() { 
 		return (
 			<div>
 				{this.props.message && (
@@ -24,22 +28,22 @@ class CreateEdit extends React.Component {
 						type="text"
 						name="title"
 						id="title"
-						value={this.props.post && !this.state.title ? this.props.post.title  : this.state.title}
-						onChange={this.changeValue}
+						value={this.props.post && !this.state.title && !this.state.changed.includes('title') ? this.props.post.title  : this.state.title}
+						onChange={(e) => this.changeValue(e)}
 					/>
 					<label htmlFor="author">Author</label>
 					<input
 						type="text"
 						name="author"
 						id="author"
-						value={this.props.post && !this.state.author ? this.props.post.author : this.state.author}
+						value={this.props.post && !this.state.author && !this.state.changed.includes('author') ? this.props.post.author : this.state.author}
 						onChange={this.changeValue}
 					/>
 					<label htmlFor="body">Body</label>
 					<textarea
 						name="body"
 						id="body"
-						value={this.props.post && !this.state.body ? this.props.post.body : this.state.body}
+						value={this.props.post && !this.state.body && !this.state.changed.includes('body') ? this.props.post.body : this.state.body}
 						onChange={this.changeValue}
 					/>
 					<label htmlFor="category">Category</label>
@@ -48,7 +52,7 @@ class CreateEdit extends React.Component {
 						type="text"
 						name="category"
 						id="category"
-						value={this.props.category && !this.state.category ? this.props.category : this.state.category}
+						value={this.props.category && !this.state.category && !this.state.changed.includes('category') ? this.props.category : this.state.category}
 						onChange={this.changeValue}
 					/>
 					<input type="submit" value="Submit" />

@@ -11,8 +11,7 @@ function PostDetail(props) {
 					<a href="/cancel" onClick={(e) => props.toggleConfirmDelete(e)}>No</a>
 				</div>
 			)}
-		
-			Post Detail View
+
 			{props.post && (
 				<div>
 					<h1>
@@ -22,6 +21,7 @@ function PostDetail(props) {
 							<a href="/delete" onClick={(e) => props.toggleConfirmDelete(e)}>delete</a>
 						</span>
 					</h1>
+					<p><em>posted by {props.post.author}</em></p>
 					<p>{props.post.body}</p>
 					<p>
 						{props.post.voteScore}&nbsp;

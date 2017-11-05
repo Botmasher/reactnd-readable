@@ -33,6 +33,12 @@ h1 {
 	margin-left: 15px;
 }
 
+/* Comments */
+
+.comment-details a {
+	margin-left: 10px;
+}
+
 /* Create-Edit post form */
 
 input[type=text], textarea {
