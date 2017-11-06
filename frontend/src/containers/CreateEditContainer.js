@@ -39,7 +39,6 @@ class CreateEditContainer extends React.Component {
 		const isUnchanged = !creating && Object.keys(newPost).filter(key => newPost[key] !== editedPost[key]).length === 0;
 
 		if (isUnchanged) {
-			console.log("unchanged!");
 			return this.setState({message: 'No changes made to post.'});
 		} else if (isBlank || isMissingInfo) {
 			return this.setState({message: 'Please fill out all entries.'});

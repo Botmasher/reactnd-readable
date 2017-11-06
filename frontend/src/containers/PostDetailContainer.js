@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PostDetail from '../components/PostDetail';
 import CommentsContainer from '../containers/CommentsContainer';
-import { selectCurrentComments } from '../selectors';
-import { readPost, readComments, deletePost, votePost } from '../actions';
+import { readPost, deletePost, votePost } from '../actions';
 import { Route } from 'react-router-dom';
 
 class PostDetailContainer extends React.Component {
@@ -23,11 +22,6 @@ class PostDetailContainer extends React.Component {
 		this.state.message==='delete' ? this.setState({message: ''}) : this.setState({message: 'delete'});
 	};
 
-	handleVote = (event, up=true) => {
-		event.preventDefault();
-		this.props.votePost(this.props.match.params.id, up);
-	};
-
 	handleDelete = (event, history) => {
 		event.preventDefault();
 		this.props.deletePost(this.props.match.params.id, history);
@@ -35,12 +29,10 @@ class PostDetailContainer extends React.Component {
 
 	componentDidMount() {
 		this.props.readPost(this.props.match.params.id);
-		this.props.readComments(this.props.match.params.id);
 	}
 
 	render() {
 		const post = this.props.posts[this.props.match.params.id];
-		const comments = post ? this.props.selectCurrentComments({comments: this.props.comments, post: post}) : undefined;
 		const showComments = this.state.showComments;
 		return (
 			<Route render={({history}) => (
@@ -52,13 +44,8 @@ class PostDetailContainer extends React.Component {
 						toggleComments={this.toggleComments}
 						toggleConfirmDelete={this.toggleConfirmDelete}
 						handleDelete={this.handleDelete}
-						handleVote={this.handleVote}
 					/>
-					<div>
-						{showComments && (
-							<CommentsContainer comments={comments} parentId={post.id} />
-						)}
-					</div>
+					<CommentsContainer parentId={this.props.match.params.id} countOnly={!showComments} />
 				</div>
 			)}/>
 		);
@@ -68,15 +55,13 @@ class PostDetailContainer extends React.Component {
 function mapStateToProps({ posts, comments }) {
 	return {
 		posts,
-		comments,
-		selectCurrentComments: selectCurrentComments
+		comments
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		readPost: (postId) => dispatch(readPost(postId)),
-		readComments: (postId) => dispatch(readComments(postId)),
 		deletePost: (postId, history) => dispatch(deletePost(postId, history)),
 		votePost: (postId, up) => dispatch(votePost(postId, up))
 	};

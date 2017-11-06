@@ -9,7 +9,6 @@ class CreateEdit extends React.Component {
 	}
 
 	changeValue = (event) => {
-		console.log(event.target);
 		this.setState({
 			[event.target.name]: event.target.value,
 			changed: [...this.state.changed, event.target.name]

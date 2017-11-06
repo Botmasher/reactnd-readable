@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PostVoteContainer from '../containers/PostVoteContainer';
 
 function PostDetail(props) {
 	return (
@@ -23,11 +24,7 @@ function PostDetail(props) {
 					</h1>
 					<p><em>posted by {props.post.author}</em></p>
 					<p>{props.post.body}</p>
-					<p>
-						{props.post.voteScore}&nbsp;
-						<a href={`/post/${props.post.id}`} onClick={(e) => props.handleVote(e)}>+1</a>&nbsp;
-						<a href={`/post/${props.post.id}`} onClick={(e) => props.handleVote(e, false)}>-1</a>
-					</p>
+					<PostVoteContainer postId={props.post.id} voteScore={props.post.voteScore} />
 					<button onClick={() => props.toggleComments()}>Toggle comments</button>
 				</div>
 			)}

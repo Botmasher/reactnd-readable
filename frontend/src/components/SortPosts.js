@@ -3,6 +3,7 @@ import React from 'react';
 function SortPosts (props) {
 	return (
 		<select onChange={(e) => props.sortPosts(e.target.value)}>
+			<option value="default">default</option>
 			<option value="timestamp-desc">newest to oldest</option>
 			<option value="timestamp-asc">oldest to newest</option>
 			<option value="voteScore-desc">highest rated</option>

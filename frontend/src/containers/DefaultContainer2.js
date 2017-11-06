@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Category from '../components/Category';
 import Default from '../components/Default';
 import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
-import { readPosts, readCategoryPosts, votePost } from '../actions';
+import { readPosts } from '../actions';
 
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
@@ -16,7 +15,7 @@ class DefaultContainer extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.state = {sort: {property: 'default', ascending: false}};
+		this.state = {sort: {property: '', ascending: false}};
 	}
 
 	handleSortPosts = (optionValue) => {
@@ -24,43 +23,34 @@ class DefaultContainer extends React.Component {
 	};
 
 	componentDidMount() {
-		this.props.match.params.category
-			? this.props.readCategoryPosts(this.props.match.params.category)
-			: this.props.readPosts();
-		;
+		this.props.readPosts();
 	}
 
 	render() {
-		const category = this.props.match && this.props.match.params.category ? this.props.match.params.category : null;
-		const posts = category ? this.props.selectCategoryPosts({posts: this.props.posts, category}) : this.props.posts;
 		return (
-			<div>
-			{category
+			{this.props.match.params.category
 				? <Category
 						category={category}
 						posts={
-							!this.state.sort.property || this.state.sort.property==='default'
+							!this.state.sort.property
 								? Object.values(posts)
 								: this.state.sort.property==='title' || this.state.sort.property==='body'
 									? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
 									: this.props.selectPostsSortedNum({posts, ...this.state.sort})
 						}
-						comments={this.props.comments}
 						sortPosts={this.handleSortPosts}
 					/>
 				: <Default
 						posts={
 							!this.state.sort.property || this.state.sort.property==='default'
-								? Object.values(posts)
+								? Object.values(this.props.posts)
 								: this.state.sort.property==='title' || this.state.sort.property==='author'
-									? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
-									: this.props.selectPostsSortedNum({posts, ...this.state.sort})
+									? this.props.selectPostsSortedAlpha({posts: this.props.posts, ...this.state.sort})
+									: this.props.selectPostsSortedNum({posts: this.props.posts, ...this.state.sort})
 						}
-						comments={this.props.comments}
 						sortPosts={this.handleSortPosts}
 					/>
 			}
-			</div>
 		);
 	}
 }
@@ -77,9 +67,7 @@ function mapStateToProps({ posts, comments }) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		readPosts: () => dispatch(readPosts()),
-		readCategoryPosts: (category) => dispatch(readCategoryPosts(category)),
-		votePost: (postId, up) => dispatch(votePost(postId, up))
+		readPosts: () => dispatch(readPosts())
 	};
 }
 

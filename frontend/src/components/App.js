@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TestAPI from './TestAPI';
-import CategoryContainer from '../containers/CategoryContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
 import DefaultContainer from '../containers/DefaultContainer';
 import CreateEditContainer from '../containers/CreateEditContainer';
@@ -125,9 +124,7 @@ class App extends React.Component {
 						</div>
 					)} />
 
-					<Route exact path="/:category" component={CategoryContainer} />
-
-					<Route exact path="/" component={DefaultContainer} />
+					<Route exact path="/:category?" component={DefaultContainer} />
 
 				</Switch>
 
