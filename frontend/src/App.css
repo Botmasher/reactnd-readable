@@ -46,11 +46,14 @@ h1 {
 /* Create-Edit post form */
 
 input[type=text], textarea {
-	width: 50%;
+	width: 400px;
 	padding: 5px;
 	margin: 5px 0;
 	display: block;
 	border-radius: 3px;
+}
+
+input[type=text]:focus {
 }
 
 textarea {

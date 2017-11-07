@@ -5,24 +5,15 @@ import { selectCurrentComments } from '../selectors';
 import { readComments, addComment, editComment, deleteComment, voteComment } from '../actions';
 
 class CommentsContainer extends React.Component {
-	// if you want inline do this instead:
-		// - Comment component vs CommentCreateEdit component
-		// - iterate through props.comments and decide which one is being edited
-		// - if one's being edited display the createedit
-		// - if one's being read just display comment
-		// - pass submit prop handler to createedit
-		// - pass comment obj to createedit (if it's null confirm it goes back up to addComment)
 
 	constructor(props) {
 		super(props);
-		this.state={inputId: '', message: '', inputting: true};
+		this.state={inputId: '', message: '', addingNew: true};
 	}
 
 	handleSubmit = (event, details) => {
 		event.preventDefault();
-
 		const editedComment = details.id ? this.props.comments[details.id] : null;
-	
 		const newComment = editedComment
 			? {
 					...details,
@@ -40,10 +31,10 @@ class CommentsContainer extends React.Component {
 		if (isMissingInfo) {
 			return this.setState({message: 'Please fill out your comment.'});
 		} else if (editedComment) {
-			this.setState({inputId: '', message: '', inputting: false});
+			this.setState({inputId: '', message: '', addingNew: false});
 			return this.props.editComment(newComment);
 		} else {
-			this.setState({inputId: '', message:'', inputting: false});
+			this.setState({inputId: '', message: '', addingNew: false});
 			return this.props.addComment(newComment);
 		}
 	};
@@ -60,12 +51,12 @@ class CommentsContainer extends React.Component {
 
 	setAsInputting = (event, commentId) => {
 		event.preventDefault();
-		this.setState({inputId: commentId});
+		this.setState({inputId: commentId, message: ''});
 	};
 
-	toggleInputting = (event) => {
+	enableAddingNew = (event) => {
 		event.preventDefault();
-		this.setState({inputting: true});
+		this.setState({inputId: '', message: '', addingNew: true});
 	};
 
 	componentDidMount() {
@@ -79,19 +70,17 @@ class CommentsContainer extends React.Component {
 		return (
 			<div>
 				{comments.length} comments
-				{comments && !this.props.countOnly && (
-					<CommentsList
-						comments={comments}
-						inputId={this.state.inputId}
-						message={this.state.message}
-						inputting={this.state.inputting}
-						toggleInputting={this.toggleInputting}
-						setAsInputting={this.setAsInputting}
-						handleVote={this.handleVote}
-						handleDelete={this.handleDelete}
-						handleSubmit={this.handleSubmit}
-					/>
-				)}
+				<CommentsList
+					comments={comments}
+					inputId={this.state.inputId}
+					message={this.state.message}
+					addingNew={this.state.addingNew}
+					enableAddingNew={this.enableAddingNew}
+					setAsInputting={this.setAsInputting}
+					handleVote={this.handleVote}
+					handleDelete={this.handleDelete}
+					handleSubmit={this.handleSubmit}
+				/>
 			</div>
 		);
 	}

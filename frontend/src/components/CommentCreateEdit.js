@@ -12,18 +12,16 @@ class CommentCreateEdit extends React.Component {
 
 	submit = (event) => {
 		const details = this.props.details ? {...this.props.details, ...this.state} : this.state;
-		this.setState({body: '', author: ''});
 		this.props.handleSubmit(event, details);
 	};
 
-	// - update to use a <form /> here
  	render() {
 		return (
-			<div className="comment-input">
+			<li key={this.props.details ? this.props.details.id : "newcomment"} className="comment-input">
 				{this.props.message && (
 					<div className="input-message">{this.props.message}</div>
 				)}
-				<textarea
+				<textarea autoFocus 
 					text={this.state.body}
 					name="body"
 					onChange={this.handleTextInput}
@@ -39,7 +37,7 @@ class CommentCreateEdit extends React.Component {
 					: <p>{this.props.details.author}</p>
 				}
 				<a href="" onClick={this.submit}>ok</a>
-			</div>
+			</li>
 		);		
 	}
 }
