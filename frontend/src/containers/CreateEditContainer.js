@@ -73,7 +73,6 @@ class CreateEditContainer extends React.Component {
 	}
 }
 
-
 function mapStateToProps({ posts, comments }) {
 	return { posts, comments };
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class CommentCreateEdit extends React.Component {
 	constructor(props) {
@@ -41,5 +42,10 @@ class CommentCreateEdit extends React.Component {
 		);		
 	}
 }
+
+CommentCreateEdit.propTypes = {
+	message: PropTypes.string,
+	details: PropTypes.object
+};
 
 export default CommentCreateEdit;

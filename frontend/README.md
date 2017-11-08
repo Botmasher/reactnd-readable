@@ -8,6 +8,7 @@ From Udacity: This content and comment structure is common across a large number
 
 ## Getting Started
 For the backend: open `./api-server` and start the server with `node server.js`
+(Clarify these directions please! What do I need to do to install and run the backend server?)
 
 For the frontend: open `./frontend` and start the app with `npm start`
 

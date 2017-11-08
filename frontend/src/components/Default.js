@@ -2,8 +2,7 @@ import React from 'react';
 import PostsList from './PostsList';
 import SortPosts from './SortPosts';
 import { Link } from 'react-router-dom';
-
-// TODO functionality to add a post
+import PropTypes from 'prop-types';
 
 function Default(props) {
 	return (
@@ -17,12 +16,17 @@ function Default(props) {
 
 			List all available categories here too!
 
-			<SortPosts sortPosts={props.sortPosts} />
+			{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}
 
 			<PostsList posts={props.posts} />
 
 		</div>
 	);
 }
+
+Default.propTypes = {
+	posts: PropTypes.array.isRequired,
+	sortPosts: PropTypes.func.isRequired
+};
 
 export default Default;

@@ -75,11 +75,11 @@
 	- [X] Category view
 	- [X] Post Detail view
 	- [X] Create/Edit view
-- [ ] Comments UI
+- [X] Comments UI
 	- [X] list comments
-	- [ ] handle create
-	- [ ] handle update
-	- [ ] handle delete
+	- [X] handle create
+	- [X] handle update
+	- [X] handle delete
 - [ ] Prop types
 - [ ] Routing between components
 	- [X] withRouter around app connect so router links fire when clicked
@@ -88,11 +88,11 @@
 	- [ ] get post, comment, category id through URL
 - [ ] build out supporting components for post and comment UI
 	- [X] Post UI
-	- [ ] Comment UI
+	- [X] Comment UI
 	- [ ] rework voting so it's only done once per post/comment
-- [ ] wire up views to display data correctly
+- [X] wire up views to display data correctly
 	- [X] use component state to handle form input fields and controlled components for posts
-	- [ ] use component state to handle form input fields and controlled components for comments
+	- [X] use component state to handle form input fields and controlled components for comments
 	- [X] otherwise use your reducers to control the rest of your data
 	- [X] mapPropsToState and mapDispatchToState
 - [ ] break components into smaller pieces

@@ -25,22 +25,8 @@ function PostDetail(props) {
 					<p><em>posted by {props.post.author}</em></p>
 					<p>{props.post.body}</p>
 					<PostVoteContainer postId={props.post.id} voteScore={props.post.voteScore} />
-					<button onClick={() => props.toggleComments()}>Toggle comments</button>
 				</div>
 			)}
-			<ul>
-				<li>should show the details of a post, including: Title, Body, Author, timestamp (in user readable format), and vote score</li>
-				<li>should list all of the comments for that post, ordered by voteScore (highest first)</li>
-				<li>should have controls to edit or delete the post</li>
-				<li>should have a control to add a new comment</li>
-				<li>implement comment form however you want (inline, modal, etc.)</li>
-				<li>comments should also have controls for editing or deleting</li>
-
-				Props: 	- handler for adding a new comment
-								- handler for voting on comment
-								- handler for editing a comment
-								- handler for deleting a comment
-			</ul>
 		</div>
 	);
 }

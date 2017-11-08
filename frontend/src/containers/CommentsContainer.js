@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CommentsList from '../components/CommentsList';
 import { selectCurrentComments } from '../selectors';
 import { readComments, addComment, editComment, deleteComment, voteComment } from '../actions';
+import PropTypes from 'prop-types';
 
 class CommentsContainer extends React.Component {
 
@@ -70,17 +71,19 @@ class CommentsContainer extends React.Component {
 		return (
 			<div>
 				{comments.length} comments
-				<CommentsList
-					comments={comments}
-					inputId={this.state.inputId}
-					message={this.state.message}
-					addingNew={this.state.addingNew}
-					enableAddingNew={this.enableAddingNew}
-					setAsInputting={this.setAsInputting}
-					handleVote={this.handleVote}
-					handleDelete={this.handleDelete}
-					handleSubmit={this.handleSubmit}
-				/>
+				{!this.props.countOnly && (
+					<CommentsList
+						comments={comments}
+						inputId={this.state.inputId}
+						message={this.state.message}
+						addingNew={this.state.addingNew}
+						enableAddingNew={this.enableAddingNew}
+						setAsInputting={this.setAsInputting}
+						handleVote={this.handleVote}
+						handleDelete={this.handleDelete}
+						handleSubmit={this.handleSubmit}
+					/>
+				)}
 			</div>
 		);
 	}
@@ -102,5 +105,10 @@ function mapDispatchToProps(dispatch) {
 		deleteComment: (commentId) => dispatch(deleteComment(commentId))
 	};
 }
+
+CommentsContainer.propTypes = {
+	parentId: PropTypes.string.isRequired,
+	countOnly: PropTypes.bool
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentsContainer);

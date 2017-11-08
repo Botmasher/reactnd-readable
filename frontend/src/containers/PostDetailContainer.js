@@ -9,10 +9,11 @@ class PostDetailContainer extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {showComments: false, message: ''};
+		this.state = {showComments: true, message: ''};
 	}
 
-	toggleComments = () => {
+	toggleComments = (event) => {
+		event.preventDefault();
 		this.setState((prevState) => ({showComments: !prevState.showComments}));
 	};
 

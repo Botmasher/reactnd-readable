@@ -83,7 +83,7 @@ class App extends React.Component {
 		return (
 			<div>
 
-				<PageHeader />
+				<PageHeader categories={['react', 'redux']} />
 
 				<Switch>
 					

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Comment(props) {
 	const comment = props.details
@@ -13,5 +14,12 @@ function Comment(props) {
 		</li>
 	);
 }
+
+Comment.propTypes = {
+	details: PropTypes.object.isRequired,
+	handleVote: PropTypes.func.isRequired,
+	setAsInputting: PropTypes.func.isRequired,
+	handleDelete: PropTypes.func.isRequired,
+};
 
 export default Comment;

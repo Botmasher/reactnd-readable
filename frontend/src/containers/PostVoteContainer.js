@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PostVote from '../components/PostVote';
 import { votePost } from '../actions';
+import PropTypes from 'prop-types';
 
 class PostVoteContainer extends React.Component {
 
@@ -26,5 +27,10 @@ function mapDispatchToProps(dispatch) {
 		votePost: (postId, up) => dispatch(votePost(postId, up))
 	};
 }
+
+PostVoteContainer.propTypes = {
+	postId: PropTypes.string.isRequired,
+	voteScore: PropTypes.number.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostVoteContainer);

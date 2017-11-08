@@ -1,8 +1,7 @@
 import React from 'react';
 import Comment from '../components/Comment';
 import CommentCreateEdit from '../components/CommentCreateEdit';
-
-// figure out how to toggle off editing when someone clicks your Add Comment button
+import PropTypes from 'prop-types';
 
 function CommentsList(props) {
 	return (
@@ -34,5 +33,15 @@ function CommentsList(props) {
 		</ul>
 	);
 }
+
+CommentsList.propTypes = {
+	comments: PropTypes.array.isRequired,
+	message: PropTypes.string,
+	enableAddingNew: PropTypes.func,
+	setAsInputting: PropTypes.func,
+	handleSubmit: PropTypes.func,
+	handleVote: PropTypes.func,
+	handleDelete: PropTypes.func
+};
 
 export default CommentsList;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function PostVote(props) {
 	return (
@@ -9,5 +10,10 @@ function PostVote(props) {
 		</div>
 	);
 }
+
+PostVote.propTypes = {
+	postId: PropTypes.string.isRequired,
+	voteScore: PropTypes.number.isRequired
+};
 
 export default PostVote;

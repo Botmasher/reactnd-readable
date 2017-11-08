@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class CreateEdit extends React.Component {
 	
@@ -15,7 +16,7 @@ class CreateEdit extends React.Component {
 		});
 	};
 
-	render() { 
+	render() {
 		return (
 			<div>
 				{this.props.message && (
@@ -64,5 +65,12 @@ class CreateEdit extends React.Component {
 		);
 	}
 }
+
+CreateEdit.propTypes = {
+	history: PropTypes.object.isRequired,
+	message: PropTypes.string,
+	post: PropTypes.object,
+	category: PropTypes.string
+};
 
 export default CreateEdit;

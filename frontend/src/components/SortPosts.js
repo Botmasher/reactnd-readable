@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function SortPosts (props) {
 	return (
@@ -13,5 +14,9 @@ function SortPosts (props) {
 		</select>
 	);
 }
+
+SortPosts.propTypes = {
+	sortPosts: PropTypes.func.isRequired
+};
 
 export default SortPosts;

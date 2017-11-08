@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PostVoteContainer from '../containers/PostVoteContainer';
 import CommentsContainer from '../containers/CommentsContainer';
+import PropTypes from 'prop-types';
 
 function formatDate(timestamp) {
 	const date = new Date(parseInt(timestamp, 10));
@@ -24,5 +25,9 @@ function PostsList(props) {
 		</div>
 	);
 }
+
+PostsList.propTypes = {
+	posts: PropTypes.array.isRequired
+};
 
 export default PostsList;
