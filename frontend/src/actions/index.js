@@ -75,8 +75,8 @@ export function readCategoryPosts(category) {
 }
 
 export const READ_CATEGORIES = 'READ_CATEGORIES';
-function receiveReadCategories(categories) {
-	return {type: READ_CATEGORIES, categories};
+function receiveReadCategories(responseData) {
+	return {type: READ_CATEGORIES, categories: responseData.categories};
 }
 export function readCategories() {
 	return asyncRequestReceive({method: API.getCategories, params: []}, receiveReadCategories);

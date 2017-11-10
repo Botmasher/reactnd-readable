@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
 import Default from '../components/Default';
-import { selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
+import { selectCategories, selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
 import { readCategories, readPosts, readCategoryPosts, votePost } from '../actions';
+import { Link } from 'react-router-dom';
 
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
@@ -50,23 +51,25 @@ class DefaultContainer extends React.Component {
 						sortPosts={this.handleSortPosts}
 					/>
 				: <div>
-						<ul>
-							{Object.keys(this.props.categories).map(categoryName => (
-								<li key={categoryName}>{this.props.categories[categoryName]}</li>
-							))}
-						</ul>
+						<div>
+							<ul>
+								{this.props.selectCategories({categories: this.props.categories}).map(categoryInfo => (
+									<li key={categoryInfo.path}><Link to={`/${categoryInfo.path}`}>{categoryInfo.name}</Link></li>
+								))}
+							</ul>
+						</div>
+						<Default
+							posts={
+								!this.state.sort.property || this.state.sort.property==='default'
+									? Object.values(posts)
+									: this.state.sort.property==='title' || this.state.sort.property==='author'
+										? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
+										: this.props.selectPostsSortedNum({posts, ...this.state.sort})
+							}
+							comments={this.props.comments}
+							sortPosts={this.handleSortPosts}
+						/>
 					</div>
-					<Default
-						posts={
-							!this.state.sort.property || this.state.sort.property==='default'
-								? Object.values(posts)
-								: this.state.sort.property==='title' || this.state.sort.property==='author'
-									? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
-									: this.props.selectPostsSortedNum({posts, ...this.state.sort})
-						}
-						comments={this.props.comments}
-						sortPosts={this.handleSortPosts}
-					/>
 			}
 			</div>
 		);
@@ -78,6 +81,7 @@ function mapStateToProps({ posts, comments, categories }) {
 		posts,
 		comments,
 		categories,
+		selectCategories: selectCategories,
 		selectCategoryPosts: selectCategoryPosts,
 		selectPostsSortedNum: selectPostsSortedNum,
 		selectPostsSortedAlpha: selectPostsSortedAlpha

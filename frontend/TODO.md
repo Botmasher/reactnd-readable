@@ -81,11 +81,10 @@
 	- [X] handle update
 	- [X] handle delete
 - [X] Prop types
-- [ ] Routing between components
+- [X] Routing between components
 	- [X] withRouter around app connect so router links fire when clicked
 	- [X] decisions about handling [url params](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#containersvisibletodolistjs) and passing [link state](https://stackoverflow.com/questions/41466055/how-do-i-pass-state-through-react-router) (category, post id)
-	- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
-	- [ ] get post, comment, category id through URL
+	- [X] get post, comment, category id through URL
 - [ ] build out supporting components for post and comment UI
 	- [X] Post UI
 	- [X] Comment UI
@@ -95,14 +94,15 @@
 	- [X] use component state to handle form input fields and controlled components for comments
 	- [X] otherwise use your reducers to control the rest of your data
 	- [X] mapPropsToState and mapDispatchToState
-- [ ] break components into smaller pieces
+- [X] break components into smaller pieces
 	- [X] identify needed [container components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) and [split](https://gist.github.com/chantastic/fc9e3853464dffdb1e3c) from presentation components
 	- [X] break out sort menu and posts listing
 	- [X] comments with controls as displayed in Post Detail view
-	- [ ] post as displayed in Root view, Category view and Post Detail view
-- [ ] style the app to be "presentable and easy to navigate"
-- [ ] switch catch 404 routes
+	- [X] post as displayed in Root view, Category view and Post Detail view
 - [ ] store route strings separately
+- [ ] style the app to be "presentable and easy to navigate"
+	- [ ] trim extra whitespace on input submit
+- [ ] switch catch 404 routes
 
 ## Testing
 - [X] install React devtools
@@ -115,6 +115,7 @@
 - [ ] Test your selectors, actions, reducers [together](https://github.com/reactjs/redux/issues/1171)
 	- [ ] the [ducks approach](https://github.com/reactjs/reselect#motivation-for-memoized-selectors)
 - [ ] Hot loading and time traveling
+- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
 
 ## Issues
 - [ ] Editing a nonexistent post or comment adds an error object as post or comment to the store slice
@@ -127,7 +128,6 @@
 - [ ] implement distinct user objects/models for logging in and permissions
 - [ ] make better use of categories
 	- [ ] categories ui (category list and links) and container to browse, sort, manage categories
-	- [ ] currently obtained from posts
 	- [ ] currently "added" when a post submits a new category string
 	- [ ] currently "deleted" when none have it
 	- [ ] currently "updated" when all posts with a category string change that string

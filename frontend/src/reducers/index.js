@@ -3,6 +3,7 @@ import {
 	READ_POSTS,
 	READ_POST,
 	READ_COMMENTS,
+	READ_CATEGORIES,
 	READ_CATEGORY_POSTS,
 	ADD_POST,
 	ADD_COMMENT,
@@ -101,4 +102,16 @@ function comments(state={}, action) {
 	}
 }
 
-export default combineReducers({ posts, comments });
+function categories(state={}, action) {
+	switch (action.type) {
+		case READ_CATEGORIES:
+			return {
+				...state,
+				...action.categories
+			};
+		default:
+			return state;
+	}
+}
+
+export default combineReducers({ posts, comments, categories });
