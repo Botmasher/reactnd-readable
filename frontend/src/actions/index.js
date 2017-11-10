@@ -20,14 +20,8 @@ import uuid from 'uuid/v4';
 	DELETE /comments/:id 		- delete one comment 							DELETE_COMMENT
  */
 
-// Unused so far
+// Unused
 //export const READ_COMMENT = 'READ_COMMENT';
-
-// TODO - dynamic categories
-//export const READ_CATEGORIES = 'READ_CATEGORIES';
-//export const ADD_CATEGORY = 'ADD_CATEGORY'
-//export const EDIT_CATEGORY = 'EDIT_CATEGORY';
-//export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
 // Async request response
 
@@ -78,6 +72,14 @@ function receiveReadCategoryPosts(posts) {
 }
 export function readCategoryPosts(category) {
 	return asyncRequestReceive({method: API.getCategoryPosts, params: arguments}, receiveReadCategoryPosts);
+}
+
+export const READ_CATEGORIES = 'READ_CATEGORIES';
+function receiveReadCategories(categories) {
+	return {type: READ_CATEGORIES, categories};
+}
+export function readCategories() {
+	return asyncRequestReceive({method: API.getCategories, params: []}, receiveReadCategories);
 }
 
 // Create

@@ -80,7 +80,7 @@
 	- [X] handle create
 	- [X] handle update
 	- [X] handle delete
-- [ ] Prop types
+- [X] Prop types
 - [ ] Routing between components
 	- [X] withRouter around app connect so router links fire when clicked
 	- [X] decisions about handling [url params](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#containersvisibletodolistjs) and passing [link state](https://stackoverflow.com/questions/41466055/how-do-i-pass-state-through-react-router) (category, post id)
