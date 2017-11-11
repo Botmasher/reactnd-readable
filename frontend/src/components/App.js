@@ -5,6 +5,7 @@ import PostDetailContainer from '../containers/PostDetailContainer';
 import DefaultContainer from '../containers/DefaultContainer';
 import CreateEditContainer from '../containers/CreateEditContainer';
 import PageHeader from './PageHeader';
+import PageNotFound from './PageNotFound';
 import { readPosts, readComments, readCategoryPosts, votePost, voteComment, addPost, addComment, editPost, editComment, deletePost, deleteComment } from '../actions';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { selectCurrentCategories, selectCurrentComments, selectCategoryPosts, selectPostsSortedNum, selectPostsSortedAlpha } from '../selectors';
@@ -111,18 +112,12 @@ class App extends React.Component {
 							<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
 							<br/>
 							<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
-
-							ABOUT:
-							Type: 	container, passes to Category or PostDetail or CommentDetail or CreateEdit
-							State: 	redux store
-							Props: 	through react-redux connect, reselect selectors
-							Links: 	none
-							Routes: to specific Category (posts), PostDetail (post), CommentDetail (comment) or CreateEdit (post/comment)
-											TODO also CategoryList (categories)
 						</div>
 					)} />
 
 					<Route exact path="/:category?" component={DefaultContainer} />
+
+					<Route component={PageNotFound} />
 
 				</Switch>
 

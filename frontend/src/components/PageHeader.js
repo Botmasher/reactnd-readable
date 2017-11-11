@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function PageHeader(props) {
 	return (
 		<div className="page-header">
-			<h1 className="logo">Readable!</h1>
+			<h1 className="logo"><Link to="/">Readable!</Link></h1>
 			<ul>
 				<li><Link to="/">all</Link></li>
 				{props.categories.map(category => (

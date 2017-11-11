@@ -14,8 +14,6 @@ function Default(props) {
 
 			<p><Link to="/post/create">+ Add post</Link></p>
 
-			List all available categories here too!
-
 			{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}
 
 			<PostsList posts={props.posts} />

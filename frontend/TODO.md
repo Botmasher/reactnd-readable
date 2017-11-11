@@ -99,7 +99,6 @@
 	- [X] break out sort menu and posts listing
 	- [X] comments with controls as displayed in Post Detail view
 	- [X] post as displayed in Root view, Category view and Post Detail view
-- [ ] store route strings separately
 - [ ] style the app to be "presentable and easy to navigate"
 	- [ ] trim extra whitespace on input submit
 - [ ] switch catch 404 routes
@@ -131,6 +130,7 @@
 	- [ ] currently "added" when a post submits a new category string
 	- [ ] currently "deleted" when none have it
 	- [ ] currently "updated" when all posts with a category string change that string
+- [ ] store route strings separately
 - [ ] add sorting for comments as well within Post Detail view
 - [ ] consider [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
 - [ ] test and optimize for growth in data, cases where iterating over huge numbers of posts and comments

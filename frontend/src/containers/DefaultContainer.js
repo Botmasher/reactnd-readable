@@ -53,6 +53,7 @@ class DefaultContainer extends React.Component {
 				: <div>
 						<div>
 							<ul>
+								<li><Link to="/">all</Link></li>
 								{this.props.selectCategories({categories: this.props.categories}).map(categoryInfo => (
 									<li key={categoryInfo.path}><Link to={`/${categoryInfo.path}`}>{categoryInfo.name}</Link></li>
 								))}
