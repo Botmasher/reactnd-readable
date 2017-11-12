@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
 import Default from '../components/Default';
+import CategoriesList from '../components/CategoriesList';
 import { selectCategories, selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
 import { readCategories, readPosts, readCategoryPosts, votePost } from '../actions';
-import { Link } from 'react-router-dom';
 
 function sortPosts(optionValue) {
 	const [property, ascDesc] = optionValue.split('-');
@@ -33,7 +33,7 @@ class DefaultContainer extends React.Component {
 	}
 
 	render() {
-		const category = this.props.match && this.props.match.params.category ? this.props.match.params.category : null;
+		const category = this.props.match.params.category ? this.props.match.params.category : null;
 		const posts = category ? this.props.selectCategoryPosts({posts: this.props.posts, category}) : this.props.posts;
 		return (
 			<div>
@@ -50,15 +50,8 @@ class DefaultContainer extends React.Component {
 						comments={this.props.comments}
 						sortPosts={this.handleSortPosts}
 					/>
-				: <div>
-						<div>
-							<ul>
-								<li><Link to="/">all</Link></li>
-								{this.props.selectCategories({categories: this.props.categories}).map(categoryInfo => (
-									<li key={categoryInfo.path}><Link to={`/${categoryInfo.path}`}>{categoryInfo.name}</Link></li>
-								))}
-							</ul>
-						</div>
+				: <div className="default-container">
+						<CategoriesList categories={this.props.selectCategories({categories: this.props.categories})} />
 						<Default
 							posts={
 								!this.state.sort.property || this.state.sort.property==='default'

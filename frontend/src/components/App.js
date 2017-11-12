@@ -82,44 +82,46 @@ class App extends React.Component {
 		return (
 			<div>
 
-				<PageHeader categories={['react', 'redux']} />
+				<PageHeader title="Readable" />
 
-				<Switch>
-					
-					<Route exact path="/post/create/:category?" component={CreateEditContainer} />
+				<div className="content-wrapper">
+					<Switch>
+						
+						<Route exact path="/post/create/:category?" component={CreateEditContainer} />
 
-					<Route exact path="/post/:id/edit" component={CreateEditContainer} />
+						<Route exact path="/post/:id/edit" component={CreateEditContainer} />
 
-					<Route exact path="/post/:id" component={PostDetailContainer} />
+						<Route exact path="/post/:id" component={PostDetailContainer} />
 
-					<Route exact path="/test" render={() => (
-						<div>
-							<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
-							TESTS:
-							<button onClick={this.submitTestAddPost}>Test add post</button>
-							<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
-							<button onClick={this.submitTestAddComment}>Test add comment</button>
-							<button onClick={this.submitTestDeleteComment}>Test delete comment</button>
-							<br/>
-							<button onClick={this.submitTestEditPost}>Test edit post</button>
-							<button onClick={this.submitTestEditComment}>Test edit comment</button>
-							<br/>
-							<button onClick={this.submitTestReadOnePost}>Test log post</button>
-							<button onClick={this.submitTestReadOneComment}>Test log comment</button>
-							<br/>
-							<button onClick={this.submitTestReadCategories}>Log all categories</button>
-							<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
-							<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
-							<br/>
-							<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
-						</div>
-					)} />
+						<Route exact path="/test" render={() => (
+							<div>
+								<TestAPI displayThesePosts={Object.values(this.props.posts)} all={false} posts={false} comments={false} />
+								TESTS:
+								<button onClick={this.submitTestAddPost}>Test add post</button>
+								<button onClick={this.submitTestDeletePost}>Test delete post</button>| | 
+								<button onClick={this.submitTestAddComment}>Test add comment</button>
+								<button onClick={this.submitTestDeleteComment}>Test delete comment</button>
+								<br/>
+								<button onClick={this.submitTestEditPost}>Test edit post</button>
+								<button onClick={this.submitTestEditComment}>Test edit comment</button>
+								<br/>
+								<button onClick={this.submitTestReadOnePost}>Test log post</button>
+								<button onClick={this.submitTestReadOneComment}>Test log comment</button>
+								<br/>
+								<button onClick={this.submitTestReadCategories}>Log all categories</button>
+								<button onClick={this.submitTestReadAllCommentsOnPost}>Log all comments on one post</button>
+								<button onClick={this.submitTestReadCategoryPosts}>Log all posts in a single category</button>
+								<br/>
+								<button onClick={this.submitTestSortPosts}>Test sorting posts</button>
+							</div>
+						)} />
 
-					<Route exact path="/:category?" component={DefaultContainer} />
+						<Route exact path="/:category?" component={DefaultContainer} />
 
-					<Route component={PageNotFound} />
+						<Route component={PageNotFound} />
 
-				</Switch>
+					</Switch>
+				</div>
 
 			</div>
 		);

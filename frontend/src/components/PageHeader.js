@@ -3,21 +3,17 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function PageHeader(props) {
+	const titleInitial = props.title.substr(0,1);
+	const titleRest = props.title.substr(1);
 	return (
 		<div className="page-header">
-			<h1 className="logo"><Link to="/">Readable!</Link></h1>
-			<ul>
-				<li><Link to="/">all</Link></li>
-				{props.categories.map(category => (
-					<li key={category}><Link to={`/${category}`}>{category}</Link></li>
-				))}
-			</ul>
+			<h1 className="logo"><Link to="/"><div className="decorated-initial">{titleInitial}</div>{titleRest}</Link></h1>
 		</div>
 	);
 }
 
 PageHeader.propTypes = {
-	categories: PropTypes.array.isRequired
+	title: PropTypes.string.isRequired
 };
 
 export default PageHeader;

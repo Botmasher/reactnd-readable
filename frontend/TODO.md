@@ -101,6 +101,7 @@
 	- [X] post as displayed in Root view, Category view and Post Detail view
 - [ ] style the app to be "presentable and easy to navigate"
 	- [ ] trim extra whitespace on input submit
+	- [ ] truncate categories list beyond certain width in mobile view
 - [ ] switch catch 404 routes
 
 ## Testing

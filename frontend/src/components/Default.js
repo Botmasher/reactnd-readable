@@ -6,15 +6,19 @@ import PropTypes from 'prop-types';
 
 function Default(props) {
 	return (
-		<div>
-			{props.posts.length > 0
-				? <h1>All Posts</h1>
-				: <h2>no posts yet</h2>
-			}
-
-			<p><Link to="/post/create">+ Add post</Link></p>
-
-			{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}
+		<div className="posts-list-wrapper">
+			<div className="posts-list-top">
+				<div className="posts-list-title">
+					{props.posts.length > 0
+						? <h1>All Posts</h1>
+						: <h2>no posts yet</h2>
+					}
+					<Link to="/post/create">+ Add</Link>
+				</div>
+				<div className="posts-sort">
+					{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}
+				</div>
+			</div>
 
 			<PostsList posts={props.posts} />
 
