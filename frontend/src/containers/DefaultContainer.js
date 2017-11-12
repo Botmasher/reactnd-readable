@@ -38,18 +38,20 @@ class DefaultContainer extends React.Component {
 		return (
 			<div>
 			{category
-				? <Category
-						category={category}
-						posts={
-							!this.state.sort.property || this.state.sort.property==='default'
-								? Object.values(posts)
-								: this.state.sort.property==='title' || this.state.sort.property==='body'
-									? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
-									: this.props.selectPostsSortedNum({posts, ...this.state.sort})
-						}
-						comments={this.props.comments}
-						sortPosts={this.handleSortPosts}
-					/>
+				? <div className="category-posts-container">
+						<Category
+							category={category}
+							posts={
+								!this.state.sort.property || this.state.sort.property==='default'
+									? Object.values(posts)
+									: this.state.sort.property==='title' || this.state.sort.property==='body'
+										? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
+										: this.props.selectPostsSortedNum({posts, ...this.state.sort})
+							}
+							comments={this.props.comments}
+							sortPosts={this.handleSortPosts}
+						/>
+					</div>
 				: <div className="default-container">
 						<CategoriesList categories={this.props.selectCategories({categories: this.props.categories})} />
 						<Default

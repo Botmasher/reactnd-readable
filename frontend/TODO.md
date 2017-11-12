@@ -102,7 +102,7 @@
 - [ ] style the app to be "presentable and easy to navigate"
 	- [ ] trim extra whitespace on input submit
 	- [ ] truncate categories list beyond certain width in mobile view
-- [ ] switch catch 404 routes
+- [X] switch catch 404 routes
 
 ## Testing
 - [X] install React devtools

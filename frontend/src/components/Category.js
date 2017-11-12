@@ -17,9 +17,9 @@ function Category(props) {
 				</div>
 				<div className="posts-sort">{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}</div>
 			</div>
-
-			<PostsList posts={props.posts} />
-
+			<div className="category-posts-list">
+				<PostsList posts={props.posts} />
+			</div>
 		</div>
 	);
 }

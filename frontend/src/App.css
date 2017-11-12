@@ -1,5 +1,5 @@
 body {
-	line-height: 22px;
+	line-height: 20px;
 }
 
 ul, li {
@@ -71,6 +71,12 @@ a:hover {
 	clear: both;
 	position: relative;
 	width: 100%;
+}
+
+.category-posts-list {
+	clear: both;
+	display: block;
+	margin-top: 40px;
 }
 
 .posts-list-wrapper {
@@ -146,7 +152,7 @@ h1 {
 	font-size: 24px;
 }
 
-.post-edit-delete a { 	/* temp style for edit delete links next to post title */
+.post-edit-delete a {
 	font-size: 12px;
 	margin-left: 15px;
 }
@@ -156,16 +162,35 @@ h1 {
 	font-size: 14px;
 }
 
-.post-vote {
+.post-date-author {
 	display: inline;
-	margin-left: 25px;
+	margin-right: 20px;
 }
 
-.post-vote a { 					/* temp style for +1/-1 links until image used */
-	margin-left: 10px;
+.post-vote {
+	display: inline;
+}
+
+.post-vote a {
+	margin-left: 16px;
+}
+
+@media screen and (max-width: 500px) {
+	.post-vote {
+		display: block;
+	}
 }
 
 /* Comments */
+
+.comments-container {}
+
+.comments-list {
+	margin-top: 20px;
+	margin-left: 50px;
+	font-size: 14px;
+	color: #333;
+}
 
 .comment-details a {
 	margin-left: 10px;

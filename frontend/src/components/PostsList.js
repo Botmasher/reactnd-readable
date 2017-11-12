@@ -19,7 +19,7 @@ function PostsList(props) {
 					<li key={post.id}>
 						<Link to={`/post/${post.id}`}>{post.title}</Link>
 						<div className="post-info">
-							{formatDate(post.timestamp)} <em>by</em> {post.author}
+							<p className="post-date-author">{formatDate(post.timestamp)} <em>by</em> {post.author}</p>
 							<PostVoteContainer postId={post.id} voteScore={post.voteScore} />
 							<CommentsContainer parentId={post.id} countOnly={true} />
 						</div>

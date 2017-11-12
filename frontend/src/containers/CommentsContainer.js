@@ -69,7 +69,7 @@ class CommentsContainer extends React.Component {
 			? this.props.selectCurrentComments({comments: this.props.comments, post: {id: this.props.parentId}})
 			: undefined;
 		return (
-			<div>
+			<div className="comments-container">
 				{comments.length} comments
 				{!this.props.countOnly && (
 					<CommentsList
