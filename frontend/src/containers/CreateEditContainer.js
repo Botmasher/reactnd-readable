@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CreateEdit from '../components/CreateEdit';
-import { readPost, addPost, editPost } from '../actions';
+import { readCategories, readPost, addPost, editPost } from '../actions';
 import { Route } from 'react-router-dom';
+import { selectCategories } from '../selectors';
 
 class CreateEditContainer extends React.Component {
 
@@ -50,15 +51,14 @@ class CreateEditContainer extends React.Component {
 	};
 
 	componentDidMount () {
-		const postId = this.props.match.params.id;
-		if (postId) {
-			this.props.readPost(postId);	
-		}
+		this.props.match.params.id && this.props.readPost(this.props.match.params.id);
+		this.props.readCategories();
 	}
 
 	render() {
 		const currentPost = this.props.posts[this.props.match.params.id];
 		const currentCategory = currentPost ? currentPost.category : this.props.match.params.category;
+		const categories = this.props.selectCategories({categories: this.props.categories});
 		return (
 			<Route render={({history}) => (
 				<CreateEdit
@@ -66,6 +66,7 @@ class CreateEditContainer extends React.Component {
 					history={history}
 					post={currentPost}
 					category={currentCategory}
+					categories={categories}
 					handleSubmit={this.handleSubmit}
 				/>
 			)}/>
@@ -73,12 +74,18 @@ class CreateEditContainer extends React.Component {
 	}
 }
 
-function mapStateToProps({ posts, comments }) {
-	return { posts, comments };
+function mapStateToProps({ posts, comments, categories }) {
+	return {
+		posts,
+		comments,
+		categories,
+		selectCategories
+	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+		readCategories: () => dispatch(readCategories()),
 		readPost: (postId) => dispatch(readPost(postId)),
 		addPost: (details, history) => dispatch(addPost(details, history)),
 		editPost: (details, history) => dispatch(editPost(details, history))

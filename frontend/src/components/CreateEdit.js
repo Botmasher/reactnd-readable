@@ -18,7 +18,7 @@ class CreateEdit extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="post-create-edit">
 				{this.props.message && (
 					<div className="input-message"><p>{this.props.message}</p></div>
 				)}
@@ -28,7 +28,10 @@ class CreateEdit extends React.Component {
 						type="text"
 						name="title"
 						id="title"
-						value={this.props.post && !this.state.title && !this.state.changed.includes('title') ? this.props.post.title  : this.state.title}
+						value={this.props.post && !this.state.title && !this.state.changed.includes('title')
+							? this.props.post.title
+							: this.state.title
+						}
 						onChange={(e) => this.changeValue(e)}
 					/>
 					<label htmlFor="author">Author</label>
@@ -36,30 +39,44 @@ class CreateEdit extends React.Component {
 						type="text"
 						name="author"
 						id="author"
-						value={this.props.post && !this.state.author && !this.state.changed.includes('author') ? this.props.post.author : this.state.author}
+						value={this.props.post && !this.state.author && !this.state.changed.includes('author')
+							? this.props.post.author
+							: this.state.author
+						}
 						onChange={this.changeValue}
 					/>
 					<label htmlFor="body">Body</label>
 					<textarea
 						name="body"
 						id="body"
-						value={this.props.post && !this.state.body && !this.state.changed.includes('body') ? this.props.post.body : this.state.body}
+						value={this.props.post && !this.state.body && !this.state.changed.includes('body')
+							? this.props.post.body
+							: this.state.body
+						}
 						onChange={this.changeValue}
 					/>
 					<label htmlFor="category">Category</label>
-					<input
-						className="input-category"
-						type="text"
+					<select
 						name="category"
 						id="category"
-						value={this.props.category && !this.state.category && !this.state.changed.includes('category') ? this.props.category : this.state.category}
+						value={this.props.category && !this.state.category && !this.state.changed.includes('category')
+							? this.props.category
+							: this.state.category
+						}
 						onChange={this.changeValue}
-					/>
-					<input type="submit" value="Submit" />
-					<Link
-						className="input-cancel"
-						to={this.props.post ? `/post/${this.props.post.id}` : this.props.category ? `/${this.props.category}` : `/`}
-					>cancel</Link>
+					>
+						<option> - select - </option>
+						{this.props.categories.map(categoryObj => (
+							<option key={categoryObj.path} value={categoryObj.name}>{categoryObj.name}</option>
+						))}
+					</select>
+					<div>
+						<input type="submit" value="Submit" />
+						<Link
+							className="input-cancel"
+							to={this.props.post ? `/post/${this.props.post.id}` : this.props.category ? `/${this.props.category}` : `/`}
+						>cancel</Link>
+					</div>
 				</form>
 			</div>
 		);
@@ -70,7 +87,8 @@ CreateEdit.propTypes = {
 	history: PropTypes.object.isRequired,
 	message: PropTypes.string,
 	post: PropTypes.object,
-	category: PropTypes.string
+	category: PropTypes.string,
+	categories: PropTypes.array.isRequired
 };
 
 export default CreateEdit;

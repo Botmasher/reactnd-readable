@@ -229,6 +229,10 @@ a:hover {
 
 /* Create-Edit forms */
 
+.post-create-edit select {
+	margin: 10px 15px;
+}
+
 input[type=text], textarea {
 	width: 400px;
 	padding: 5px;
