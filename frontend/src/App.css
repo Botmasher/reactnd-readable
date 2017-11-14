@@ -2,6 +2,14 @@ body {
 	line-height: 20px;
 }
 
+h1 {
+	font-size: 22px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
 ul, li {
 	list-style-type: none;
 	margin: 0;
@@ -148,8 +156,13 @@ a:hover {
 
 /* Post detail */
 
-h1 {
-	font-size: 24px;
+.post-title {
+	font-size: 20px;
+	margin: 0;
+}
+
+.post-body {
+	margin-bottom: 25px;
 }
 
 .post-edit-delete a {
@@ -172,7 +185,7 @@ h1 {
 }
 
 .post-vote a {
-	margin-left: 16px;
+	margin-left: 8px;
 }
 
 @media screen and (max-width: 500px) {
@@ -183,20 +196,38 @@ h1 {
 
 /* Comments */
 
-.comments-container {}
+.comments-container {
+	margin: 0;
+	padding: 0;
+}
 
 .comments-list {
 	margin-top: 20px;
-	margin-left: 50px;
+	margin-left: 20px;
 	font-size: 14px;
 	color: #333;
 }
 
-.comment-details a {
-	margin-left: 10px;
+.comment-details p {
+	margin: 0;
 }
 
-/* Create-Edit post form */
+.comment-details span {
+	margin-right: 14px;
+	font-size: 13px;
+	color: #777;
+}
+
+.comment-details a {
+	margin-right: 10px;
+}
+
+.comments-count {
+	font-size: 13px;
+	font-style: italic;
+}
+
+/* Create-Edit forms */
 
 input[type=text], textarea {
 	width: 400px;
@@ -209,8 +240,29 @@ input[type=text], textarea {
 input[type=text]:focus {
 }
 
+.input-author {
+	display: inline;
+	margin-right: 50px;
+}
+
+.input-author input {
+	margin-left: 10px;
+}
+
+.comment-submit-cancel {
+	font-weight: bold;
+	font-size: 11px;
+	margin-right: 16px;
+}
+
 textarea {
 	box-sizing: border-box;
+}
+
+@media screen and (max-width: 500px) {
+	input[type=text], textarea {
+		width: 265px;
+	}
 }
 
 input[type=submit] {
@@ -239,4 +291,13 @@ input[type=submit] {
 	background-color: #ff9191;
 	border-radius: 3px;
 	border: 1px solid red;
+}
+.input-message a {
+	margin-left: 10px;
+	font-size: 14px;
+}
+@media screen and (max-width: 500px) {
+	.input-message {
+		width: 260px;
+	}
 }

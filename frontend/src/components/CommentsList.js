@@ -7,7 +7,11 @@ function CommentsList(props) {
 	return (
 		<ul className="comments-list">
 			{!props.inputId && props.addingNew
-				? <CommentCreateEdit message={props.message} handleSubmit={props.handleSubmit} />
+				? <CommentCreateEdit
+						message={props.message}
+						handleSubmit={props.handleSubmit}
+						handleCancel={props.handleCancel}
+					/>
 				: <li><a href="/" onClick={props.enableAddingNew}>Add comment</a></li>
 			}
 			{props.comments.length > 0
@@ -18,6 +22,7 @@ function CommentsList(props) {
 									key={comment.id}
 									details={comment}
 									handleSubmit={props.handleSubmit}
+									handleCancel={props.handleCancel}
 								/>
 							: <Comment
 									message={props.message}
@@ -28,7 +33,7 @@ function CommentsList(props) {
 									handleDelete={props.handleDelete}
 								/>
 					))
-				: <li>No comments found!</li>
+				: <li>No comments found</li>
 			}
 		</ul>
 	);
@@ -40,6 +45,7 @@ CommentsList.propTypes = {
 	enableAddingNew: PropTypes.func,
 	setAsInputting: PropTypes.func,
 	handleSubmit: PropTypes.func,
+	handleCancel: PropTypes.func,
 	handleVote: PropTypes.func,
 	handleDelete: PropTypes.func
 };

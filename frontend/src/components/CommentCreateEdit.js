@@ -8,7 +8,7 @@ class CommentCreateEdit extends React.Component {
 	}
 
 	handleTextInput = (event) => {
-		this.setState({[event.target.name]: event.target.value});
+		this.setState({[event.target.name]: event.target.value.trim()});
 	};
 
 	submit = (event) => {
@@ -27,17 +27,24 @@ class CommentCreateEdit extends React.Component {
 					name="body"
 					onChange={this.handleTextInput}
 					defaultValue={this.props.details ? this.props.details.body : this.state.body}
+					placeholder="Leave a comment..."
 				/>
 				{!this.props.details
-					? <label htmlFor="author">author 
+					? <p className="input-author">
+							<label htmlFor="author">by: </label>
 							<input
 								name="author"
 								onChange={this.handleTextInput}
+								placeholder="author"
 							/>
-						</label>
-					: <p>{this.props.details.author}</p>
+						</p>
+					: <p className="input-author">{this.props.details.author}</p>
 				}
-				<a href="" onClick={this.submit}>ok</a>
+
+				{this.state.body && (this.state.author || this.props.details) && (
+					<span className="comment-submit-cancel"><a href="" onClick={this.submit}>submit</a></span>
+				)}
+				<span className="comment-submit-cancel"><a href="" onClick={this.props.handleCancel}>cancel</a></span>
 			</li>
 		);		
 	}
@@ -45,7 +52,9 @@ class CommentCreateEdit extends React.Component {
 
 CommentCreateEdit.propTypes = {
 	message: PropTypes.string,
-	details: PropTypes.object
+	details: PropTypes.object,
+	handleSubmit: PropTypes.func.isRequired,
+	handleCancel: PropTypes.func.isRequired
 };
 
 export default CommentCreateEdit;

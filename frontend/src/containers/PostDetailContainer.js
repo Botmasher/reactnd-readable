@@ -19,7 +19,6 @@ class PostDetailContainer extends React.Component {
 
 	toggleConfirmDelete = (event) => {
 		event.preventDefault();
-		console.log('confirming delete');
 		this.state.message==='delete' ? this.setState({message: ''}) : this.setState({message: 'delete'});
 	};
 
@@ -46,7 +45,10 @@ class PostDetailContainer extends React.Component {
 						toggleConfirmDelete={this.toggleConfirmDelete}
 						handleDelete={this.handleDelete}
 					/>
-					<CommentsContainer parentId={this.props.match.params.id} countOnly={!showComments} />
+					<CommentsContainer
+						parentId={this.props.match.params.id}
+						countOnly={!showComments}
+					/>
 				</div>
 			)}/>
 		);

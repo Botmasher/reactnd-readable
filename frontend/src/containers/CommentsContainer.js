@@ -60,24 +60,31 @@ class CommentsContainer extends React.Component {
 		this.setState({inputId: '', message: '', addingNew: true});
 	};
 
+	cancelAddingNew = (event) => {
+		event.preventDefault();
+		this.setState({inputId: '', message: '', addingNew: false});
+	}
+
 	componentDidMount() {
 		this.props.readComments(this.props.parentId);
 	}
 
 	render() {
+		const commentsGrammaticalNumber = this.props.comments.length === 1 ? 'comment' : 'comments';
 		const comments = this.props.parentId
 			? this.props.selectCurrentComments({comments: this.props.comments, post: {id: this.props.parentId}})
 			: undefined;
 		return (
 			<div className="comments-container">
-				{comments.length} comments
+				<span className="comments-count">{`${comments.length} ${commentsGrammaticalNumber}`}</span>
 				{!this.props.countOnly && (
 					<CommentsList
-						comments={comments}
+						comments={comments.reverse()}
 						inputId={this.state.inputId}
 						message={this.state.message}
 						addingNew={this.state.addingNew}
 						enableAddingNew={this.enableAddingNew}
+						handleCancel={this.cancelAddingNew}
 						setAsInputting={this.setAsInputting}
 						handleVote={this.handleVote}
 						handleDelete={this.handleDelete}

@@ -85,10 +85,9 @@
 	- [X] withRouter around app connect so router links fire when clicked
 	- [X] decisions about handling [url params](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#containersvisibletodolistjs) and passing [link state](https://stackoverflow.com/questions/41466055/how-do-i-pass-state-through-react-router) (category, post id)
 	- [X] get post, comment, category id through URL
-- [ ] build out supporting components for post and comment UI
+- [X] build out supporting components for post and comment UI
 	- [X] Post UI
 	- [X] Comment UI
-	- [ ] rework voting so it's only done once per post/comment
 - [X] wire up views to display data correctly
 	- [X] use component state to handle form input fields and controlled components for posts
 	- [X] use component state to handle form input fields and controlled components for comments
@@ -99,10 +98,9 @@
 	- [X] break out sort menu and posts listing
 	- [X] comments with controls as displayed in Post Detail view
 	- [X] post as displayed in Root view, Category view and Post Detail view
-- [ ] style the app to be "presentable and easy to navigate"
-	- [ ] trim extra whitespace on input submit
-	- [ ] truncate categories list beyond certain width in mobile view
+- [X] style the app to be "presentable and easy to navigate"
 - [X] switch catch 404 routes
+- [ ] update README to reflect changes during core task implementation
 
 ## Testing
 - [X] install React devtools
@@ -117,12 +115,9 @@
 - [ ] Hot loading and time traveling
 - [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
 
-## Issues
-- [ ] Editing a nonexistent post or comment adds an error object as post or comment to the store slice
-- [ ] How much state to load into store as user navigates app?
-
 ## Beyond MVP
 - [ ] custom favicon
+- [ ] truncate categories list beyond certain width in mobile view
 - [ ] pagination for posts and comments lists
 - [ ] localization including dates
 - [ ] implement distinct user objects/models for logging in and permissions
