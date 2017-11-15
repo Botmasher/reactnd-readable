@@ -16,7 +16,7 @@ function Category(props) {
 					<Link to={`/${props.category}/create`}>+add</Link>
 				</div>
 				<div className="posts-sort">
-					{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}<br/>
+					<SortPosts sortPosts={props.sortPosts} />
 				</div>
 			</div>
 			<div className="posts-list">
