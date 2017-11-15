@@ -8,17 +8,17 @@ Here's how to start up this project for the first time:
 1. ensure that `node` and `npm` are installed
 2. fork, clone or download this repository
 3. install and start the local backend server
-  - navigate to project root
-  - `cd api-server`
-  - `npm install`
+    - navigate to project root
+    - `cd api-server`
+    - `npm install`
 4. use another shell window to install the frontend
-  - navigate to project root
-  - `cd frontend`
-  - `npm install`
+    - navigate to project root
+    - `cd frontend`
+    - `npm install`
 5. start the backend server within the `./api-server` directory
-	- `node server.js`
+    - `node server.js`
 6. start the frontend server within the `./frontend` directory
-	- `npm start`
+    - `npm start`
 
 Once installed, you only need to navigate to and start the two servers in the future:
 1. for the backend: open `./api-server` and start the server with `node server.js`
@@ -55,17 +55,17 @@ Reselect selectors are used to build on the store data.
 The top-level shape of the store for reducers reflects the above breakdown between posts, comments and categories:
 ```
 {
-	posts: {},
-	comments: {},
-	categories: {}
+  posts: {},
+  comments: {},
+  categories: {}
 }
 ```
 
 Each category in `categories` has the following structure:
 ```
 [id]: {
-	name: '',
-	path: ''
+  name: '',
+  path: ''
 }
 ```
 Case: what if category exists in categories on server and exists in no fetched post or comment?
@@ -73,29 +73,29 @@ Case: what if category exists in categories on server and exists in no fetched p
 Each post in the `posts` object has the following structure:
 ```
 [uuid]: {
-	id: '', 								// unique string identifier
-	timestamp: Date.now(),	// default Unix time track data
-	title: '', 							// string to display as the post title
-	body: '', 							// string to display as the post body
-	author: '', 						// string to display as the author of post title and body
-	category: '', 					// must be one of the categories provided by server
-	voteScore: 1, 					// net votes post has received (default: 1)
-	deleted: false 					// flag for deleted post
+  id: '',                 // unique string identifier
+  timestamp: Date.now(),  // default Unix time track data
+  title: '',              // string to display as the post title
+  body: '',               // string to display as the post body
+  author: '',             // string to display as the author of post title and body
+  category: '',           // must be one of the categories provided by server
+  voteScore: 1,           // net votes post has received (default: 1)
+  deleted: false          // flag for deleted post
 }
 ```
 
 Each comment in the `comments` array has the following structure:
 ```
 [uuid]: {
-  id: '', 			 					// unique string identifier
-  parentId: '', 					// matches id of an existing post
-  timestamp: Date.now(), 	// default Unix time track data
-  body: '', 							// string to display as the comment body
-  author: '', 						// string to display as the author of comment body
-	category: '', 					// matches parent category
-	voteScore: 1,						// net votes comment has received (default: 1)
-	deleted: false, 				// flag for deleted comment
-	parentDeleted: false 		// flag for deleted parent post
+  id: '',                 // unique string identifier
+  parentId: '',           // matches id of an existing post
+  timestamp: Date.now(),  // default Unix time track data
+  body: '',               // string to display as the comment body
+  author: '',             // string to display as the author of comment body
+  category: '',           // matches parent category
+  voteScore: 1,           // net votes comment has received (default: 1)
+  deleted: false,         // flag for deleted comment
+  parentDeleted: false    // flag for deleted parent post
 }
 ```
 
