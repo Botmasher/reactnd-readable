@@ -4,7 +4,7 @@ import thumbsUp from '../icons/thumbs-up.png';
 import thumbsDown from '../icons/thumbs-down.png';
 
 function Comment(props) {
-	const comment = props.details
+	const comment = props.details;
 	return (
 		<li key={comment.id} className="comment-details">
 			<p>{comment.body}</p>

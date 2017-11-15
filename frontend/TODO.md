@@ -1,4 +1,4 @@
-# Readable TODO list
+# Readable TODO List
 
 ## Planning
 - [X] sketch out data flow through the app
@@ -100,7 +100,7 @@
 	- [X] post as displayed in Root view, Category view and Post Detail view
 - [X] style the app to be "presentable and easy to navigate"
 - [X] switch catch 404 routes
-- [ ] update README to reflect changes during core task implementation
+- [X] update README to reflect changes during core task implementation
 
 ## Testing
 - [X] install React devtools
@@ -113,14 +113,17 @@
 - [ ] Test your selectors, actions, reducers [together](https://github.com/reactjs/redux/issues/1171)
 	- [ ] the [ducks approach](https://github.com/reactjs/reselect#motivation-for-memoized-selectors)
 - [ ] Hot loading and time traveling
-- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
 
 ## Beyond MVP
-- [ ] custom favicon
+- [X] custom favicon
 - [ ] truncate categories list beyond certain width in mobile view
 - [ ] pagination for posts and comments lists
 - [ ] localization including dates
 - [ ] implement distinct user objects/models for logging in and permissions
+- [ ] ways of building and organizing UI
+	- [ ] Grommet or other for component UI
+	- [ ] go all the way to [build a component library](https://hackernoon.com/building-a-react-component-library-part-1-d8a1e248fe6c)
+	- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
 - [ ] make better use of categories
 	- [ ] categories ui (category list and links) and container to browse, sort, manage categories
 	- [ ] currently "added" when a post submits a new category string

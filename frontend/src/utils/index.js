@@ -12,78 +12,45 @@ const endpoints={
 	comments: 'comments'
 };
 
-/*
-	API endpoint 							Description															Associated Action
-	------------							----------- 														----------------- 
-	GET /categories 					read all categories 										READ_CATEGORIES
-	GET /:category/posts 			read all posts for a category 					READ_POSTS
-	GET /posts 								read all posts 													READ_CATEGORY_POSTS
-	POST /posts 							add one post 														ADD_POST
-	GET /posts/:id 						read one post (all of its details) 			READ_POST
-	POST /posts/:id 					vote one post 													VOTE_POST
-	PUT /posts/:id 						edit one post 													EDIT_POST
-	DELETE /posts/:id 				delete one post 												DELETE_POST
-	GET /posts/:id/comments 	read all comments on one post 	 				READ_COMMENTS		
-	POST /comments 						add one comment to one post 						ADD_COMMENT
-	GET /comments/:id 				read one comment (all of its details) 	READ_COMMENT
-	POST /comments/:id 				vote one comment 												VOTE_COMMENT
-	PUT /comments/:id 				edit one comment 												EDIT_COMMENT
-	DELETE /comments/:id 			delete one comment 											DELETE_COMMENT
- */
-
-function get(endpoint, method='GET', body=null) {
+const get = (endpoint, method='GET', body=null) => {
 	const attributes = body!==null ? {headers, method, body: JSON.stringify(body)} : {headers, method};
 	return fetch(`${api_address}/${endpoint}`, attributes)
 	.then(response => response.json());
-}
+};
 
 // Read
-export function getCategories() {
-	return get(endpoints.categories);
-}
+export const getCategories = () => get(endpoints.categories);
 
-export function getPosts() {
-	return get(endpoints.posts);
-}
+export const getPosts = () => get(endpoints.posts);
 
-export function getPost(postId) {
-	return get(`${endpoints.posts}/${postId}`);
-}
+export const getPost = postId => get(`${endpoints.posts}/${postId}`);
 
-export function getCategoryPosts(category) {
-	return get(`${category}/${endpoints.posts}`);
-}
+export const getCategoryPosts = category => get(`${category}/${endpoints.posts}`);
 
-export function getComments(postId) {
-	return get(`${endpoints.posts}/${postId}/${endpoints.comments}`);
-}
+export const getComments = postId => get(`${endpoints.posts}/${postId}/${endpoints.comments}`);
 
 // Add
-export function addPost(post) {
-	return get(`${endpoints.posts}`, 'POST', post);
-}
+export const addPost = post => get(`${endpoints.posts}`, 'POST', post);
 
-export function addComment(comment) {
-	return get(`${endpoints.comments}`, 'POST', comment);
-}
+export const addComment = comment => get(`${endpoints.comments}`, 'POST', comment);
 
 // Update
-export const editPost = (post) => get(`${endpoints.posts}/${post.id}`, 'PUT', post);
+export const editPost = post => get(`${endpoints.posts}/${post.id}`, 'PUT', post);
 
-export const editComment = (comment) => get(`${endpoints.comments}/${comment.id}`, 'PUT', comment);
+export const editComment = comment => get(`${endpoints.comments}/${comment.id}`, 'PUT', comment);
 
 // Score
-export function votePost(postId, up=true) {
+export const votePost = (postId, up=true) => {
 	const option = up ? 'upVote' : 'downVote';
 	return get(`${endpoints.posts}/${postId}`, 'POST', {option});
-}
+};
 
-export function voteComment(commentId, up=true) {
+export const voteComment = (commentId, up=true) => {
 	const option = up ? 'upVote' : 'downVote';
 	return get(`${endpoints.comments}/${commentId}`, 'POST', {option});
-}
+};
 
 // Delete
-export const deletePost = (postId) => get(`${endpoints.posts}/${postId}`, 'DELETE');
+export const deletePost = postId => get(`${endpoints.posts}/${postId}`, 'DELETE');
 
-export const deleteComment = (commentId) => get(`${endpoints.comments}/${commentId}`, 'DELETE');
+export const deleteComment = commentId => get(`${endpoints.comments}/${commentId}`, 'DELETE');

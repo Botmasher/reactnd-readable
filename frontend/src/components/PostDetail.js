@@ -24,7 +24,7 @@ function PostDetail(props) {
 						</span>
 					</h1>
 					<div className="post-info">
-						<p className="post-date-author">posted by {props.post.author}</p>
+						<p className="post-date-author">posted in {props.post.category} by {props.post.author}</p>
 						<PostVoteContainer postId={props.post.id} voteScore={props.post.voteScore} />
 					</div>
 					<p className="post-body">{props.post.body}</p>
