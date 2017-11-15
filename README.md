@@ -8,11 +8,11 @@ Here's how to start up this project for the first time:
 1. ensure that `node` and `npm` are installed
 2. fork, clone or download this repository
 3. install and start the local backend server
-	- navigate to project root
+  - navigate to project root
   - `cd api-server`
   - `npm install`
 4. use another shell window to install the frontend
-	- navigate to project root
+  - navigate to project root
   - `cd frontend`
   - `npm install`
 5. start the backend server within the `./api-server` directory
@@ -63,7 +63,7 @@ The top-level shape of the store for reducers reflects the above breakdown betwe
 
 Each category in `categories` has the following structure:
 ```
-[integer-id]: {
+[id]: {
 	name: '',
 	path: ''
 }
@@ -74,7 +74,7 @@ Each post in the `posts` object has the following structure:
 ```
 [uuid]: {
 	id: '', 								// unique string identifier
-	timestamp: Date.now(), 	// default Unix time track data
+	timestamp: Date.now(),	// default Unix time track data
 	title: '', 							// string to display as the post title
 	body: '', 							// string to display as the post body
 	author: '', 						// string to display as the author of post title and body
@@ -87,11 +87,11 @@ Each post in the `posts` object has the following structure:
 Each comment in the `comments` array has the following structure:
 ```
 [uuid]: {
-	id: '', 			 					// unique string identifier
-	parentId: '', 					// matches id of an existing post
-	timestamp: Date.now(), 	// default Unix time track data
-	body: '', 							// string to display as the comment body
-	author: '', 						// string to display as the author of comment body
+  id: '', 			 					// unique string identifier
+  parentId: '', 					// matches id of an existing post
+  timestamp: Date.now(), 	// default Unix time track data
+  body: '', 							// string to display as the comment body
+  author: '', 						// string to display as the author of comment body
 	category: '', 					// matches parent category
 	voteScore: 1,						// net votes comment has received (default: 1)
 	deleted: false, 				// flag for deleted comment
