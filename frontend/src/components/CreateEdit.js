@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class CreateEdit extends React.Component {
-	
 	constructor(props) {
 		super(props);
 		this.state={category: '', title: '', body: '', author: '', changed: []};
@@ -74,7 +73,7 @@ class CreateEdit extends React.Component {
 						<input type="submit" value="Submit" />
 						<Link
 							className="input-cancel"
-							to={this.props.post ? `/post/${this.props.post.id}` : this.props.category ? `/${this.props.category}` : `/`}
+							to={this.props.post ? `/${this.props.post.category}/${this.props.post.id}` : this.props.category ? `/${this.props.category}` : `/`}
 						>cancel</Link>
 					</div>
 				</form>

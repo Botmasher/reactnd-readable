@@ -4,7 +4,6 @@ import {
 	READ_POST,
 	READ_COMMENTS,
 	READ_CATEGORIES,
-	READ_CATEGORY_POSTS,
 	ADD_POST,
 	ADD_COMMENT,
 	EDIT_POST,
@@ -24,21 +23,17 @@ function posts(state={}, action) {
 			return ({
 				...state,
 				...(action.posts.reduce((allPosts, post) => (
-					{...allPosts, [post.id]: post}
+					!post.error && post.id && !post.deleted ? {...allPosts, [post.id]: post} : allPosts
 				), {}))
 			});
 		case READ_POST:
-			return ({
-				...state,
-				[action.post.id]: action.post
-			});
-		case READ_CATEGORY_POSTS:
-			return ({
-				...state,
-				...(action.posts.reduce((allPosts, post) => (
-					{...allPosts, [post.id]: post}
-				), {}))
-			});
+			return !action.post.error && action.post.id && !action.post.deleted
+				?	({
+						...state,
+						[action.post.id]: action.post
+					})
+				: state
+			;
 		case ADD_POST:
 			return ({
 				...state,
@@ -55,10 +50,12 @@ function posts(state={}, action) {
 				[action.post.id]: action.post
 			});
 		case DELETE_POST:
+			const posts=(Object.keys(state).reduce((allPosts, postId) => (
+				postId !== action.post.id ? {...allPosts, [postId]: state[postId]} : allPosts
+			), {}));
+			console.log(posts);
 			return ({
-				...(Object.keys(state).reduce((allPosts, postId) => (
-					postId !== action.post.id ? {...allPosts, [postId]: state[postId]} : allPosts
-				), {}))
+				...posts
 			});
 		default:
 			return state;
@@ -73,7 +70,7 @@ function comments(state={}, action) {
 			return ({
 				...state,
 				...(action.comments.reduce((allComments, comment) => (
-					{...allComments, [comment.id]: comment}
+					!comment.error && comment.id && !comment.deleted && !comment.parentDeleted ? {...allComments, [comment.id]: comment} : allComments
 				), {}))
 			});
 		case ADD_COMMENT:
@@ -92,10 +89,11 @@ function comments(state={}, action) {
 				[action.comment.id]: action.comment
 			});
 		case DELETE_COMMENT:
+			const comments = (Object.keys(state).reduce((allComments, commentId) => (
+				commentId !== action.comment.id ? {...allComments, [commentId]: state[commentId]} : allComments
+			), {}));
 			return ({
-				...(Object.keys(state).reduce((allComments, commentId) => (
-					commentId !== action.comment.id ? {...allComments, [commentId]: state[commentId]} : allComments
-				), {}))
+				...comments
 			});
 		default:
 			return state;

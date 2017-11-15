@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PostVoteContainer from '../containers/PostVoteContainer';
+import PropTypes from 'prop-types';
 
 function PostDetail(props) {
 	return (
@@ -18,7 +19,7 @@ function PostDetail(props) {
 					<h1 className="post-title">
 						{props.post.title}
 						<span className="post-edit-delete">
-							<Link to={`/post/${props.post.id}/edit`}>edit</Link>
+							<Link to={`/${props.post.category}/${props.post.id}/edit`}>edit</Link>
 							<a href="/" onClick={(e) => props.toggleConfirmDelete(e)}>delete</a>
 						</span>
 					</h1>
@@ -32,5 +33,14 @@ function PostDetail(props) {
 		</div>
 	);
 }
+
+PostDetail.propTypes = {
+	post: PropTypes.object,
+	history: PropTypes.object,
+	handleDelete: PropTypes.func.isRequired,
+	toggleConfirmDelete: PropTypes.func.isRequired,
+	message: PropTypes.string,
+	handlePostNotFound: PropTypes.func
+};
 
 export default PostDetail;

@@ -66,9 +66,8 @@ export function readComments(postId) {
 	return asyncRequestReceive({method: API.getComments, params: arguments}, receiveReadComments);
 }
 
-export const READ_CATEGORY_POSTS = 'READ_CATEGORY_POSTS';
 function receiveReadCategoryPosts(posts) {
-	return {type: READ_CATEGORY_POSTS, posts};
+	return {type: READ_POSTS, posts};
 }
 export function readCategoryPosts(category) {
 	return asyncRequestReceive({method: API.getCategoryPosts, params: arguments}, receiveReadCategoryPosts);
@@ -86,7 +85,7 @@ export function readCategories() {
 
 export const ADD_POST = 'ADD_POST';
 function receiveAddPost(post, history) {
-	history.push(`/post/${post.id}`);
+	history.push(`/${post.category}/${post.id}`);
 	return {type: ADD_POST, post};
 }
 export function addPost(details, history) {
@@ -107,7 +106,7 @@ export function addComment(details) {
 
 export const EDIT_POST = 'EDIT_POST';
 function receiveEditPost(post, history) {
-	history.push(`/post/${post.id}`);
+	history.push(`/${post.category}/${post.id}`);
 	return {type: EDIT_POST, post};
 }
 export function editPost(details, history) {

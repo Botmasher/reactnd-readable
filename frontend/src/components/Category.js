@@ -13,11 +13,13 @@ function Category(props) {
 						? <h1>Posts in {props.category}</h1>
 						: <h2>no posts in {props.category}</h2>
 					}
-					<Link to={`/post/create/${props.category}`}>+ add</Link>
+					<Link to={`/${props.category}/create`}>+add</Link>
 				</div>
-				<div className="posts-sort">{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}</div>
+				<div className="posts-sort">
+					{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}<br/>
+				</div>
 			</div>
-			<div className="category-posts-list">
+			<div className="posts-list">
 				<PostsList posts={props.posts} />
 			</div>
 		</div>

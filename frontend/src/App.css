@@ -81,10 +81,9 @@ a:hover {
 	width: 100%;
 }
 
-.category-posts-list {
+.posts-list {
 	clear: both;
 	display: block;
-	margin-top: 40px;
 }
 
 .posts-list-wrapper {
@@ -112,10 +111,6 @@ a:hover {
 	width: 14%;
 }
 
-.posts-list {
-	padding: 0;
-}
-
 .categories-list {
 	border-left: 2px #e3c9ff dashed;
 	padding-left: 20px;
@@ -134,7 +129,10 @@ a:hover {
 	.posts-list {
 		width: 100%;
 	}
-	.categories-list h2{
+	.posts-list-wrapper {
+		width: 100%;
+	}
+	.categories-list h2 {
 		display: none;
 	}
 	.categories-list {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Default from '../components/Default';
+import Category from '../components/Category';
 import CategoriesList from '../components/CategoriesList';
 import { selectCategories, selectCategoryPosts, selectPostsSortedAlpha, selectPostsSortedNum } from '../selectors';
-import { readCategories, readPosts, votePost } from '../actions';
+import { readCategories, readCategoryPosts, votePost } from '../actions';
 import { sortPosts } from '../utils/sort';
 
-class DefaultContainer extends React.Component {
+class CategoryContainer extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -18,20 +18,22 @@ class DefaultContainer extends React.Component {
 	};
 
 	componentDidMount() {
-		this.props.readPosts();
 		this.props.readCategories();
+		this.props.readCategoryPosts(this.props.match.params.category);
 	}
 
 	render() {
-		const posts = this.props.posts;
+		const category = this.props.match.params.category;
+		const posts = this.props.selectCategoryPosts({posts: this.props.posts, category});
 		return (
-			<div className="default-container">
+			<div className="category-posts-container">
 				<CategoriesList categories={this.props.selectCategories({categories: this.props.categories})} />
-				<Default
+				<Category
+					category={category}
 					posts={
 						!this.state.sort.property || this.state.sort.property==='default'
 							? Object.values(posts)
-							: this.state.sort.property==='title' || this.state.sort.property==='author'
+							: this.state.sort.property==='title' || this.state.sort.property==='body'
 								? this.props.selectPostsSortedAlpha({posts, ...this.state.sort})
 								: this.props.selectPostsSortedNum({posts, ...this.state.sort})
 					}
@@ -57,10 +59,10 @@ function mapStateToProps({ posts, comments, categories }) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		readPosts: () => dispatch(readPosts()),
 		readCategories: () => dispatch(readCategories()),
+		readCategoryPosts: (category) => dispatch(readCategoryPosts(category)),
 		votePost: (postId, up) => dispatch(votePost(postId, up))
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefaultContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryContainer);

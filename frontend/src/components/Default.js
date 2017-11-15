@@ -13,15 +13,15 @@ function Default(props) {
 						? <h1>All Posts</h1>
 						: <h2>no posts yet</h2>
 					}
-					<Link to="/post/create">+ Add</Link>
+					<Link to="/create">+add</Link>
 				</div>
 				<div className="posts-sort">
-					{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}
+					{props.posts.length > 1 && <SortPosts sortPosts={props.sortPosts} />}<br/>
 				</div>
 			</div>
-
-			<PostsList posts={props.posts} />
-
+			<div className="posts-list">
+				<PostsList posts={props.posts} />
+			</div>
 		</div>
 	);
 }

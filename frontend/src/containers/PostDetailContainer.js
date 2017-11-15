@@ -36,20 +36,23 @@ class PostDetailContainer extends React.Component {
 		const showComments = this.state.showComments;
 		return (
 			<Route render={({history}) => (
-				<div>
-					<PostDetail
-						post={post}
-						history={history}
-						message={this.state.message}
-						toggleComments={this.toggleComments}
-						toggleConfirmDelete={this.toggleConfirmDelete}
-						handleDelete={this.handleDelete}
-					/>
-					<CommentsContainer
-						parentId={this.props.match.params.id}
-						countOnly={!showComments}
-					/>
-				</div>
+				post
+					? <div>
+							<PostDetail
+								post={post}
+								history={history}
+								message={this.state.message}
+								toggleComments={this.toggleComments}
+								toggleConfirmDelete={this.toggleConfirmDelete}
+								handleDelete={this.handleDelete}
+								handlePostNotFound={this.handlePostNotFound}
+							/>
+							<CommentsContainer
+								parentId={this.props.match.params.id}
+								countOnly={!showComments}
+							/>
+						</div>
+					: <div><h2>No post here!</h2><p>Check out posts and comments</p></div>
 			)}/>
 		);
 	}

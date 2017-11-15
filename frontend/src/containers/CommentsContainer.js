@@ -73,7 +73,7 @@ class CommentsContainer extends React.Component {
 		const commentsGrammaticalNumber = this.props.comments.length === 1 ? 'comment' : 'comments';
 		const comments = this.props.parentId
 			? this.props.selectCurrentComments({comments: this.props.comments, post: {id: this.props.parentId}})
-			: undefined;
+			: [];
 		return (
 			<div className="comments-container">
 				<span className="comments-count">{`${comments.length} ${commentsGrammaticalNumber}`}</span>
