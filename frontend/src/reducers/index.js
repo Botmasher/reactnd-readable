@@ -50,12 +50,10 @@ function posts(state={}, action) {
 				[action.post.id]: action.post
 			});
 		case DELETE_POST:
-			const posts=(Object.keys(state).reduce((allPosts, postId) => (
-				postId !== action.post.id ? {...allPosts, [postId]: state[postId]} : allPosts
-			), {}));
-			console.log(posts);
 			return ({
-				...posts
+				...(Object.keys(state).reduce((allPosts, postId) => (
+					postId !== action.post.id ? {...allPosts, [postId]: state[postId]} : allPosts
+				), {}))
 			});
 		default:
 			return state;
@@ -89,11 +87,10 @@ function comments(state={}, action) {
 				[action.comment.id]: action.comment
 			});
 		case DELETE_COMMENT:
-			const comments = (Object.keys(state).reduce((allComments, commentId) => (
-				commentId !== action.comment.id ? {...allComments, [commentId]: state[commentId]} : allComments
-			), {}));
 			return ({
-				...comments
+				...(Object.keys(state).reduce((allComments, commentId) => (
+					commentId !== action.comment.id ? {...allComments, [commentId]: state[commentId]} : allComments
+				), {}))
 			});
 		default:
 			return state;

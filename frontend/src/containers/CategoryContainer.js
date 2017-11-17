@@ -13,14 +13,14 @@ class CategoryContainer extends React.Component {
 		this.state = {sort: {property: 'default', ascending: false}};
 	}
 
-	handleSortPosts = (optionValue) => {
-		this.setState(sortPosts(optionValue));
-	};
-
 	componentDidMount() {
 		this.props.readCategories();
 		this.props.readCategoryPosts(this.props.match.params.category);
 	}
+
+	handleSortPosts = (optionValue) => {
+		this.setState(sortPosts(optionValue));
+	};
 
 	render() {
 		const category = this.props.match.params.category;

@@ -114,6 +114,31 @@
 	- [ ] the [ducks approach](https://github.com/reactjs/reselect#motivation-for-memoized-selectors)
 - [ ] Hot loading and time traveling
 
+## Feedback from Udacity
+Project reviewed November 15, 2017.
+A few comments, odds and ends:
+- consistently apply prop type validations to enforce data type checking for each React component. Doing so is good practice when working with dynamic Javascript. An alternative would be to use Typescript or statically typed Javascript.
+- this submission's code structure can be further improved to reduce redundant/repeated code (i.e. sorting posts in the render() method). The oddly named [Ducks Methodology](https://medium.com/@scbarrus/the-ducks-file-structure-for-redux-d63c41b7035c) (Re-ducks?!) can help you out. This is an alternative to structuring the single monolith `/src/actions/index.js` file:
+	1. create the action types/constants in a separate file if possible. Here's a great post explaining why on StackOverflow: https://stackoverflow.com/questions/34965856/what-is-the-point-of-the-constants-in-redux
+	2. break the single-monolith-file into separate files by feature (e.g. commentActions.js, postActions.js, etc)
+	3. utilize the Ducks Methodology to modularize the entire application's code structure, as explained in the review's opening comments.
+- try not to nest ternary operators as they confuse human eyes,
+- some components designated as containers can be created as stateless components. This package might be useful for future React/Redux projects: https://github.com/acdlite/recompose
+- Code structure convention for React components:
+	1. constructor,
+	2. lifecycle methods,
+	3. custom methods,
+	4. render method.
+- [ ] The flow/sorting of nested ternaries can be done above render or (optimally) in the action creator in these files:
+	- CategoryContainer.js 
+- [ ] destructure props before rendering for leaner components
+- declare variables with let and const outside of the switch-statements of a reducer
+	- lexical declaration is [visible in the entire switch block](https://eslint.org/docs/rules/no-case-declarations) but only initialized when assigned!
+- use destructuring rather than assignment with props
+	- e.g. `const { posts } = this.props` rather than `const posts = this.props.posts`
+- good job separating out helper methods, but keep this up!
+- 
+
 ## Beyond MVP
 - [X] custom favicon
 - [ ] truncate categories list beyond certain width in mobile view

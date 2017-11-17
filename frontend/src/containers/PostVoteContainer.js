@@ -4,22 +4,15 @@ import PostVote from '../components/PostVote';
 import { votePost } from '../actions';
 import PropTypes from 'prop-types';
 
-class PostVoteContainer extends React.Component {
+function PostVoteContainer(props) {
+  const handleVote = (event, postId, up) => {
+        event.preventDefault();
+        props.votePost(postId, up);
+    };
 
-	handleVote = (event, postId, up) => {
-		event.preventDefault();
-		this.props.votePost(postId, up);
-	};
-
-	render() {
-		return (
-			<PostVote handleVote={this.handleVote} postId={this.props.postId} voteScore={this.props.voteScore} />
-		);
-	}
-}
-
-function mapStateToProps({ posts, comments }) {
-	return {};
+    return (
+        <PostVote handleVote={handleVote} postId={props.postId} voteScore={props.voteScore} />
+    );
 }
 
 function mapDispatchToProps(dispatch) {
@@ -33,4 +26,4 @@ PostVoteContainer.propTypes = {
 	voteScore: PropTypes.number.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostVoteContainer);
+export default connect(null, mapDispatchToProps)(PostVoteContainer);

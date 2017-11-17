@@ -23,7 +23,7 @@ class DefaultContainer extends React.Component {
 	}
 
 	render() {
-		const posts = this.props.posts;
+		const { posts } = this.props;
 		return (
 			<div className="default-container">
 				<CategoriesList categories={this.props.selectCategories({categories: this.props.categories})} />

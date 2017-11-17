@@ -17,16 +17,17 @@ class CommentCreateEdit extends React.Component {
 	};
 
  	render() {
+ 		const { details, message, handleCancel } = this.props;
 		return (
-			<li key={this.props.details ? this.props.details.id : "newcomment"} className="comment-input">
-				{this.props.message && (
-					<div className="input-message">{this.props.message}</div>
+			<li key={details ? details.id : "newcomment"} className="comment-input">
+				{message && (
+					<div className="input-message">{message}</div>
 				)}
 				<textarea autoFocus 
 					text={this.state.body}
 					name="body"
 					onChange={this.handleTextInput}
-					defaultValue={this.props.details ? this.props.details.body : this.state.body}
+					defaultValue={details ? details.body : this.state.body}
 					placeholder="Leave a comment..."
 				/>
 				{!this.props.details
@@ -38,13 +39,13 @@ class CommentCreateEdit extends React.Component {
 								placeholder="author"
 							/>
 						</p>
-					: <p className="input-author">{this.props.details.author}</p>
+					: <p className="input-author">{details.author}</p>
 				}
 
-				{this.state.body && (this.state.author || this.props.details) && (
+				{this.state.body && (this.state.author || details) && (
 					<span className="comment-submit-cancel"><a href="" onClick={this.submit}>submit</a></span>
 				)}
-				<span className="comment-submit-cancel"><a href="" onClick={this.props.handleCancel}>cancel</a></span>
+				<span className="comment-submit-cancel"><a href="" onClick={handleCancel}>cancel</a></span>
 			</li>
 		);		
 	}
