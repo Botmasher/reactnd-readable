@@ -10,8 +10,9 @@ function PostVoteContainer(props) {
         props.votePost(postId, up);
     };
 
+    const { postId, voteScore } = props;
     return (
-        <PostVote handleVote={handleVote} postId={props.postId} voteScore={props.voteScore} />
+        <PostVote handleVote={handleVote} postId={postId} voteScore={voteScore} />
     );
 }
 

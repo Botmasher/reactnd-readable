@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function SortPosts (props) {
+	const { sortPosts } = props;
 	return (
-		<select onChange={(e) => props.sortPosts(e.target.value)}>
+		<select onChange={(e) => sortPosts(e.target.value)}>
 			<option value="default">default</option>
 			<option value="timestamp-desc">newest to oldest</option>
 			<option value="timestamp-asc">oldest to newest</option>

@@ -5,22 +5,23 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Default(props) {
+	const { posts, sortPosts } = props;
 	return (
 		<div className="posts-list-wrapper">
 			<div className="posts-list-top">
 				<div className="posts-list-title">
-					{props.posts.length > 0
+					{posts.length > 0
 						? <h1>All Posts</h1>
 						: <h2>no posts yet</h2>
 					}
 					<Link to="/create">+add</Link>
 				</div>
 				<div className="posts-sort">
-					<SortPosts sortPosts={props.sortPosts} />
+					<SortPosts sortPosts={sortPosts} />
 				</div>
 			</div>
 			<div className="posts-list">
-				<PostsList posts={props.posts} />
+				<PostsList posts={posts} />
 			</div>
 		</div>
 	);

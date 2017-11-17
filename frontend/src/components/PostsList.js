@@ -3,10 +3,11 @@ import PostDetailContainer from '../containers/PostDetailContainer';
 import PropTypes from 'prop-types';
 
 function PostsList(props) {
+	const { posts } = props;
 	return (
 		<div className="posts-list">
 			<ul>
-				{props.posts.map(post => (
+				{posts.map(post => (
 					<PostDetailContainer key={post.id} seedPost={post} />
 				))}
 			</ul>

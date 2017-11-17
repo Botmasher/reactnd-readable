@@ -4,25 +4,25 @@ import thumbsUp from '../icons/thumbs-up.png';
 import thumbsDown from '../icons/thumbs-down.png';
 
 function Comment(props) {
-	const comment = props.details;
+	const { details, handleVote, setAsInputting, handleDelete } = props;
 	return (
-		<li key={comment.id} className="comment-details">
-			<p>{comment.body}</p>
-			<span>{comment.author} </span>
+		<li key={details.id} className="comment-details">
+			<p>{details.body}</p>
+			<span>{details.author} </span>
 			<span>
-				{comment.voteScore}
+				{details.voteScore}
 			</span>
 			<span>
-				<a href="" onClick={(e) => props.handleVote(e, comment.id, true)}>
+				<a href="" onClick={(e) => handleVote(e, details.id, true)}>
 					<img src={thumbsUp} width="12" alt="thumbs up" />
 				</a> 
-				<a href="" onClick={(e) => props.handleVote(e, comment.id, false)}>
+				<a href="" onClick={(e) => handleVote(e, details.id, false)}>
 					<img src={thumbsDown} width="12" alt="thumbs down" />
 				</a> 
 			</span>
 			<span>
-				<a href="" onClick={(e) => props.setAsInputting(e, comment.id)}>edit</a> 
-				<a href="" onClick={(e) => props.handleDelete(e, comment.id)}>delete</a>
+				<a href="" onClick={(e) => setAsInputting(e, details.id)}>edit</a> 
+				<a href="" onClick={(e) => handleDelete(e, details.id)}>delete</a>
 			</span>
 		</li>
 	);
