@@ -13,14 +13,14 @@ class DefaultContainer extends React.Component {
 		this.state = {sort: {property: 'default', ascending: false}};
 	}
 
-	handleSortPosts = (optionValue) => {
-		this.setState(sortPosts(optionValue));
-	};
-
 	componentDidMount() {
 		this.props.readPosts();
 		this.props.readCategories();
 	}
+	
+	handleSortPosts = (optionValue) => {
+		this.setState(sortPosts(optionValue));
+	};
 
 	render() {
 		const { posts } = this.props;

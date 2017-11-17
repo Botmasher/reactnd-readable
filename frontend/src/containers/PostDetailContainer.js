@@ -14,6 +14,10 @@ class PostDetailContainer extends React.Component {
 		this.state = {showComments: true, message: ''};
 	}
 
+	componentDidMount() {
+		!this.props.seedPost && this.props.readPost(this.props.match.params.id);
+	}
+
 	toggleComments = (event) => {
 		event.preventDefault();
 		this.setState((prevState) => ({showComments: !prevState.showComments}));
@@ -29,10 +33,6 @@ class PostDetailContainer extends React.Component {
 		const postId = this.props.seedPost ? this.props.seedPost.id : this.props.match.params.id;
 		this.props.deletePost(postId, history);
 	};
-
-	componentDidMount() {
-		!this.props.seedPost && this.props.readPost(this.props.match.params.id);
-	}
 
 	render() {
 		const post = this.props.seedPost ? this.props.seedPost : this.props.posts[this.props.match.params.id];

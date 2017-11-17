@@ -124,13 +124,15 @@ A few comments, odds and ends:
 	3. utilize the Ducks Methodology to modularize the entire application's code structure, as explained in the review's opening comments.
 - try not to nest ternary operators as they confuse human eyes,
 - some components designated as containers can be created as stateless components. This package might be useful for future React/Redux projects: https://github.com/acdlite/recompose
-- Code structure convention for React components:
+- [X] Follow the code structure convention for React components:
 	1. constructor,
 	2. lifecycle methods,
 	3. custom methods,
 	4. render method.
-- [ ] The flow/sorting of nested ternaries can be done above render or (optimally) in the action creator in these files:
-	- CategoryContainer.js 
+- [ ] Nested ternaries here can be cleaned up by branching before rendering or (optimally) in the action creator:
+	- [ ] CategoryContainer.js
+	- [ ] DefaultContainer.js
+	- [ ] PostDetailContainer.js
 - [X] destructure props before rendering for leaner components
 - [X] declare variables with let and const outside of the switch-statements of a reducer
 	- lexical declaration is [visible in the entire switch block](https://eslint.org/docs/rules/no-case-declarations) but only initialized when assigned!

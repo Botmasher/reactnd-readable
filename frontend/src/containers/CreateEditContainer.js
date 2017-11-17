@@ -12,6 +12,11 @@ class CreateEditContainer extends React.Component {
 		this.state={message:''};
 	}
 
+	componentDidMount () {
+		this.props.match.params.id && this.props.readPost(this.props.match.params.id);
+		this.props.readCategories();
+	}
+	
 	handleSubmit = (event, formState, history) => {
 		event.preventDefault();
 		
@@ -49,11 +54,6 @@ class CreateEditContainer extends React.Component {
 			return this.props.addPost(newPost, history);
 		}
 	};
-
-	componentDidMount () {
-		this.props.match.params.id && this.props.readPost(this.props.match.params.id);
-		this.props.readCategories();
-	}
 
 	render() {
 		const currentPost = this.props.posts[this.props.match.params.id];

@@ -12,6 +12,10 @@ class CommentsContainer extends React.Component {
 		this.state={inputId: '', message: '', addingNew: true};
 	}
 
+	componentDidMount() {
+		this.props.readComments(this.props.parentId);
+	}
+	
 	handleSubmit = (event, details) => {
 		event.preventDefault();
 		const editedComment = details.id ? this.props.comments[details.id] : null;
@@ -63,10 +67,6 @@ class CommentsContainer extends React.Component {
 	cancelAddingNew = (event) => {
 		event.preventDefault();
 		this.setState({inputId: '', message: '', addingNew: false});
-	}
-
-	componentDidMount() {
-		this.props.readComments(this.props.parentId);
 	}
 
 	render() {
