@@ -17,7 +17,7 @@ function Default(props) {
 					<Link to="/create">+add</Link>
 				</div>
 				<div className="posts-sort">
-					<SortPosts sortPosts={sortPosts} />
+					{posts.length > 1 ? <SortPosts sortPosts={sortPosts} /> : <br/>}
 				</div>
 			</div>
 			<div className="posts-list">

@@ -39,9 +39,11 @@ class PostDetailContainer extends React.Component {
 		const showComments = this.state.showComments;
 		return (
 			<Route render={({history}) => (
-				!post
-					? <div><h2>No post here!</h2><p>Check out posts and comments</p></div>
-					: this.props.seedPost
+				<div>
+					{!post && (
+						<div><h2>No post here!</h2><p>Check out posts and comments</p></div>
+					)}
+					{post && this.props.seedPost
 						? <PostBrief post={post} history={history} handleDelete={this.handleDelete} />
 						: <div>
 								<PostDetail
@@ -58,6 +60,8 @@ class PostDetailContainer extends React.Component {
 									countOnly={!showComments}
 								/>
 							</div>
+						}
+				</div>
 			)}/>
 		);
 	}
