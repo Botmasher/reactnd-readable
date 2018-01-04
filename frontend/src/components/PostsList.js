@@ -2,8 +2,7 @@ import React from 'react';
 import PostDetailContainer from '../containers/PostDetailContainer';
 import PropTypes from 'prop-types';
 
-function PostsList(props) {
-	const { posts } = props;
+function PostsList({ posts }) {
 	return (
 		<div className="posts-list">
 			<ul>

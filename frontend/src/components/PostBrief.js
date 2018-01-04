@@ -4,12 +4,13 @@ import PostVoteContainer from '../containers/PostVoteContainer';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../utils/formatDate';
 import PropTypes from 'prop-types';
+import { truncate } from '../utils/truncate';
 
-function PostBrief(props) {
-	const { post, history, handleDelete } = props;
+function PostBrief({ post, history, handleDelete }) {
+	const titleMaxLength = 72;
 	return (
 		<li key={post.id}>
-			<Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
+			<Link to={`/${post.category}/${post.id}`}>{truncate(post.title)(titleMaxLength)}</Link>
 			<div className="post-info">
 				<p className="post-date-author">{formatDate(post.timestamp)} <em>by</em> {post.author}</p>
 				<PostVoteContainer postId={post.id} voteScore={post.voteScore} />

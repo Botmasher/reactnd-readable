@@ -35,7 +35,7 @@ class PostDetailContainer extends React.Component {
 	};
 
 	render() {
-		const post = this.props.seedPost ? this.props.seedPost : this.props.posts[this.props.match.params.id];
+		const post = !this.props.seedPost ? this.props.posts[this.props.match.params.id] : this.props.seedPost;
 		const showComments = this.state.showComments;
 		return (
 			<Route render={({history}) => (
@@ -43,24 +43,25 @@ class PostDetailContainer extends React.Component {
 					{!post && (
 						<div><h2>No post here!</h2><p>Check out posts and comments</p></div>
 					)}
-					{post && this.props.seedPost
-						? <PostBrief post={post} history={history} handleDelete={this.handleDelete} />
-						: <div>
-								<PostDetail
-									post={post}
-									history={history}
-									message={this.state.message}
-									toggleComments={this.toggleComments}
-									toggleConfirmDelete={this.toggleConfirmDelete}
-									handleDelete={this.handleDelete}
-									handlePostNotFound={this.handlePostNotFound}
-								/>
-								<CommentsContainer
-									parentId={post.id}
-									countOnly={!showComments}
-								/>
-							</div>
-						}
+					{post && this.props.seedPost && (
+						<PostBrief post={post} history={history} handleDelete={this.handleDelete} />
+					)}
+					{post && !this.props.seedPost && (
+						<div>
+							<PostDetail
+								post={post}
+								history={history}
+								message={this.state.message}
+								toggleComments={this.toggleComments}
+								toggleConfirmDelete={this.toggleConfirmDelete}
+								handleDelete={this.handleDelete}
+							/>
+							<CommentsContainer
+								parentId={post.id}
+								countOnly={!showComments}
+							/>
+						</div>
+					)}
 				</div>
 			)}/>
 		);

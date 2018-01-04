@@ -139,11 +139,11 @@ A few comments, odds and ends:
 - [X] use destructuring rather than straight assignment with props
 	- e.g. `const { posts } = this.props` instead of `const posts = this.props.posts`
 - good job separating out helper methods, but keep this up!
-- 
 
 ## Beyond MVP
 - [X] custom favicon
 - [ ] truncate categories list beyond certain width in mobile view
+- [X] truncate category and post names
 - [ ] pagination for posts and comments lists
 - [ ] localization including dates
 - [ ] implement distinct user objects/models for logging in and permissions

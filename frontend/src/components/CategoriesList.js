@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { truncate } from '../utils/truncate';
 
-function CategoriesList(props) {
+function CategoriesList({ categories }) {
+	const maxNameLength = 9;
 	return (
 		<div className="categories-list">
 			<h2>Categories:</h2>
@@ -12,11 +14,11 @@ function CategoriesList(props) {
 						<div className="decorated-initial">A</div>ll
 					</Link>
 				</li>
-				{props.categories.map(category => (
+				{categories.map(category => (
 					<li key={category.path}>
 						<Link to={`/${category.path}`}>
 							<div className="decorated-initial">{category.name.substr(0,1)}</div>
-							{category.name.substr(1)}
+							{truncate(category.name)(maxNameLength).substr(1)}
 						</Link>
 					</li>
 				))}
