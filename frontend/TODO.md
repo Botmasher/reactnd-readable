@@ -151,6 +151,7 @@ A few comments, odds and ends:
 	- [ ] Grommet or other for component UI
 	- [ ] go all the way to [build a component library](https://hackernoon.com/building-a-react-component-library-part-1-d8a1e248fe6c)
 	- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
+- [ ] backend ability to manage (add, edit, delete) categories
 - [ ] make better use of categories
 	- [ ] categories ui (category list and links) and container to browse, sort, manage categories
 	- [ ] currently "added" when a post submits a new category string
