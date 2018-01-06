@@ -23,7 +23,8 @@ class DefaultContainer extends React.Component {
 	};
 
 	render() {
-		const { posts } = this.props;
+		const { posts, categories } = this.props;
+		console.log(categories);
 		// optimally do this in action creator
 		let sortedPosts;
 		if (!this.state.sort.property || this.state.sort.property==='default') {
