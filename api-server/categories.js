@@ -5,7 +5,7 @@ let db = {};
 
 // Rework shape so that:
   // - categories have retrievable id at the top level allowing for selection by categories[id]
-  // - categories have full object that also includes id
+  // - categories have full object that also includes id (unique name)
   // - category object marks whether or not deleted
   // - categories shape and attribs cohere with shape and attribs of posts and comments
   //    1) category attrib in posts points to category.id, not category.name
@@ -32,22 +32,22 @@ const defaultData = {
 // proposed shape of Categories
 const testCategoryShape = {
   categories: {
-    'uuid_123abc': {
-      id: 'uuid_123abc',
+    'react': {
       name: 'react',
       path: 'react',
+      timestamp: Date.now(),
       deleted: false
     },
-    'uuid_890xyz': {
-      id: 'uuid_890xyz',
+    'redux': {
       name: 'redux',
       path: 'redux',
+      timestamp: Date.now(),
       deleted: false
     },
-    'uuid_567lmn': {
-      id: 'uuid_567lmn',
+    'udacity': {
       name: 'udacity',
       path: 'udacity',
+      timestamp: Date.now(),
       deleted: false
     }
   }
@@ -66,42 +66,48 @@ function getData (token) {
 
 function getAll (token) {
   return new Promise((res) => {
-    res(getData(token));
+    const data = getData(token);
+    res(Object.keys(data).reduce((filteredCategories, categoryName) => {
+      return data[categoryName].deleted
+        ? filteredCategories
+        : {
+            ...filteredCategories,
+            [categoryName]: data[categoryName]
+          }
+      ;
+    }, {}));
   });
 }
 
-// TODO update after commend shape is updated to reflect new category shape
 function add (token, category) {
   return new Promise((res) => {
     let categories = getData(token);
-    categories.push({
+    categories[category.name] = {
       name: category.name,
-      path: category.path
-    });
-    res(categories.filter(categoryObj => categoryObj.name === category.name)[0]);
-  });
+      path: category.path,
+      timestamp: Date.now(),
+      deleted: false
+    };
+    res(categories[category.name]);
+  }
 }
 
-// TODO make sure comment shape is updated, then edit returned categories through id
-function edit (token, id, category) {
+function edit (token, name, category) {
   return new Promise((res) => {
     let categories = getData(token);
-    // this reassigns local var but does give the desired result
-    categories = [...categories.filter(categoryObj => categoryObj.name !== category.name), category];
-    // TODO redo categories simply to use id
+
     for (prop in category) {
-      categories[id][prop] = category[prop];
+      categories[name][prop] = category[prop];
     }
-    res(comments[id]);
+    res(categories[name]);
   });
 }
 
-// TODO make sure comment shape is updated before testing
-function disable (token, id) {
+function disable (token, name) {
   return new Promise(res => {
     let categories = getData(token);
-    categories[id].deleted = true;
-    res(categories[id]);
+    categories[name].deleted = true;
+    res(categories[name]);
   });
 }
 
