@@ -127,17 +127,29 @@ app.use((req, res, next) => {
 
 
 app.get('/categories', (req, res) => {
-    categories.getAll(req.token)
-      .then(
-          (data) => res.send(data),
-          (error) => {
-              console.error(error)
-              res.status(500).send({
-                  error: 'There was an error.'
-              })
-          }
-      )
-})
+  categories.getAll(req.token)
+    .then(
+      (data) => res.send(data),
+      (error) => {
+        console.error(error)
+        res.status(500).send({
+          error: 'There was an error.'
+        });
+      }
+    );
+});   // verify continued compat w categories.js
+
+app.post('/:category'), (req, res) => {
+  // run the add method in categories.js  
+});
+
+app.put('/:category'), (req, res) => {
+  // run the update method in categories.js
+});
+
+app.delete('/:category'), (req, res) => {
+  // run the disable method in categories.js
+});
 
 app.get('/:category/posts', (req, res) => {
     posts.getByCategory(req.token, req.params.category)

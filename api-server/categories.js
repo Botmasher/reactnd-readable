@@ -21,7 +21,7 @@ const defaultData = {
     name: 'udacity',
     path: 'udacity',
     timestamp: Date.now(),
-    deleted: true
+    deleted: false
   }
 };
 
