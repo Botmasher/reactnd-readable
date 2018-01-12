@@ -139,16 +139,40 @@ app.get('/categories', (req, res) => {
     );
 });   // verify continued compat w categories.js
 
-app.post('/:category'), (req, res) => {
+app.post('/:category', (req, res) => {
   // run the add method in categories.js  
+  categories.add(req.token, req.body)
+    .then(
+      data => res.send(data),
+      error => {
+        console.error(error);
+        res.status(500).send({ error: 'There was an error.' });
+      }
+    );
 });
 
-app.put('/:category'), (req, res) => {
-  // run the update method in categories.js
+app.put('/:category', (req, res) => {
+  // run the edit method in categories.js - Verify that selecting property .name coheres with frontend
+  categories.edit(req.token, req.params.name, req.body)
+    .then(
+      data => res.send(data),
+      error => {
+        console.error(error);
+        res.status(500).send({ error: 'There was an error.' });
+      }
+    );
 });
 
-app.delete('/:category'), (req, res) => {
+app.delete('/:category', (req, res) => {
   // run the disable method in categories.js
+  categories.disable(req.token, req.params.name)
+    .then(
+      data => res.send(data),
+      error => {
+        console.error(error);
+        res.status(500).send({ error: 'There was an error.'});
+      }
+    );
 });
 
 app.get('/:category/posts', (req, res) => {
@@ -233,17 +257,17 @@ app.post('/posts/:id', bodyParser.json(), (req, res) => {
 })
 
 app.put('/posts/:id', bodyParser.json(), (req, res) => {
-    posts.edit(req.token, req.params.id, req.body)
-      .then(
-        (data) => res.send(data),
-          (error) => {
-              console.error(error)
-              res.status(500).send({
-                  error: 'There was an error.'
-              })
-          }
-      )
-})
+  posts.edit(req.token, req.params.id, req.body)
+    .then(
+      (data) => res.send(data),
+      (error) => {
+        console.error(error);
+        res.status(500).send({
+          error: 'There was an error.'
+        });
+      }
+    );
+});
 
 app.get('/posts/:id/comments', (req, res) => {
     comments.getByParent(req.token, req.params.id)
