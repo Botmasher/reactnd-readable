@@ -30,11 +30,15 @@ export const getCategoryPosts = category => get(`${category}/${endpoints.posts}`
 export const getComments = postId => get(`${endpoints.posts}/${postId}/${endpoints.comments}`);
 
 // Add
+export const addCategory = category => get(`${endpoints.categories}`, 'POST', category);
+
 export const addPost = post => get(`${endpoints.posts}`, 'POST', post);
 
 export const addComment = comment => get(`${endpoints.comments}`, 'POST', comment);
 
 // Update
+export const editCategory = category => get(`${endpoints.categories}/${category.name}`, 'PUT', category);
+
 export const editPost = post => get(`${endpoints.posts}/${post.id}`, 'PUT', post);
 
 export const editComment = comment => get(`${endpoints.comments}/${comment.id}`, 'PUT', comment);
@@ -51,6 +55,8 @@ export const voteComment = (commentId, up=true) => {
 };
 
 // Delete
+export const deleteCategory = categoryName => get(`${endpoints.categories}/${categoryName}`, 'DELETE');
+
 export const deletePost = postId => get(`${endpoints.posts}/${postId}`, 'DELETE');
 
 export const deleteComment = commentId => get(`${endpoints.comments}/${commentId}`, 'DELETE');

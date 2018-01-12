@@ -8,18 +8,21 @@ const defaultData = {
   'react': {
     name: 'react',
     path: 'react',
+    displayName: 'React',
     timestamp: Date.now(),
     deleted: false
   },
   'redux': {
     name: 'redux',
     path: 'redux',
+    displayName: 'Redux',
     timestamp: Date.now(),
     deleted: false
   },
   'udacity': {
     name: 'udacity',
     path: 'udacity',
+    displayName: 'Udacity',
     timestamp: Date.now(),
     deleted: false
   }
@@ -48,7 +51,6 @@ function getAll (token) {
     const data = getData(token);
      // return all categories not flagged as deleted
     const categories = Object.keys(data).reduce((filteredCategories, categoryName) => {
-      console.log(filteredCategories);
       return data[categoryName].deleted
         ? filteredCategories
         : {
