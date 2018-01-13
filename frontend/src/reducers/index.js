@@ -25,6 +25,22 @@ function categories(state={}, action) {
 				...state,
 				...action.categories
 			};
+		case ADD_CATEGORY:
+			return {
+				...state,
+				[action.category.name]: action.category
+			};
+		case EDIT_CATEGORY:
+			return {
+				...state,
+				[action.category.name]: action.category
+			};
+		case DELETE_CATEGORY:
+			return {
+				...(Object.keys(state).reduce((filteredCategories, categoryName) => (
+					categoryName !== action.category.name : { ...filteredCategories, [categoryName]: state[categoryName]} : filteredCategories
+				), {}))
+			};
 		default:
 			return state;
 	}
