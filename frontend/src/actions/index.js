@@ -4,23 +4,27 @@ import uuid from 'uuid/v4';
 /*
 	API endpoint 						Description												Associated Action
 	------------						----------- 											----------------- 
-	GET /categories 				- read all categories 						READ_CATEGORIES
-	GET /:category/posts 		- read all posts for a category 	READ_POSTS
-	GET /posts 							- read all posts 									READ_CATEGORY_POSTS
-	POST /posts 						- add one post 										ADD_POST
-	GET /posts/:id 					- read one post (all details) 		READ_POST
-	POST /posts/:id 				- vote one post 									VOTE_POST
-	PUT /posts/:id 					- edit one post 									EDIT_POST
-	DELETE /posts/:id 			- delete one post 								DELETE_POST
-	GET /posts/:id/comments - read all comments on one post 	READ_COMMENTS		
-	POST /comments 					- add one comment to one post 		ADD_COMMENT
-	GET /comments/:id 			- read one comment (all details) 	READ_COMMENT
-	POST /comments/:id 			- vote one comment 								VOTE_COMMENT
-	PUT /comments/:id 			- edit one comment 								EDIT_COMMENT
-	DELETE /comments/:id 		- delete one comment 							DELETE_COMMENT
+	GET /categories 					- read all categories 						READ_CATEGORIES
+	POST /categories 					- add one category 								ADD_CATEGORY
+	PUT /categories/:name			- edit one category 							EDIT_CATEGORY
+	DELETE /categories/:name 	- delete one category 						DELETE_CATEGORY
+	GET /:category/posts 			- read all posts for a category 	READ_POSTS
+	GET /posts 								- read all posts 									READ_CATEGORY_POSTS
+	POST /posts 							- add one post 										ADD_POST
+	GET /posts/:id 						- read one post (all details) 		READ_POST
+	POST /posts/:id 					- vote one post 									VOTE_POST
+	PUT /posts/:id 						- edit one post 									EDIT_POST
+	DELETE /posts/:id 				- delete one post 								DELETE_POST
+	GET /posts/:id/comments 	- read all comments on one post 	READ_COMMENTS		
+	POST /comments 						- add one comment to one post 		ADD_COMMENT
+	GET /comments/:id 				- read one comment (all details) 	READ_COMMENT
+	POST /comments/:id 				- vote one comment 								VOTE_COMMENT
+	PUT /comments/:id 				- edit one comment 								EDIT_COMMENT
+	DELETE /comments/:id 			- delete one comment 							DELETE_COMMENT
  */
 
 // Unused
+//export const READ_CATEGORY = 'READ_CATEGORY';
 //export const READ_COMMENT = 'READ_COMMENT';
 
 // Async request response
@@ -30,12 +34,13 @@ function asyncRequest() {
 	return {type: ASYNC_REQUEST};
 }
 
-function asyncRequestReceive(apiCall, receiveCall, history=null) {
+function asyncRequestReceive(apiCall, receiveCall, history=null, targetPath=null) {
 	return function(dispatch) {
 		dispatch(asyncRequest());
 		return apiCall.method(...apiCall.params)
 			.then((data) => {
-				history ? dispatch(receiveCall(data, history)) : dispatch(receiveCall(data));
+				const callParams = targetPath ? [data, targetPath, history] : [data, history];
+				history ? dispatch(receiveCall(...callParams)) : dispatch(receiveCall(data));
 			});
 	};
 }
@@ -83,14 +88,24 @@ export function readCategories() {
 
 // Create
 
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+function receiveAddCategory(category, history) {
+	history.push(`/${category.path}`);
+	return {type: ADD_CATEGORY, category};
+}
+export function addCategory(details, history) {
+	const category = { ...details, timestamp: Date.now() };
+	return asyncRequestReceive({method: API.addCategory, params: [category]}, receiveAddCategory, history);
+}
+
 export const ADD_POST = 'ADD_POST';
-function receiveAddPost(post, history) {
-	history.push(`/${post.category}/${post.id}`);
+function receiveAddPost(post, categoryPath, history) {
+	history.push(`/${categoryPath}/${post.id}`);
 	return {type: ADD_POST, post};
 }
-export function addPost(details, history) {
+export function addPost(details, categoryPath, history) {
 	const post = { ...details, id: uuid(), timestamp: Date.now() };
-	return asyncRequestReceive({method: API.addPost, params: [post]}, receiveAddPost, history);
+	return asyncRequestReceive({method: API.addPost, params: [post]}, receiveAddPost, history, categoryPath);
 }
 
 export const ADD_COMMENT = 'ADD_COMMENT';
@@ -104,14 +119,24 @@ export function addComment(details) {
 
 // Update
 
+export const EDIT_CATEGORY = 'EDIT_CATEGORY';
+function receiveEditCategory(category, history) {
+	history.push(`/${category.path}`);
+	return {type: EDIT_CATEGORY, category};
+}
+export function editCategory(details, history) {
+	const category = { ...details, id: uuid(), timestamp: Date.now() };
+	return asyncRequestReceive({method: API.editCategory, params: [category]}, receiveEditCategory, history);
+}
+
 export const EDIT_POST = 'EDIT_POST';
-function receiveEditPost(post, history) {
-	history.push(`/${post.category}/${post.id}`);
+function receiveEditPost(post, categoryPath, history) {
+	history.push(`/${categoryPath}/${post.id}`);
 	return {type: EDIT_POST, post};
 }
-export function editPost(details, history) {
+export function editPost(details, categoryPath, history) {
 	const post = { ...details, timestamp: Date.now() };
-	return asyncRequestReceive({method: API.editPost, params: [post]}, receiveEditPost, history);
+	return asyncRequestReceive({method: API.editPost, params: [post]}, receiveEditPost, history, categoryPath);
 }
 
 export const EDIT_COMMENT = 'EDIT_COMMENT';
@@ -140,6 +165,15 @@ export function voteComment(commentId, up) {
 }
 
 // Delete
+
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+function receiveDeleteCategory(category, history) {
+	history.push(`/`);
+	return {type: DELETE_CATEGORY, category};
+}
+export function deleteCategory(details, history) {
+	return asyncRequestReceive({method: API.deleteCategory, params: arguments}, receiveDeleteCategory, history);
+}
 
 export const DELETE_POST = 'DELETE_POST';
 function receiveDeletePost(post, history) {

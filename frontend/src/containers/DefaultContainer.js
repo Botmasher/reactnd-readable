@@ -25,7 +25,7 @@ class DefaultContainer extends React.Component {
 	render() {
 		const { posts, categories } = this.props;
 		console.log(categories);
-		// optimally do this in action creator
+		// TODO optimally sort in action creator
 		let sortedPosts;
 		if (!this.state.sort.property || this.state.sort.property==='default') {
 			sortedPosts = Object.values(posts);

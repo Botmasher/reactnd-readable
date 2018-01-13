@@ -1,19 +1,34 @@
 import {
 	ASYNC_REQUEST,
+	READ_CATEGORIES,
 	READ_POSTS,
 	READ_POST,
 	READ_COMMENTS,
-	READ_CATEGORIES,
+	ADD_CATEGORY,
 	ADD_POST,
 	ADD_COMMENT,
+	EDIT_CATEGORY,
 	EDIT_POST,
 	EDIT_COMMENT,
+	DELETE_CATEGORY,
 	DELETE_POST,
 	DELETE_COMMENT,
 	VOTE_POST,
 	VOTE_COMMENT
 } from '../actions';
 import { combineReducers } from 'redux';
+
+function categories(state={}, action) {
+	switch (action.type) {
+		case READ_CATEGORIES:
+			return {
+				...state,
+				...action.categories
+			};
+		default:
+			return state;
+	}
+}
 
 function posts(state={}, action) {
 	switch (action.type) {
@@ -92,18 +107,6 @@ function comments(state={}, action) {
 					commentId !== action.comment.id ? {...allComments, [commentId]: state[commentId]} : allComments
 				), {}))
 			});
-		default:
-			return state;
-	}
-}
-
-function categories(state={}, action) {
-	switch (action.type) {
-		case READ_CATEGORIES:
-			return {
-				...state,
-				...action.categories
-			};
 		default:
 			return state;
 	}

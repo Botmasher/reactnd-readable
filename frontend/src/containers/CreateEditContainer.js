@@ -49,9 +49,9 @@ class CreateEditContainer extends React.Component {
 		} else if (isBlank || isMissingInfo) {
 			return this.setState({message: 'Please fill out all entries.'});
 		} else if (!creating) {
-			return this.props.editPost(newPost, history);
+			return this.props.editPost(newPost, this.props.categories[newPost.category].path, history);
 		} else {
-			return this.props.addPost(newPost, history);
+			return this.props.addPost(newPost, this.props.categories[newPost.category].path, history);
 		}
 	};
 
@@ -87,8 +87,8 @@ function mapDispatchToProps(dispatch) {
 	return {
 		readCategories: () => dispatch(readCategories()),
 		readPost: (postId) => dispatch(readPost(postId)),
-		addPost: (details, history) => dispatch(addPost(details, history)),
-		editPost: (details, history) => dispatch(editPost(details, history))
+		addPost: (details, categoryPath, history) => dispatch(addPost(details, categoryPath, history)),
+		editPost: (details, categoryPath, history) => dispatch(editPost(details, categoryPath, history))
 	};
 }
 

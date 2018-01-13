@@ -144,6 +144,7 @@ A few comments, odds and ends:
 - [X] custom favicon
 - [ ] truncate categories list beyond certain width in mobile view
 - [X] truncate category and post names
+- [X] ADD_POST and EDIT_POST: push category path to history rather than using category name stored in the post.category
 - [ ] pagination for posts and comments lists
 - [ ] localization including dates
 - [ ] implement distinct user objects/models for logging in and permissions
