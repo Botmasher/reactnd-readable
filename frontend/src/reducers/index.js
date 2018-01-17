@@ -38,7 +38,7 @@ function categories(state={}, action) {
 		case DELETE_CATEGORY:
 			return {
 				...(Object.keys(state).reduce((filteredCategories, categoryName) => (
-					categoryName !== action.category.name : { ...filteredCategories, [categoryName]: state[categoryName]} : filteredCategories
+					categoryName !== action.category.name ? { ...filteredCategories, [categoryName]: state[categoryName]} : filteredCategories
 				), {}))
 			};
 		default:

@@ -122,8 +122,8 @@ module.exports = {
   get,
   getByParent,
   add,
+  edit,
   vote,
-  disableByParent,
   disable,
-  edit
+  disableByParent
 }

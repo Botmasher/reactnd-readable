@@ -122,8 +122,7 @@ module.exports = {
   getAll,
   getByCategory,
   add,
-  vote,
-  disable,
   edit,
-  getAll
+  vote,
+  disable
 }

@@ -68,6 +68,7 @@ function add (token, category) {
     let categories = getData(token);
     categories[category.name] = {
       name: category.name,
+      displayName: category.displayName,
       path: category.path,
       timestamp: Date.now(),
       deleted: false
@@ -96,5 +97,8 @@ function disable (token, name) {
 }
 
 module.exports = {
-  getAll
+  getAll,
+  add,
+  edit,
+  disable
 };

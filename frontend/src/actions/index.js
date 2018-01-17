@@ -125,7 +125,7 @@ function receiveEditCategory(category, history) {
 	return {type: EDIT_CATEGORY, category};
 }
 export function editCategory(details, history) {
-	const category = { ...details, id: uuid(), timestamp: Date.now() };
+	const category = { ...details, timestamp: Date.now() };
 	return asyncRequestReceive({method: API.editCategory, params: [category]}, receiveEditCategory, history);
 }
 
@@ -171,7 +171,7 @@ function receiveDeleteCategory(category, history) {
 	history.push(`/`);
 	return {type: DELETE_CATEGORY, category};
 }
-export function deleteCategory(details, history) {
+export function deleteCategory(categoryName, history) {
 	return asyncRequestReceive({method: API.deleteCategory, params: arguments}, receiveDeleteCategory, history);
 }
 

@@ -157,7 +157,7 @@ app.get('/categories', (req, res) => {
     );
 });   // verify continued compat w categories.js
 
-app.post('/categories', (req, res) => {
+app.post('/categories', bodyParser.json(), (req, res) => {
   // run the add method in categories.js  
   categories.add(req.token, req.body)
     .then(
@@ -169,7 +169,7 @@ app.post('/categories', (req, res) => {
     );
 });
 
-app.put('/categories/:name', (req, res) => {
+app.put('/categories/:name', bodyParser.json(), (req, res) => {
   // run the edit method in categories.js - Verify that selecting property .name coheres with frontend
   categories.edit(req.token, req.params.name, req.body)
     .then(

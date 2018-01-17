@@ -154,10 +154,16 @@ A few comments, odds and ends:
 	- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
 - [ ] backend ability to manage (add, edit, delete) categories
 - [ ] make better use of categories
-	- [ ] categories ui (category list and links) and container to browse, sort, manage categories
-	- [ ] currently "added" when a post submits a new category string
-	- [ ] currently "deleted" when none have it
-	- [ ] currently "updated" when all posts with a category string change that string
+	- [X] allow adding, editing and deleting from backend
+	- [X] expose backend functions to api server.js
+	- [X] wrap calls in utils api.js
+	- [X] add reducers to crud categories
+	- [X] add actions to crud categories
+	- [X] test add, edit, delete a category through frontend component
+	- [ ] categories ui
+		- [ ] container to manage categories
+		- [ ] categories list to display categories
+		- [ ] implement sorting select for categories
 - [ ] store route strings separately
 - [ ] add sorting for comments as well within Post Detail view
 - [ ] consider [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)

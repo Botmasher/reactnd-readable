@@ -15,7 +15,9 @@ const endpoints={
 const get = (endpoint, method='GET', body=null) => {
 	const attributes = body!==null ? {headers, method, body: JSON.stringify(body)} : {headers, method};
 	return fetch(`${api_address}/${endpoint}`, attributes)
-	.then(response => response.json());
+		.then(response => {
+			return response.json();
+		});
 };
 
 // Read
