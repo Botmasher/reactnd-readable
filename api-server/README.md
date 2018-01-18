@@ -1,23 +1,26 @@
 # API Server
 
+This simple backend server manages posts, comments and categories for my Readable app. The original server was inherited from the [ Udacity Readable starter project](https://github.com/udacity/reactnd-project-readable-starter) and heavily modified in January 2018 to extend categories operations.
+
+## Installing the Server
 To install and start the API server, run the following commands in this directory:
 
 * `npm install`
 * `node server`
 
-## Using The Server
+## Using the Server
 
-### Include An Authorization Header
+### Include an Authorization Header
 
 All requests should use an **Authorization header** to work with your own data:
 
 ```js
 fetch(
-    url,
-    {
-        headers: { 'Authorization': 'whatever-you-want' }
-    }
-)
+	url,
+  {
+    headers: { 'Authorization': 'whatever-you-want' }
+  }
+);
 ```
 
 ### API Endpoints
@@ -42,12 +45,13 @@ The following endpoints are available:
 | `DELETE /comments/:id` | Sets a comment's deleted flag to `true`. | &nbsp; |
 
 ## Specification
+The server is currently seeded with a small number of categories and posts.
 
 ### Categories
-The server supports a small, fixed number of categories that users can put posts into. Categories are simple objects containing a name and a URL path (usually the same string). The server does not have methods for creating/modifying/deleting these categories. If you wish to add to the categories for your app, simply add your desired object to the Array in `categories.js` in the provided server.
+Categories are objects containing a name, a URL path (currently expected by the frontend to be the same string) and a displayName. The `name` is also used as the associative index for that object. The inherited server lacked methods for creating/modifying/deleting these categories. These operations were added to the backend and tested from the frontend.
 
 ### Posts
-Posts are the building blocks of your application. Posts include:
+Posts are the building blocks of the application. Each post is assigned to one category. Posts include:
 
 Attribute | Type     | Description
 ---       | ---      | ---
@@ -61,7 +65,7 @@ voteScore | Integer  | Net votes the post has received (default: 1)
 deleted   | Boolean  | Flag if post has been 'deleted' (inaccessible by the front end), (default: false)
 
 ### Comments
-Comments are attached to parent posts. They include:
+Each comment is attached to a parent post. They include:
 
 Attribute | Type     | Description
 ---       | ---      | ---
@@ -74,6 +78,6 @@ voteScore | Integer  | Net votes the comment has received (default: 1)
 deleted   | Boolean  | Flag if comment has been 'deleted' (inaccessible by the front end), (default: false)
 parentDeleted | Boolean | Flag for when the the parent post was deleted, but the comment itself was not.
 
-This application is anonymous, with no authentication or authorization. There are no user objects, and comments and posts accept any username/name for creation and editing.
+This application is anonymous, with no authentication or authorization. There are no user objects, and comments and posts accept any username for creation and editing.
 
 The server is very light weight. It performs zero data validation to enforce the above data types. Make sure you are using the correct types when sending requests to the server.

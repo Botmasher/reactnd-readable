@@ -63,12 +63,14 @@ The top-level shape of the store for reducers reflects the above breakdown betwe
 
 Each category in `categories` has the following structure:
 ```
-[id]: {
-  name: '',
-  path: ''
+[name]: {
+  name: '',               // db category name
+  path: '',               // category path - currently MUST mach name
+  displayName: '',        // string to display as the category title
+  timestamp: Date.now(),  // default time track data
+  deleted: false          // flag for deleted category - not returned by server if true
 }
 ```
-Case: what if category exists in categories on server and exists in no fetched post or comment?
 
 Each post in the `posts` object has the following structure:
 ```
@@ -78,9 +80,9 @@ Each post in the `posts` object has the following structure:
   title: '',              // string to display as the post title
   body: '',               // string to display as the post body
   author: '',             // string to display as the author of post title and body
-  category: '',           // must be one of the categories provided by server
+  category: '',           // must match name of a category provided by server
   voteScore: 1,           // net votes post has received (default: 1)
-  deleted: false          // flag for deleted post
+  deleted: false          // flag for deleted post - not returned by server if true
 }
 ```
 
@@ -94,8 +96,8 @@ Each comment in the `comments` array has the following structure:
   author: '',             // string to display as the author of comment body
   category: '',           // matches parent category
   voteScore: 1,           // net votes comment has received (default: 1)
-  deleted: false,         // flag for deleted comment
-  parentDeleted: false    // flag for deleted parent post
+  deleted: false,         // flag for deleted comment - not returned by server if true
+  parentDeleted: false    // flag for deleted post - not returned by server if true
 }
 ```
 
