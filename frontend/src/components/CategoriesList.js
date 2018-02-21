@@ -8,7 +8,7 @@ function CategoriesList({ categories }) {
 	return (
 		<div className="categories-list">
 			<h2>Categories:</h2>
-			<ul>
+			<ul className="clamped-mobile-line">
 				<li>
 					<Link to="/">
 						<div className="decorated-initial">A</div>ll

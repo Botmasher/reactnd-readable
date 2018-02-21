@@ -126,6 +126,12 @@ a:hover {
 }
 
 @media screen and (max-width: 500px) {
+	.clamped-mobile-line {
+		overflow: hidden;
+		width: 300px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 	.posts-list {
 		width: 100%;
 	}
@@ -142,13 +148,13 @@ a:hover {
 		border-bottom: 2px #e3c9ff dashed;
 		margin-bottom: 25px;
 	}
-	.categories-list ul, .categories-list li {
+	.categories-list li {
 		margin: 0;
 		padding: 0;
 		display: inline;
 	}
 	.categories-list a {
-		margin-right: 30px;
+		margin-right: 20px;
 	}
 }
 
