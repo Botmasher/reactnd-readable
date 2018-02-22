@@ -27,7 +27,7 @@ class CategoryContainer extends React.Component {
 		const { categories, comments } = this.props;
 		const categoryName = this.props.match.params.category; 	// treats path as name - currently they MUST be identical
 		const category = categories[categoryName];
-		let posts = this.props.selectCategoryPosts({posts: this.props.posts, categoryName});
+		let posts = this.props.selectCategoryPosts({posts: this.props.posts, category: categoryName});
 		// optimally do this in action creator
 		if (!this.state.sort.property || this.state.sort.property==='default') {
 			posts = Object.values(posts);
