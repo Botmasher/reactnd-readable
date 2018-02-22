@@ -145,15 +145,20 @@ A few comments, odds and ends:
 - [X] truncate (clamp) mobile categories list beyond certain width
 - [X] truncate category and post names
 - [X] ADD_POST and EDIT_POST: push category path to history rather than using category name stored in the post.category
+- [ ] add category and author links to post overview
+- [ ] enhance sorting menu placement and interface
 - [ ] pagination for posts and comments lists
 - [ ] localization including dates
-- [ ] implement distinct user objects/models for logging in and permissions
+- [ ] user care
+	- [ ] implement distinct user objects/models for logging in and permissions
+	- [ ] author profile
+	- [ ] view posts by author
 - [ ] ways of building and organizing UI
 	- [ ] Grommet or other for component UI
 	- [ ] go all the way to [build a component library](https://hackernoon.com/building-a-react-component-library-part-1-d8a1e248fe6c)
 	- [ ] Dynamically change out links with [FilterLink](http://redux.js.org/docs/advanced/UsageWithReactRouter.html#navigating-with-react-router)
 - [X] backend ability to manage (add, edit, delete) categories
-	- [ ] **troubleshoot** category pages no longer fetch posts after backend update
+	- [X] **troubleshoot** category pages no longer fetch posts
 - [ ] make better use of categories
 	- [X] allow adding, editing and deleting from backend
 	- [X] expose backend functions to api server.js

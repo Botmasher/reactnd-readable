@@ -26,7 +26,9 @@ function PostDetail({ message, post, history, handleDelete, toggleConfirmDelete 
 						</span>
 					</h1>
 					<div className="post-info">
-						<p className="post-date-author">posted in {post.category} by {post.author}</p>
+						<p className="post-date-author">
+							posted in <Link to={`/${post.category}`}>{post.category}</Link> by <Link to={`/author/${post.author}`}>{post.author}</Link>
+						</p>
 						<PostVoteContainer postId={post.id} voteScore={post.voteScore} />
 					</div>
 					<p className="post-body">{post.body}</p>
