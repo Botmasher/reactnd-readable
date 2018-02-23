@@ -145,7 +145,7 @@ A few comments, odds and ends:
 - [X] truncate (clamp) mobile categories list beyond certain width
 - [X] truncate category and post names
 - [X] ADD_POST and EDIT_POST: push category path to history rather than using category name stored in the post.category
-- [ ] add category and author links to post overview
+- [X] add category and author links to post brief
 - [ ] enhance sorting menu placement and interface
 - [ ] pagination for posts and comments lists
 - [ ] localization including dates
