@@ -1,24 +1,48 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { readPosts, readCategories } from '../actions';
+import { readPosts, readComments } from '../actions';
 
-const AuthorContainer = ({ posts, categories, match }) => {
-	const author = match.params.author ? match.params.author : null;
-	return (
-		<div>
-			<p>This is the profile page for author <strong>{author}</strong>.</p>
-		</div>
-	);
+class AuthorContainer extends React.Component {
+
+	componentDidMount() {
+		this.props.readComments();
+		this.props.readPosts();
+	}
+
+	render() {
+		const { posts, comments, match } = this.props;
+		const author = match.params.author ? match.params.author : null;
+		const authoredPosts = Object.values(posts).reduce((postsByAuthor, currentPost) => {
+			return (currentPost.author === author ? [...postsByAuthor, currentPost] : postsByAuthor);
+		}, []);
+		console.log(posts);
+		// TODO reduce over comments for user comments - perhaps use backend model with ids instead
+		//const authoredComments = comments.reduce((commentsByAuthor, currentComment) => {
+		//	return (currentComment.author === author ? [...commentsByAuthor, currentComment] : commentsByAuthor);
+		//}, []);
+		return (
+			<div>
+				<h1>Profile page for <strong>{author}</strong>.</h1>
+				<p>Posts authored by {author}:</p>
+				<ul>
+					{authoredPosts.map(post => (
+						<li key={post.id}><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></li>
+					))}
+				</ul>
+			</div>
+		);
+	}
 };
 
-const mapStateToProps = ({ posts, categories }) => ({
+const mapStateToProps = ({ posts, comments }) => ({
 	posts,
-	categories
+	comments
 });
 
 const mapDispatchToProps = (dispatch) => ({
 	readPosts: () => dispatch(readPosts()),
-	readCategories: () => dispatch(readCategories())
+	readComments: () => dispatch(readComments())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorContainer);

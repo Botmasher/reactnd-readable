@@ -25,6 +25,7 @@ class DefaultContainer extends React.Component {
 	render() {
 		const { posts, categories } = this.props;
 		console.log(categories);
+		console.log(posts);
 		// TODO optimally sort in action creator
 		let sortedPosts;
 		if (!this.state.sort.property || this.state.sort.property==='default') {
@@ -34,6 +35,7 @@ class DefaultContainer extends React.Component {
 		} else {
 			sortedPosts = this.props.selectPostsSortedNum({posts, ...this.state.sort});
 		}
+		console.log(sortedPosts)
 		return (
 			<div className="default-container">
 				<CategoriesList categories={this.props.selectCategories({categories: this.props.categories})} />
