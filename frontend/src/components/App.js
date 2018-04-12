@@ -7,25 +7,24 @@ import CategoryContainer from '../containers/CategoryContainer';
 import AuthorContainer from '../containers/AuthorContainer';
 import PageNotFound from './PageNotFound';
 import { Switch, Route } from 'react-router-dom';
+import routes from '../routes';
 import '../App.css';
 
-function App() {
-	return (
-		<div>
-			<PageHeader title="Readable" />
-			<div className="content-wrapper">
-				<Switch>
-					<Route exact path="/author/:author" component={AuthorContainer} />
-					<Route exact path="/:category?/create" component={CreateEditContainer} />
-					<Route exact path="/:category/:id/edit" component={CreateEditContainer} />
-					<Route exact path="/:category/:id" component={PostDetailContainer} />
-					<Route exact path="/:category" component={CategoryContainer} />
-					<Route exact path="/" component={DefaultContainer} />
-					<Route component={PageNotFound} />
-				</Switch>
-			</div>
+const App = () => (
+	<div>
+		<PageHeader title="Readable" />
+		<div className="content-wrapper">
+			<Switch>
+				<Route exact path={routes.author} component={AuthorContainer} />
+				<Route exact path={routes.create} component={CreateEditContainer} />
+				<Route exact path={routes.edit} component={CreateEditContainer} />
+				<Route exact path={routes.post} component={PostDetailContainer} />
+				<Route exact path={routes.category} component={CategoryContainer} />
+				<Route exact path={routes.home} component={DefaultContainer} />
+				<Route component={PageNotFound} />
+			</Switch>
 		</div>
-	);
-}
+	</div>
+);
 
 export default (App);

@@ -170,7 +170,7 @@ A few comments, odds and ends:
 		- [ ] container to manage categories
 		- [ ] categories list to display categories
 		- [ ] implement sorting select for categories
-- [ ] store route strings separately
+- [X] store route strings separately
 - [ ] add sorting for comments as well within Post Detail view
 - [ ] consider [immutability](http://redux.js.org/docs/recipes/UsingImmutableJS.html)
 - [ ] test and optimize for growth in data, cases where iterating over huge numbers of posts and comments
