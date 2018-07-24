@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
 
-const postsSelector = (state) => Object.values(state.posts);
-const commentsSelector = (state) => Object.values(state.comments);
-const categoriesSelector = (state) => Object.values(state.categories);
-const postIdSelector = (state) => state.post.id;
-const categorySelector = (state) => state.category;
-const propertySelector = (state) => state.property;
-const ascendingSelector = (state) => state.ascending;
+const postsSelector = state => Object.values(state.posts);
+const commentsSelector = state => Object.values(state.comments);
+const categoriesSelector = state => Object.values(state.categories);
+const postIdSelector = state => state.post.id;
+const categorySelector = state => state.category;
+const propertySelector = state => state.property;
+const ascendingSelector = state => state.ascending;
 
 export const selectCurrentCategories = createSelector(
 	postsSelector,
@@ -18,14 +18,14 @@ export const selectCurrentCategories = createSelector(
 export const selectCurrentComments = createSelector(
 	[commentsSelector, postIdSelector],
 	(comments, postId) => comments.reduce((postComments, comment) => (
-		comment.parentId===postId ? [...postComments, comment] : postComments
+		comment.parentId === postId ? [...postComments, comment] : postComments
 	), [])
 );
 
 export const selectCategoryPosts = createSelector(
 	[postsSelector, categorySelector],
 	(posts, category) => posts.reduce((categoryPosts, post) => (
-		post.category===category ? [...categoryPosts, post] : categoryPosts
+		post.category === category ? [...categoryPosts, post] : categoryPosts
 	), [])
 );
 
