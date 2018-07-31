@@ -17,9 +17,7 @@ export const selectCurrentCategories = createSelector(
 
 export const selectCurrentComments = createSelector(
 	[commentsSelector, postIdSelector],
-	(comments, postId) => comments.reduce((postComments, comment) => (
-		comment.parentId === postId ? [...postComments, comment] : postComments
-	), [])
+	(comments, postId) => comments.filter(comment => comment.parentId === postId)
 );
 
 export const selectCategoryPosts = createSelector(
