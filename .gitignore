@@ -1,2 +1,6 @@
-/node_modules
+# os
 .DS_STORE
+*.ini
+
+# js
+/node_modules
